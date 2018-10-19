@@ -15,10 +15,13 @@ import Business.ProductDirectory;
 public class Supplier extends User implements Comparable<Supplier>{
     
     private ProductDirectory directory;
+    private String supplierName;
     
-    public Supplier(String password, String userName) {
+    
+    public Supplier(String password, String userName,String supplierName) {
         super(password, userName, "SUPPLIER");
         directory = new ProductDirectory();
+        this.supplierName = supplierName;
     }
 
     public ProductDirectory getDirectory() {
@@ -29,6 +32,14 @@ public class Supplier extends User implements Comparable<Supplier>{
         this.directory = directory;
     }
 
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
     @Override
     public int compareTo(Supplier o) {
         return o.getUserName().compareTo(this.getUserName());
@@ -36,7 +47,7 @@ public class Supplier extends User implements Comparable<Supplier>{
 
     @Override
     public String toString() {
-        return getUserName(); //To change body of generated methods, choose Tools | Templates.
+        return getSupplierName(); //To change body of generated methods, choose Tools | Templates.
     }
     
     public boolean verify(String password){
