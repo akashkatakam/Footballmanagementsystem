@@ -6,6 +6,7 @@
 package Business.Users;
 
 import Business.Abstract.User;
+import Business.CustomerDirectory;
 import Business.SupplierDirectory;
 import java.util.Date;
 
@@ -15,11 +16,11 @@ import java.util.Date;
  */
 public class Customer extends User implements Comparable<Customer>{
     
-    private SupplierDirectory directory;
+    private CustomerDirectory directory;
     private String customerName;
     public Customer(String password, String userName , String customerName) {
         super(password, userName, "CUSTOMER");
-        directory = new SupplierDirectory();
+        directory = new CustomerDirectory();
         this.customerName = customerName;
     }
     
