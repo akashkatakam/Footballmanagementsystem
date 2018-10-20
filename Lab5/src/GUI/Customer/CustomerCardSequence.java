@@ -18,7 +18,7 @@ public class CustomerCardSequence extends javax.swing.JPanel {
      */
     public CustomerCardSequence() {
         initComponents();
-       
+        cl = (CardLayout) this.getLayout();
     }
 
     /**
@@ -124,7 +124,6 @@ public class CustomerCardSequence extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         cl.next(this);
-
     }//GEN-LAST:event_btnSubmitActionPerformed
 
 
