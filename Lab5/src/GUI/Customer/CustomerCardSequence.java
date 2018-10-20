@@ -5,17 +5,20 @@
  */
 package GUI.Customer;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author akash
  */
 public class CustomerCardSequence extends javax.swing.JPanel {
-
+     private CardLayout cl;
     /**
      * Creates new form CustomerCardSequence
      */
     public CustomerCardSequence() {
         initComponents();
+       
     }
 
     /**
@@ -33,6 +36,8 @@ public class CustomerCardSequence extends javax.swing.JPanel {
         btnSubmit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        successPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -93,10 +98,32 @@ public class CustomerCardSequence extends javax.swing.JPanel {
         );
 
         add(loginCustomer, "card2");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel3.setText("Success");
+
+        javax.swing.GroupLayout successPanelLayout = new javax.swing.GroupLayout(successPanel);
+        successPanel.setLayout(successPanelLayout);
+        successPanelLayout.setHorizontalGroup(
+            successPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(successPanelLayout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(154, Short.MAX_VALUE))
+        );
+        successPanelLayout.setVerticalGroup(
+            successPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(successPanelLayout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(jLabel3)
+                .addContainerGap(151, Short.MAX_VALUE))
+        );
+
+        add(successPanel, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        // TODO add your handling code here:
+        cl.next(this);
 
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -106,7 +133,9 @@ public class CustomerCardSequence extends javax.swing.JPanel {
     private javax.swing.JComboBox<Object> comboUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel loginCustomer;
+    private javax.swing.JPanel successPanel;
     private javax.swing.JTextField txtPword;
     // End of variables declaration//GEN-END:variables
 }
