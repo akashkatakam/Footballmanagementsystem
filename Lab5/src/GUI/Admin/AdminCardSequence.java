@@ -5,7 +5,16 @@
  */
 package GUI.Admin;
 
+import Business.CustomerDirectory;
 import java.awt.CardLayout;
+import Business.Abstract.User;
+import Business.CustomerDirectory;
+import Business.Users.Customer;
+import Business.Utils.RegexMatcher;
+import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,13 +22,31 @@ import java.awt.CardLayout;
  */
 public class AdminCardSequence extends javax.swing.JPanel {
     private CardLayout cl;
+    private CustomerDirectory custDirectory;
     /**
      * Creates new form AdminCardSequence
      */
-    public AdminCardSequence() {
+    public AdminCardSequence(CustomerDirectory custDirectory) {
         initComponents();
-        cl = (CardLayout) this.getLayout();
+       cl = (CardLayout) this.getLayout();
+        this.custDirectory = custDirectory;
+        displayTable();
     }
+
+ public void displayTable() {
+        int rowCount = tableCust.getRowCount();
+        DefaultTableModel model = (DefaultTableModel)tableCust.getModel();
+        for(int i = rowCount - 1; i >=0; i--) {
+            model.removeRow(i);
+        }
+        for(User user : custDirectory.getCustomerList()) {
+            Customer customer =  (Customer)user;
+            Object row[] = new Object[2];
+            row[0] =  customer;
+            row[1] =  customer.getDate();
+            model.addRow(row);
+        }
+ }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -195,7 +222,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
        cl.previous(this);
-        
+        displayTable();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void radioCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCustomerActionPerformed
@@ -204,7 +231,15 @@ public class AdminCardSequence extends javax.swing.JPanel {
 
     private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
         // TODO add your handling code here:
-
+ if(radioCustomer.isSelected()){
+            RegexMatcher rm = new RegexMatcher();
+            if(rm.validatePassword(txtPword.getText()) && rm.validateUsername(txtUser.getText()) && txtPword.getText().equals(txtRePword.getText())){
+                custDirectory.addCustomer(txtUser.getText(), txtPword.getText(), new Date());
+                JOptionPane.showMessageDialog(null, "Created Customer Suceesfully");
+            }else{
+                JOptionPane.showMessageDialog(null, "Please Enter Valid Details");
+            }
+        }
     }//GEN-LAST:event_btnCreate1ActionPerformed
 
 
@@ -227,4 +262,8 @@ public class AdminCardSequence extends javax.swing.JPanel {
     private javax.swing.JTextField txtRePword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
-}
+
+        
+    }
+    
+
