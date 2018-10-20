@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Business.CustomerDirectory;
 import Business.Users.Admin;
 import GUI.Admin.AdminCardSequence;
 import GUI.Customer.CustomerCardSequence;
@@ -19,8 +20,10 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFram
      */
+    private CustomerDirectory customerDirectory;
     public MainJFrame() {
         initComponents();
+        this.customerDirectory = new CustomerDirectory();
     }
 
     /**
@@ -113,7 +116,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(new AdminCardSequence());
+        panelRight.add(new AdminCardSequence(this.customerDirectory));
         layout.next(panelRight);
     }//GEN-LAST:event_btnAdminActionPerformed
 
@@ -127,7 +130,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(new CustomerCardSequence());
+        panelRight.add(new CustomerCardSequence(this.customerDirectory));
         layout.next(panelRight);
     }//GEN-LAST:event_btnCustomerActionPerformed
 
