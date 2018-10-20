@@ -7,7 +7,6 @@ package Business.Users;
 
 import Business.Abstract.User;
 import Business.CustomerDirectory;
-import Business.SupplierDirectory;
 import java.util.Date;
 
 /**
@@ -18,10 +17,19 @@ public class Customer extends User implements Comparable<Customer>{
     
     private CustomerDirectory directory;
     private String customerName;
-    public Customer(String password, String userName , String customerName) {
+    private Date date;
+    public Customer(String password, String userName , Date date) {
         super(password, userName, "CUSTOMER");
-        directory = new CustomerDirectory();
-        this.customerName = customerName;
+        this.directory = new CustomerDirectory();;
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
     @Override
@@ -39,7 +47,7 @@ public class Customer extends User implements Comparable<Customer>{
 
     @Override
     public String toString() {
-        return getCustomerName(); //To change body of generated methods, choose Tools | Templates.
+        return getUserName(); //To change body of generated methods, choose Tools | Templates.
     }
     
     public boolean verify(String password){
