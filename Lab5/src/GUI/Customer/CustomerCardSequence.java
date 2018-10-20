@@ -8,6 +8,7 @@ package GUI.Customer;
 import Business.Abstract.User;
 import Business.CustomerDirectory;
 import Business.Users.Customer;
+import java.awt.CardLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author akash
  */
 public class CustomerCardSequence extends javax.swing.JPanel {
-
+    private CardLayout cl;
     /**
      * Creates new form CustomerCardSequence
      */
@@ -24,6 +25,7 @@ public class CustomerCardSequence extends javax.swing.JPanel {
     public CustomerCardSequence( CustomerDirectory customerDirectory) {
         initComponents();
         this.custDirectory = customerDirectory;
+        cl = (CardLayout) this.getLayout();
         populateCombobox();
     }
 
@@ -42,6 +44,8 @@ public class CustomerCardSequence extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         userCombo = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
+        welcomeNote = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -56,8 +60,6 @@ public class CustomerCardSequence extends javax.swing.JPanel {
         jLabel1.setText("Customer Login");
 
         jLabel2.setText("Password");
-
-        userCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout loginCustomerLayout = new javax.swing.GroupLayout(loginCustomer);
         loginCustomer.setLayout(loginCustomerLayout);
@@ -103,14 +105,37 @@ public class CustomerCardSequence extends javax.swing.JPanel {
         );
 
         add(loginCustomer, "card2");
+
+        welcomeNote.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        welcomeNote.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(welcomeNote)
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(welcomeNote)
+                .addContainerGap(149, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
          Customer customerSelected =  (Customer)userCombo.getSelectedItem();
          if(customerSelected.verify(txtPword.getText())){
-             JOptionPane.showMessageDialog(null, "111111");
-         }
+             cl.next(this);
+             welcomeNote.setText("Welcome " + customerSelected.getUserName());
+         }else JOptionPane.showMessageDialog(null,"Password incorrect!!");
         
     }//GEN-LAST:event_btnSubmitActionPerformed
     public void populateCombobox(){
@@ -124,8 +149,10 @@ public class CustomerCardSequence extends javax.swing.JPanel {
     private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel loginCustomer;
     private javax.swing.JTextField txtPword;
     private javax.swing.JComboBox userCombo;
+    private javax.swing.JLabel welcomeNote;
     // End of variables declaration//GEN-END:variables
 }
