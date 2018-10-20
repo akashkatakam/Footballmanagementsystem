@@ -5,8 +5,6 @@
  */
 package GUI.Admin;
 
-import Business.CustomerDirectory;
-import java.awt.CardLayout;
 import Business.Abstract.User;
 import Business.CustomerDirectory;
 import Business.Users.Customer;
@@ -25,6 +23,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
     private CustomerDirectory custDirectory;
     /**
      * Creates new form AdminCardSequence
+     * @param custDirectory
      */
     public AdminCardSequence(CustomerDirectory custDirectory) {
         initComponents();
@@ -57,6 +56,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        userGroup = new javax.swing.ButtonGroup();
         adminMainScreen = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableSup = new javax.swing.JTable();
@@ -74,6 +74,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
         radioCustomer = new javax.swing.JRadioButton();
         radioSupplier = new javax.swing.JRadioButton();
         btnCreate1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -144,6 +145,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
 
         jLabel3.setText("re-enter password :");
 
+        userGroup.add(radioCustomer);
         radioCustomer.setText("Customer");
         radioCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +153,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
             }
         });
 
+        userGroup.add(radioSupplier);
         radioSupplier.setText("Supplier");
 
         btnCreate1.setText("Create");
@@ -159,6 +162,9 @@ public class AdminCardSequence extends javax.swing.JPanel {
                 btnCreate1ActionPerformed(evt);
             }
         });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel4.setText("Create User");
 
         javax.swing.GroupLayout createScreenLayout = new javax.swing.GroupLayout(createScreen);
         createScreen.setLayout(createScreenLayout);
@@ -177,6 +183,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
                         .addComponent(btnBack)))
                 .addGap(18, 18, 18)
                 .addGroup(createScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
                     .addGroup(createScreenLayout.createSequentialGroup()
                         .addComponent(radioSupplier)
                         .addGap(18, 18, 18)
@@ -185,12 +192,14 @@ public class AdminCardSequence extends javax.swing.JPanel {
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRePword, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         createScreenLayout.setVerticalGroup(
             createScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createScreenLayout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(48, 48, 48)
+                .addComponent(jLabel4)
+                .addGap(53, 53, 53)
                 .addGroup(createScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -210,7 +219,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
                 .addGroup(createScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnCreate1))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         add(createScreen, "card3");
@@ -231,15 +240,21 @@ public class AdminCardSequence extends javax.swing.JPanel {
 
     private void btnCreate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate1ActionPerformed
         // TODO add your handling code here:
- if(radioCustomer.isSelected()){
+    if(radioCustomer.isSelected()){
             RegexMatcher rm = new RegexMatcher();
-            if(rm.validatePassword(txtPword.getText()) && rm.validateUsername(txtUser.getText()) && txtPword.getText().equals(txtRePword.getText())){
-                custDirectory.addCustomer(txtUser.getText(), txtPword.getText(), new Date());
-                JOptionPane.showMessageDialog(null, "Created Customer Suceesfully");
-            }else{
-                JOptionPane.showMessageDialog(null, "Please Enter Valid Details");
-            }
+            if(rm.validateUsername(txtUser.getText())){
+                if(rm.validatePassword(txtPword.getText())){
+                    if(txtPword.getText().equals(txtRePword.getText())){
+                        custDirectory.addCustomer( txtPword.getText(),txtUser.getText(), new Date());
+                        JOptionPane.showMessageDialog(null, "Created Customer Suceesfully");
+                        txtPword.setText("");
+                        txtUser.setText("");
+                        txtRePword.setText("");
+                    }else JOptionPane.showMessageDialog(null,"passwords not matched");
+                }else JOptionPane.showMessageDialog(null,"password not valid");
+            }else JOptionPane.showMessageDialog(null,"Username not valid");
         }
+    else JOptionPane.showMessageDialog(null, "You can't create a suuplier");
     }//GEN-LAST:event_btnCreate1ActionPerformed
 
 
@@ -252,6 +267,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JRadioButton radioCustomer;
@@ -261,6 +277,7 @@ public class AdminCardSequence extends javax.swing.JPanel {
     private javax.swing.JTextField txtPword;
     private javax.swing.JTextField txtRePword;
     private javax.swing.JTextField txtUser;
+    private javax.swing.ButtonGroup userGroup;
     // End of variables declaration//GEN-END:variables
 
         

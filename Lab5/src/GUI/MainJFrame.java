@@ -7,6 +7,7 @@ package GUI;
 
 import Business.CustomerDirectory;
 import Business.Users.Admin;
+import Business.Utils.Data;
 import GUI.Admin.AdminCardSequence;
 import GUI.Customer.CustomerCardSequence;
 import java.awt.CardLayout;
@@ -23,7 +24,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private CustomerDirectory customerDirectory;
     public MainJFrame() {
         initComponents();
-        this.customerDirectory = new CustomerDirectory();
+        Admin a = new Admin();
+        new Data(a);
+        this.customerDirectory = a.getCustDir();
     }
 
     /**

@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * @author nikitagawde
  */
 public class RegexMatcher {
-     final String EMAIL_PATTERN = "^[A-Za-z0-9]+_?[A-Za-z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$";
+    final String EMAIL_PATTERN = "^[A-Za-z0-9]+_?[A-Za-z0-9@]+.[a-zA-Z0-9]+$";
     final String PASSWORD_PATTERN = "[A-Za-z0-9+_$]+";
     
     public boolean validateUsername(String username){

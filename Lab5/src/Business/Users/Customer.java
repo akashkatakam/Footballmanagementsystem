@@ -22,6 +22,7 @@ public class Customer extends User implements Comparable<Customer>{
         super(password, userName, "CUSTOMER");
         this.directory = new CustomerDirectory();;
         this.date = date;
+        this.customerName = userName;
     }
 
     public Date getDate() {
