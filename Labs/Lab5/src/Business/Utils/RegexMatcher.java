@@ -5,6 +5,7 @@
  */
 package Business.Utils;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,5 +29,11 @@ public class RegexMatcher {
         Matcher m = p.matcher(password);
         boolean b = m.matches();
         return b;
+    }
+    public static void main(String [] args){
+    int i = 010;
+    int j = 07;
+        System.out.println(i);
+        System.out.println(j);
     }
 }
