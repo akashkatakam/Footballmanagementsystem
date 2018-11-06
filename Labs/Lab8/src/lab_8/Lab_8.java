@@ -75,13 +75,16 @@ public class Lab_8 {
         int postId = Integer.parseInt(row[1]);
         int userId = Integer.parseInt(row[2]);
         Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        Post post = new Post(postId, userId);
         if(posts.containsKey(postId))
             posts.get(postId).getComments().add(comment);
         else{
-            Post post = new Post(postId, userId);
             post.getComments().add(comment);
             posts.put(postId, post);
         }
+        Map<Integer,User> users = DataStore.getInstance().getUsers();
+        if(users.containsKey(userId))
+            users.get(userId).getPosts().add(post);
     }
     
     private void runAnalysis(){
