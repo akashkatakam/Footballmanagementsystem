@@ -17,14 +17,24 @@ public class User {
     private String firstName;
     private String lastName;
     private List<Comment> comments;
+    private List<Post> posts;
 
     public User(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.comments = new ArrayList<>();
+        this.posts = new ArrayList<>();
     }
 
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+    
     public String getFirstName() {
         return firstName;
     }

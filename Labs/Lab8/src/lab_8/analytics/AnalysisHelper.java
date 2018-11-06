@@ -51,6 +51,9 @@ public class AnalysisHelper {
                 return o2.getLikes() - o1.getLikes();
             }
         });
+    for(int i =0;i<5;i++){
+            System.out.println(commentList.get(i).getId());
+        }
     }
     
     public void getAverageNumberOfLikesPerComment() {
@@ -77,6 +80,55 @@ public class AnalysisHelper {
             }
         });
         System.out.println(postList.get(0).getPostId());
+    }
+    
+        
+    public void getPostWithMostLikedComments(){
+    System.out.println("-------------Post with most liked comments----------------------------");
+    List<Post> postList = new ArrayList<>(posts.values());
+        Collections.sort(postList, new Comparator<Post>() {
+            @Override
+            public int compare(Post p1,Post p2){
+                int numLikesp1 = 0;
+                int numLikesP2 = 0;
+                for(Comment c:p1.getComments()){
+                    numLikesp1 = c.getLikes()+numLikesp1;
+                }
+                for(Comment c:p2.getComments()){
+                    numLikesP2 = c.getLikes()+numLikesP2;
+                }
+                return numLikesP2-numLikesp1;
+            }
+        });
+        System.out.println(postList.get(0).getPostId());
+    }
+    
+    public void getInactiveUsersOnPosts(){
+    System.out.println("-------------Inactive user based on posts----------------------------");
+    List<User> userList = new ArrayList<>(users.values());
+      Collections.sort(userList, new Comparator<User>() {
+          @Override
+          public int compare(User o1, User o2) {
+              return o1.getPosts().size() - o2.getPosts().size();
+          }
+      });
+      for(int i = 0; i<5;i++){
+          System.out.println(userList.get(i).getId());
+      }
+    }
+    
+    public void getInactiveUsersOnComments() {
+    System.out.println("-------------Inactive user based on comments----------------------------");
+    List<User> userList = new ArrayList<>(users.values());
+      Collections.sort(userList, new Comparator<User>() {
+          @Override
+          public int compare(User o1, User o2) {
+              return o1.getComments().size() - o2.getComments().size();
+          }
+      });
+      for(int i = 0; i<5;i++){
+          System.out.println(userList.get(i).getId());
+      }
     }
         
     }
