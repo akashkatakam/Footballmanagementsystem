@@ -87,6 +87,10 @@ public class Lab_8 {
     private void runAnalysis(){
         helper.userWithMostLikes();
         helper.getFiveMostLikedComment();
+        helper.getAverageNumberOfLikesPerComment();
+        helper.getPostWithMostComments();
+        
+        
     }
     
 }
