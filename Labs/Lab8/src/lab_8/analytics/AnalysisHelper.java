@@ -6,13 +6,13 @@
 package lab_8.analytics;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import lab_8.entities.Comment;
 import lab_8.entities.Post;
 import lab_8.entities.User;
@@ -22,14 +22,13 @@ import lab_8.entities.User;
  * @author harshalneelkamal
  */
 public class AnalysisHelper {
-     private Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+    private Map<Integer, Comment> comments = DataStore.getInstance().getComments();
     private Map<Integer,Post> posts = DataStore.getInstance().getPosts();
     private Map<Integer, User> users = DataStore.getInstance().getUsers();
-     
+    private HashMap<Integer, Integer> userLikecount = new HashMap<Integer, Integer>();   
     
     public void userWithMostLikes(){
-        System.out.println("-------------User with most Number Of Likes----------------------------");
-       Map<Integer, Integer> userLikecount = new HashMap<Integer, Integer>();       
+       System.out.println("-------------User with most Number Of Likes----------------------------");
        for(User user : users.values()){
            for(Comment c : user.getComments()){
                int likes = 0;
@@ -39,6 +38,32 @@ public class AnalysisHelper {
                userLikecount.put(user.getId(), likes);
            }   
        }
+       LinkedHashMap<Integer, Integer> sortedHashmap = sortHashMapByValues(userLikecount);
+       System.out.println(sortedHashmap.keySet().toArray()[0]);
+    }
+    public LinkedHashMap<Integer, Integer> sortHashMapByValues(
+        HashMap<Integer, Integer> passedMap) {
+        List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
+        List<Integer> mapValues = new ArrayList<>(passedMap.values());
+        Collections.sort(mapValues);
+        Collections.sort(mapKeys);
+        LinkedHashMap<Integer, Integer> sortedMap = new LinkedHashMap<>();
+        Iterator<Integer> valueIt = mapValues.iterator();
+        while (valueIt.hasNext()) {
+            Integer val = valueIt.next();
+            Iterator<Integer> keyIt = mapKeys.iterator();
+            while (keyIt.hasNext()) {
+                Integer key = keyIt.next();
+                Integer comp1 = passedMap.get(key);
+                Integer comp2 = val;
+                if (comp1.equals(comp2)) {
+                    keyIt.remove();
+                    sortedMap.put(key, val);
+                    break;
+                }
+            }
+        }
+        return sortedMap;
     }
     
     public void getFiveMostLikedComment(){ 
@@ -130,9 +155,34 @@ public class AnalysisHelper {
           System.out.println(userList.get(i).getId());
       }
     }
-        
+     
+    
+    public void getInactiveUsersOnPostsandComments(){
+     System.out.println("-------------Inactive user based on posts,likes and comments----------------------------");
+     List<User> userList = new ArrayList<>(users.values());
+     Collections.sort(userList, new Comparator<User>() {
+         @Override
+         public int compare(User o1, User o2) {
+             return (o1.getPosts().size()+ o1.getComments().size()+ userLikecount.get(o1.getId())) - ( o2.getPosts().size() + o2.getComments().size() + userLikecount.get(o2.getId()));
+         }
+     });
+     for(int i = 0; i<5;i++){
+         System.out.println(userList.get(i).getId());
+     }
     }
-
     
-    
+    public void getProactiveUsersOnPostsandComments(){
+     System.out.println("-------------Proactive user based on posts,likes and comments----------------------------");
+     List<User> userList = new ArrayList<>(users.values());
+     Collections.sort(userList, new Comparator<User>() {
+         @Override
+         public int compare(User o1, User o2) {
+             return (o2.getPosts().size()+ o2.getComments().size()+ userLikecount.get(o2.getId())) - ( o1.getPosts().size() + o1.getComments().size() + userLikecount.get(o1.getId()));
+         }
+     });
+     for(int i = 0; i<5;i++){
+         System.out.println(userList.get(i).getId());
+     }
+    }
+    }
 
