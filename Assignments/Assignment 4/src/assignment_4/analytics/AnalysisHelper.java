@@ -37,6 +37,20 @@ public class AnalysisHelper {
         }
     }
     
+    public void getTotalRevenue() {
+        System.out.println("-------------Total revenue----------------------------");
+        int totalRevenue = 0;
+        for(Order o: orders.values()){
+            int price = o.getItem().getSalesPrice();
+            int productId = o.getItem().getProductId();
+            int minPrice = Prdoucts.get(productId).getMinPrice();
+            int quantity = o.getItem().getQuantity();
+            int orderRevenue = (price - minPrice)*quantity;
+            totalRevenue = orderRevenue + totalRevenue;
+        }
+        System.out.println(totalRevenue);
+    }
+    
     public LinkedHashMap<Integer, Integer> sortHashMapByValues(HashMap<Integer, Integer> passedMap) {
         List<Integer> mapKeys = new ArrayList<>(passedMap.keySet());
         List<Integer> mapValues = new ArrayList<>(passedMap.values());

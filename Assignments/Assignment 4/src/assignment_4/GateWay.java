@@ -60,6 +60,7 @@ public class GateWay {
     
     private void runAnalysis(){
         helper.getPopularProduct();
+        helper.getTotalRevenue();
         
     }
     
