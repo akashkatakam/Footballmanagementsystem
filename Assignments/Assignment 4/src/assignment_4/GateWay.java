@@ -5,6 +5,12 @@
  */
 package assignment_4;
 
+import assignment_4.analytics.AnalysisHelper;
+import assignment_4.analytics.DataStore;
+import assignment_4.entities.Item;
+import assignment_4.entities.Order;
+import assignment_4.entities.Product;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -13,33 +19,48 @@ import java.io.IOException;
  */
 public class GateWay {
     
-    public static void main(String args[]) throws IOException{
-        
+    DataReader orderReader;
+    DataReader itemReader;
+    AnalysisHelper helper;
+    
+    public GateWay() throws FileNotFoundException, IOException{
         DataGenerator generator = DataGenerator.getInstance();
-        
-        //Below is the sample for how you can use reader. you might wanna 
-        //delete it once you understood.
-        
-        DataReader orderReader = new DataReader(generator.getOrderFilePath());
-        String[] orderRow;
-        printRow(orderReader.getFileHeader());
-        while((orderRow = orderReader.getNextRow()) != null){
-            printRow(orderRow);
-        }
-        System.out.println("_____________________________________________________________");
-        DataReader productReader = new DataReader(generator.getProductCataloguePath());
-        String[] prodRow;
-        printRow(productReader.getFileHeader());
-        while((prodRow = productReader.getNextRow()) != null){
-            printRow(prodRow);
-        }
+        orderReader = new DataReader(generator.getOrderFilePath());
+        itemReader = new DataReader(generator.getProductCataloguePath());
+        helper = new AnalysisHelper();
     }
     
-    public static void printRow(String[] row){
-        for (String row1 : row) {
-            System.out.print(row1 + ", ");
+    public static void main(String args[]) throws IOException{
+        GateWay g = new GateWay();
+        g.readData();
+    }
+    
+    private void readData() throws IOException{
+        String[] row;
+        while((row = orderReader.getNextRow()) != null ){
+            generateOrder(row);
         }
-        System.out.println("");
+        while((row = itemReader.getNextRow()) != null ){
+        }
+        runAnalysis();
+    }
+    
+    private void generateOrder(String[] row){
+        int orderId = Integer.parseInt(row[0]);
+        int itemId = Integer.parseInt(row[1]);
+        int productId = Integer.parseInt(row[2]);
+        int quantity = Integer.parseInt(row[3]);
+        int salesId = Integer.parseInt(row[4]);
+        int customerId = Integer.parseInt(row[5]);
+        int salesPerProduct = Integer.parseInt(row[6]);
+        Item i = new Item(productId, salesPerProduct, quantity);
+        Order o = new Order(orderId, salesId, customerId, i);
+        DataStore.getInstance().getOrders().put(orderId, o);
+    }
+    
+    private void runAnalysis(){
+        helper.getPopularProduct();
+        
     }
     
 }
