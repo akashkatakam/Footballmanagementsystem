@@ -10,5 +10,48 @@ package assignment_4.entities;
  * @author harshalneelkamal
  */
 public class Product {
+    int productId;
+    int minPrice;
+    int maxPrice;
+    int targetPrice;
+
+    public Product(int id, int minPrice, int maxPrice, int targetPrice) {
+        this.productId = id;
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
+        this.targetPrice = targetPrice;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(int minPrice) {
+        this.minPrice = minPrice;
+    }
+
+    public int getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(int maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public int getTargetPrice() {
+        return targetPrice;
+    }
+
+    public void setTargetPrice(int targetPrice) {
+        this.targetPrice = targetPrice;
+    }
     
 }
