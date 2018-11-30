@@ -41,6 +41,7 @@ public class GateWay {
             generateOrder(row);
         }
         while((row = itemReader.getNextRow()) != null ){
+            generateProduct(row);
         }
         runAnalysis();
     }
@@ -58,10 +59,22 @@ public class GateWay {
         DataStore.getInstance().getOrders().put(orderId, o);
     }
     
+    private void generateProduct(String[] row){
+        int productId = Integer.parseInt(row[0]);
+        int minPrice = Integer.parseInt(row[1]);
+        int maxPrice = Integer.parseInt(row[2]);
+        int targetPrice = Integer.parseInt(row[3]);
+        Product p = new Product(productId, minPrice, maxPrice, targetPrice);
+        DataStore.getInstance().getProducts().put(productId, p);
+    }
+    
     private void runAnalysis(){
         helper.getPopularProduct();
         helper.getTotalRevenue();
-        
+        helper.getBestCustomers();
+        helper.getBestSalesPeople();
     }
+    
+    
     
 }
