@@ -43,9 +43,19 @@ public abstract class Role {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+
     public Role(String name) {
         this.name = name;
     }
+    
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             UserAccount account, 

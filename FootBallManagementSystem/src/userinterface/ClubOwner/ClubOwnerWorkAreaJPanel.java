@@ -6,10 +6,21 @@
 package userinterface.ClubOwner;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import static Business.Enterprise.Enterprise.EnterpriseType.Club;
+import Business.Model.Club;
+import Business.Model.GroundStaff;
+import Business.Model.Owner;
+import Business.Model.Player;
+import Business.Model.TeamManager;
 import Business.Organization.Organization;
+import Business.Role.ClubOwnerRole;
+import Business.Role.ManagerRole;
+import Business.Role.PlayerRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 
 /**
@@ -21,12 +32,18 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ClubOwnerWorkAreaJPanel
      */
+    private EcoSystem system;
+    private Enterprise enterprise;
     public ClubOwnerWorkAreaJPanel() {
         initComponents();
     }
 
     public ClubOwnerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        initComponents();
+        this.system = business;
+        Owner o = (Owner) account.getPerson();
+        this.enterprise = o.getClub();
+        populateComboBox();
     }
 
 
@@ -47,14 +64,14 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
         fName = new javax.swing.JTextField();
         lName = new javax.swing.JTextField();
         eMail = new javax.swing.JTextField();
@@ -62,6 +79,10 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         yearsOfContract = new javax.swing.JTextField();
         salary = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
 
         setLayout(new java.awt.CardLayout());
 
@@ -133,7 +154,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Create Club member");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Player", "Supporting Staff", "Manager", "YouthPlayer" }));
         jComboBox1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -153,29 +173,35 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("E Mail :");
 
-        jLabel8.setText("Position :");
+        label1.setText("Salary");
 
-        jLabel9.setText("Years Of Contract :");
+        label2.setText("Years Of Contract :");
 
-        jLabel10.setText("Salary :");
+        label3.setText("Position : ");
 
-        fName.setText("jTextField1");
+        fName.setText("                                  ");
+        fName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fNameActionPerformed(evt);
+            }
+        });
 
-        lName.setText("jTextField2");
+        lName.setText("            ");
 
-        eMail.setText("jTextField3");
-
-        position.setText("jTextField4");
-
-        yearsOfContract.setText("jTextField5");
-
-        salary.setText("jTextField6");
-
+        jButton1.setText("Create Member");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("User name :");
+
+        jLabel9.setText("Passoword :");
+
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,15 +211,24 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(226, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(label3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(salary))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(label2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(yearsOfContract))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addComponent(label1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(position))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -214,10 +249,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(181, 181, 181))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(235, 235, 235)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,19 +273,27 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(eMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
+                    .addComponent(label1)
                     .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
+                    .addComponent(label2)
                     .addComponent(yearsOfContract, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
+                    .addComponent(label3)
                     .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(73, 73, 73))
         );
 
         add(jPanel2, "createMember");
@@ -266,20 +305,49 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jComboBox1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox1PopupMenuWillBecomeVisible
-        
+        Role r = (Role) jComboBox1.getSelectedItem();
+        if(r instanceof PlayerRole){
+        }else if(r instanceof ManagerRole){
+            label3.setVisible(false);
+        }else{
+            
+        }
     }//GEN-LAST:event_jComboBox1PopupMenuWillBecomeVisible
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        Role r = (Role) jComboBox1.getSelectedItem();
+       Club c = (Club) this.enterprise;
        String firstName = fName.getText();
        String lastName = lName.getText();
        String email = eMail.getText();
-       String position = this.position.getText();
+       String userName = jTextField1.getText();
+       String passWord = jTextField2.getText();
        int yearsOfContract = Integer.parseInt(this.yearsOfContract.getText());
        int salary = Integer.parseInt(this.salary.getText());
-       
+       if(r instanceof PlayerRole){
+           String position = this.position.getText();
+           Player p = new Player( firstName, lastName, email);
+           c.getClubPlayers().addPlayer(p);
+           system.getUserAccountDirectory().createUserAccount(userName, passWord, new PlayerRole(),p);
+        }else if(r instanceof ManagerRole){
+           TeamManager tm = new TeamManager(firstName, c);
+           c.getManagerOrganization().setTm(tm);
+        }else{
+            c.setSupporttingStaff(null);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void fNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fNameActionPerformed
+    
+    public void populateComboBox(){
+        DefaultComboBoxModel cbm = (DefaultComboBoxModel) jComboBox1.getModel();
+        cbm.removeAllElements();
+        for(Role r :enterprise.getSupportedRole()){
+            cbm.addElement(r);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField eMail;
@@ -288,7 +356,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -301,7 +368,12 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField lName;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
     private javax.swing.JTextField position;
     private javax.swing.JTextField salary;
     private javax.swing.JTextField yearsOfContract;

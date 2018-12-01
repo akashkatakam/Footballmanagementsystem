@@ -27,5 +27,10 @@ import userinterface.PlayerRole.PlayerWorkAreaJPanel;
         return new PlayerWorkAreaJPanel(userProcessContainer, account, organization, business);
     }
     
+    @Override
+    public String toString() {
+        return Role.RoleType.Player.getValue();
+    }
+    
 }
 

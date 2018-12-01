@@ -26,5 +26,8 @@ public class YouthPlayerRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return null;
     }
-    
+    @Override
+    public String toString() {
+        return Role.RoleType.YouthPlayer.getValue();
+    }
 }
