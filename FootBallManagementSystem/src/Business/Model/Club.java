@@ -26,6 +26,9 @@ public class Club extends ClubEnterprise {
     public Club(String name,String owner) {
         super(name);
         this.owner = new Owner(owner,this);
+        this.clubPlayers = new PlayerOrganization();
+        this.supporttingStaff = new SupportingStaffOrganization();
+        this.managerOrganization = new ManagerOrganization();
     }
 
 

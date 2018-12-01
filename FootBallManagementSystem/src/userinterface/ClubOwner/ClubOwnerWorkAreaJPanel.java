@@ -332,6 +332,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         }else if(r instanceof ManagerRole){
            TeamManager tm = new TeamManager(firstName, c);
            c.getManagerOrganization().setTm(tm);
+           system.getUserAccountDirectory().createUserAccount(userName, passWord, new ManagerRole(), tm);
         }else{
             c.setSupporttingStaff(null);
         }

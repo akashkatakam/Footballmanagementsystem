@@ -11,9 +11,7 @@ import Business.Model.Club;
 import Business.Model.Player;
 import Business.Model.TeamManager;
 import Business.Network.League;
-import Business.Organization.Organization;
-import Business.Organization.PlayerOrganization;
-import static Business.Role.Role.RoleType.Manager;
+import Business.Organization.Organization;;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -28,7 +26,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagerWorkAreaJPanel
      */
-    private League league;
+    private Club club;
     private EcoSystem system;
     private CardLayout layout;
     public ManagerWorkAreaJPanel() {
@@ -37,25 +35,27 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     
     public ManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
          initComponents();
-         TeamManager manager = (Person) account.getPerson();
-        this.league = manager.getLeague();
-         this.league = league;
-         this.layout = (CardLayout) ManagerTopJPanel.getLayout();
-         populatePlayersTable(league);
+         TeamManager manager = (TeamManager) (Person) account.getPerson();
+         this.system = business;
+         this.club = manager.getClub();
+         this.layout = (CardLayout) this.getLayout();
+         populatePlayersTable(system);
     }
-    private void populatePlayersTable(League league){
-        DefaultTableModel model = (DefaultTableModel) clubTable.getModel();
+    
+    private void populatePlayersTable(EcoSystem system){
         
+        DefaultTableModel model = (DefaultTableModel) clubTable.getModel();    
         model.setRowCount(0);
-        
-        for(Club club : league.getClubs()){
+        for(League l :system.getleaguesList()){
+        for(Club club : l.getClubs()){
             for( Player player : club.getClubPlayers().players){
-                Object[] row = new Object[2];
+                Object[] row = new Object[3];
                 row[0] = player.getName();
                 row[1] = club.getName();
-                row[3] = league.getName();
+                row[2] = l.getName();
                 model.addRow(row);
             }
+        }
         }
     }
 

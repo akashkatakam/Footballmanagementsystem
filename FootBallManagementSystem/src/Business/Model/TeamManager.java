@@ -6,6 +6,7 @@
 package Business.Model;
 
 import Business.Model.Abstract.Person;
+import Business.Network.League;
 
 /**
  *
@@ -26,6 +27,10 @@ public class TeamManager extends Person{
 
     public void setClub(Club club) {
         this.club = club;
+    }
+
+    public League getLeague() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

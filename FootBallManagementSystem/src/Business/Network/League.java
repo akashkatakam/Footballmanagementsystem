@@ -30,6 +30,7 @@ public class League extends Organization{
         super(null);
         this.name = leaguename;
         this.clubs = new ArrayList<>();
+        this.stadiums = new ArrayList<>();
         this.leagueAdmin = new Director(leagueAdminName,this);
     }
 

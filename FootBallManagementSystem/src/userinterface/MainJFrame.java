@@ -150,39 +150,39 @@ public class MainJFrame extends javax.swing.JFrame {
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
         League inLeague = null;
-
-        if(userAccount==null){
-            //Step 2: Go inside each network and check each enterprise
-            for(League network:system.getleaguesList()){
-                //Step 2.a: check against each enterprise
-                for(Enterprise enterprise:network.getClubs()){
-                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    if(userAccount==null){
-                        //Step 3:check against each organization for each enterprise
-                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
-                            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
-                            if(userAccount!=null){
-                                inEnterprise=enterprise;
-                                inOrganization=organization;
-                                inLeague = network;
-                                break;
-                            }
-                        }
-
-                    }
-                    else{
-                        inEnterprise=enterprise;
-                        break;
-                    }
-                    if(inOrganization!=null){
-                        break;
-                    }
-                }
-                if(inEnterprise!=null){
-                    break;
-                }
-            }
-        }
+//        
+//        if(userAccount==null){
+//            //Step 2: Go inside each network and check each enterprise
+//            for(League network:system.getleaguesList()){
+//                //Step 2.a: check against each enterprise
+//                for(Enterprise enterprise:network.getClubs()){
+//                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+//                    if(userAccount==null){
+//                        //Step 3:check against each organization for each enterprise
+//                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+//                            userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+//                            if(userAccount!=null){
+//                                inEnterprise=enterprise;
+//                                inOrganization=organization;
+//                                inLeague = network;
+//                                break;
+//                            }
+//                        }
+//
+//                    }
+//                    else{
+//                        inEnterprise=enterprise;
+//                        break;
+//                    }
+//                    if(inOrganization!=null){
+//                        break;
+//                    }
+//                }
+//                if(inEnterprise!=null){
+//                    break;
+//                }
+//            }
+//        }
 
         if(userAccount==null){
             JOptionPane.showMessageDialog(null, "Invalid credentials");

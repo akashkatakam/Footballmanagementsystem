@@ -63,9 +63,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     
     private void populateStadiumsTable(League league){
         DefaultTableModel model = (DefaultTableModel) stadiumTable.getModel();
-        
         model.setRowCount(0);
-        
         for (Stadium stadium : league.getStadiums()){
             Object[] row = new Object[2];
             row[0] = stadium.getName();
