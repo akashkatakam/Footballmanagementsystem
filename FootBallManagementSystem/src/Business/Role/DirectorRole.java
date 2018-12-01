@@ -15,11 +15,15 @@ import javax.swing.JPanel;
  *
  * @author chowd
  */
-public class BODRole extends Role {
+public class DirectorRole extends Role {
+
+    public DirectorRole() {
+        super("Director");
+    }
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new BODWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return null;
     }
     
 }

@@ -6,7 +6,7 @@
 package Business.Organization;
 
 import Business.Model.Director;
-import Business.Role.BODRole;
+import Business.Role.DirectorRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class BODOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new BODRole());
+        roles.add(new DirectorRole());
         return roles;
     }
     public ArrayList<Director> getBoardOfDirectors() {
