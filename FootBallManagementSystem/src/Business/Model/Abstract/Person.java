@@ -12,28 +12,15 @@ import java.util.Date;
  * @author akash
  */
 public abstract class Person {
-    String firstName;
-    String lastName;
+    String name;
     String email;
     String phone;
     Date dateofBirth;
-
-    public String getFirstName() {
-        return firstName;
+    
+    public Person(String name){
+        this.name = name;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+    
     public String getEmail() {
         return email;
     }

@@ -17,8 +17,10 @@ public class Player extends Person {
     private Club club;
     private String position;
     private int yearsOfContract;
+    private  String email;
     
     Player(String firstName,String lastName,String email,String phone,Date dateofBirth) {
+        super(firstName);
     }
     
     public Club getClub() {

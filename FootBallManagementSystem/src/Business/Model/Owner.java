@@ -13,4 +13,8 @@ import Business.Model.Abstract.Person;
  */
 public class Owner extends Person{
     
+    public Owner(String n) {
+        super(n);
+    }
+    
 }

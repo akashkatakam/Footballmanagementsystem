@@ -5,10 +5,13 @@
  */
 package Business;
 
+import Business.Network.League;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
+import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
+import jdk.nashorn.internal.runtime.UserAccessorProperty;
 
 /**
  *
@@ -17,7 +20,9 @@ import java.util.ArrayList;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
-    private ArrayList<Network> networkList;
+    private ArrayList<League> leaguesList;
+    private UserAccountDirectory userAccountDirectory;
+    
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -25,11 +30,6 @@ public class EcoSystem extends Organization{
         return business;
     }
     
-    public Network createAndAddNetwork(){
-        Network network=new Network();
-        networkList.add(network);
-        return network;
-    }
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList=new ArrayList<Role>();
@@ -38,22 +38,23 @@ public class EcoSystem extends Organization{
     }
     private EcoSystem(){
         super(null);
-        networkList=new ArrayList<Network>();
+        leaguesList=new ArrayList<League>();
+        this.userAccountDirectory = new UserAccountDirectory();
     }
 
-    public ArrayList<Network> getNetworkList() {
-        return networkList;
+    public ArrayList<League> getNetworkList() {
+        return leaguesList;
     }
 
-    public void setNetworkList(ArrayList<Network> networkList) {
-        this.networkList = networkList;
+    public void setNetworkList(ArrayList<League> networkList) {
+        this.leaguesList = networkList;
     }
     
     public boolean checkIfUserIsUnique(String userName){
         if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
             return false;
         }
-        for(Network network:networkList){
+        for(League league:leaguesList){
             
         }
         return true;

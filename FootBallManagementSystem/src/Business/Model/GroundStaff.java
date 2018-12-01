@@ -13,4 +13,8 @@ import Business.Model.Abstract.Person;
  */
 public class GroundStaff extends Person{
     
+    public GroundStaff(String n) {
+        super(n);
+    }
+    
 }
