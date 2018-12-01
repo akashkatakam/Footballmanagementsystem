@@ -149,6 +149,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
+        League inLeague = null;
 
         if(userAccount==null){
             //Step 2: Go inside each network and check each enterprise
@@ -163,6 +164,7 @@ public class MainJFrame extends javax.swing.JFrame {
                             if(userAccount!=null){
                                 inEnterprise=enterprise;
                                 inOrganization=organization;
+                                inLeague = network;
                                 break;
                             }
                         }

@@ -13,7 +13,6 @@ import Business.WorkQueue.WorkQueue;
  * @author raunak
  */
 public class UserAccount {
-    
     private String username;
     private String password;
     private Person person;

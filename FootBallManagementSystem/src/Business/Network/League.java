@@ -29,6 +29,7 @@ public class League extends Organization{
     public League(String leaguename,String leagueAdminName){
         super(null);
         this.name = leaguename;
+        this.clubs = new ArrayList<>();
         this.leagueAdmin = new Director(leagueAdminName,this);
     }
 
@@ -70,6 +71,14 @@ public class League extends Organization{
 
     public void setLeagueAdmin(Director leagueAdmin) {
         this.leagueAdmin = leagueAdmin;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
     
