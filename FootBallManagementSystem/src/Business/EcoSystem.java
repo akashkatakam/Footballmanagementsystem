@@ -38,6 +38,7 @@ public class EcoSystem extends Organization{
         super(null);
         leaguesList=new ArrayList<League>();
         this.userAccountDirectory = new UserAccountDirectory();
+        this.leaguesList = new ArrayList<>();
     }
 
     public ArrayList<League> getleaguesList() {

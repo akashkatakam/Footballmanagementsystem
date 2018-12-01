@@ -18,8 +18,8 @@ import userinterface.SystemAdmin.SuperAdminWorkAreaJPanel;
  */
 public class SuperAdminRole extends Role {
 
-    public SuperAdminRole(String name) {
-        super(name);
+    public SuperAdminRole() {
+        super("Super Admin");
     }
 
     @Override

@@ -6,13 +6,12 @@
 package userinterface.SystemAdmin;
 
 import Business.EcoSystem;
-import Business.Model.Abstract.Person;
 import Business.Network.League;
 import Business.Organization.Organization;
 import Business.Role.LeagueDirectorRole;
-import Business.Role.SuperAdminRole;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,7 +32,10 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public SuperAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       initComponents();
+       this.system = business;
+        this.userProcessContainer = userProcessContainer;
+        populateTable();
     }
 
     /**
@@ -183,10 +185,20 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     String userName = leagueAdminUsernameText.getText();
     String password = leagueAdminPassword.getText();
     League l = new League(leagueName, leagueAdminName);
-    l.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole());
+    system.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole(),l.getLeagueAdmin());
     system.getleaguesList().add(l);
     }//GEN-LAST:event_submitLeagueActionPerformed
 
+public void populateTable(){
+    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+    dtm.setRowCount(0);
+    for(League l : system.getleaguesList()){
+    Object[] row = new Object[2];
+            row[0] = l;
+            row[1] = l.getLeagueAdmin();
+            dtm.addRow(row);
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createLeague;
