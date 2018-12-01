@@ -1,5 +1,8 @@
 package Business;
 
+import Business.Role.SuperAdminRole;
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author rrheg
@@ -16,7 +19,7 @@ public class ConfigureASystem {
         //have some employees 
         //create user account
         
-        //UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SuperAdminRole("Super Admin"));
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", new SuperAdminRole(),null);
         
         return system;
     }

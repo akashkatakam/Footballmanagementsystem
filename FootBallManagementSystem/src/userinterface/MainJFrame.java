@@ -57,6 +57,12 @@ public class MainJFrame extends javax.swing.JFrame {
         container.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(container);
 
+        userNameJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userNameJTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("User Name");
 
         jLabel2.setText("Password");
@@ -85,11 +91,12 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(passwordField)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(userNameJTextField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(logoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(logoutJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(26, 26, 26)))
                     .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -147,7 +154,7 @@ public class MainJFrame extends javax.swing.JFrame {
             //Step 2: Go inside each network and check each enterprise
             for(League network:system.getleaguesList()){
                 //Step 2.a: check against each enterprise
-                for(Enterprise enterprise:network.getStadiums()){
+                for(Enterprise enterprise:network.getClubs()){
                     userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
                     if(userAccount==null){
                         //Step 3:check against each organization for each enterprise
@@ -196,10 +203,8 @@ public class MainJFrame extends javax.swing.JFrame {
         userNameJTextField.setEnabled(true);
         passwordField.setEnabled(true);
         loginJButton.setEnabled(true);
-
         userNameJTextField.setText("");
         passwordField.setText("");
-
         container.removeAll();
         JPanel blankJP = new JPanel();
         container.add("blank", blankJP);
@@ -207,6 +212,10 @@ public class MainJFrame extends javax.swing.JFrame {
         crdLyt.next(container);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
+
+    private void userNameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameJTextFieldActionPerformed
   
     /**
      * @param args the command line arguments
