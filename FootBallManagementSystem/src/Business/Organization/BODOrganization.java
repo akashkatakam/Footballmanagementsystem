@@ -5,14 +5,14 @@
  */
 package Business.Organization;
 
-import Business.Model.BOD;
+import Business.Model.Director;
 import Business.Role.BODRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
 public class BODOrganization extends Organization{
     
-    public ArrayList<BOD> BoardOfDirectors;
+    public ArrayList<Director> BoardOfDirectors;
     
     public BODOrganization() {
      super(Organization.Type.BoardOfDirectors.getValue());
@@ -25,11 +25,11 @@ public class BODOrganization extends Organization{
         roles.add(new BODRole());
         return roles;
     }
-    public ArrayList<BOD> getBoardOfDirectors() {
+    public ArrayList<Director> getBoardOfDirectors() {
         return BoardOfDirectors;
     }
 
-    public void setBoardOfDirectors(ArrayList<BOD> BoardOfDirectors) {
+    public void setBoardOfDirectors(ArrayList<Director> BoardOfDirectors) {
         this.BoardOfDirectors = BoardOfDirectors;
     }
 }

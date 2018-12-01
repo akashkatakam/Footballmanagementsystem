@@ -10,4 +10,8 @@ import Business.Model.Abstract.Person;
 
 public class TicketSeller extends Person{
     
+    public TicketSeller(String n) {
+        super(n);
+    }
+    
 }
