@@ -18,8 +18,8 @@ import userinterface.StadiumManager.StadiumManagerWorkAreaJPanel;
  */
 public class StadiumManagerRole extends Role {
 
-    public StadiumManagerRole(String name) {
-        super(name);
+    public StadiumManagerRole() {
+        super("Stadium Manager");
     }
 
     @Override

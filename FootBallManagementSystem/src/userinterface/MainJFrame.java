@@ -147,7 +147,7 @@ public class MainJFrame extends javax.swing.JFrame {
             //Step 2: Go inside each network and check each enterprise
             for(League network:system.getleaguesList()){
                 //Step 2.a: check against each enterprise
-                for(Enterprise enterprise:network.getStadium()){
+                for(Enterprise enterprise:network.getStadiums()){
                     userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
                     if(userAccount==null){
                         //Step 3:check against each organization for each enterprise

@@ -7,9 +7,15 @@ package userinterface.StadiumManager;
 
 import Business.EcoSystem;
 import Business.Model.GroundStaff;
+import Business.Model.Stadium;
 import Business.Model.TicketSeller;
+import Business.Organization.Organization;
+import Business.Role.ClubOwnerRole;
+import Business.Role.GroundStaffManagerRole;
 import Business.Role.TicketSellerRole;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,8 +28,14 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form StadiumManagerWorkAreaJPanel
      */
     private EcoSystem system;
+    private Stadium stadium;
+    
     public StadiumManagerWorkAreaJPanel() {
         initComponents();
+    }
+
+    public StadiumManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -312,7 +324,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) StadiumManagerJpanel.getLayout();
+        CardLayout layout = (CardLayout) this.getLayout();
         layout.show(this,"card2");
     }//GEN-LAST:event_backjButton1ActionPerformed
 
@@ -321,14 +333,14 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         String clubName = GsNameTextField.getText();
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
-        GroundStaff gs = new GroundStaff(clubName);
-        system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole());
+        GroundStaff gs = new GroundStaff(clubName,stadium);
+        system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),gs);
 
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed
         // TODO add your handling code here:
-        CardLayout layout = (CardLayout) StadiumManagerJpanel.getLayout();
+        CardLayout layout = (CardLayout) this.getLayout();
         layout.show(this,"card2");
     }//GEN-LAST:event_backjButton2ActionPerformed
 
@@ -337,7 +349,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         String stadiumName = TSNameTextField.getText();
         String userName = nameJTextField1.getText();
         String password = passwordJTextField1.getText();
-        TicketSeller  ts = new TicketSeller(stadiumName);
+        TicketSeller  ts = new TicketSeller(stadiumName,stadium);
         system.getUserAccountDirectory().createUserAccount(userName, password, new TicketSellerRole(),ts);
     }//GEN-LAST:event_createUserJButton1ActionPerformed
 

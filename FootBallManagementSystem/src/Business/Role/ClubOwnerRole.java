@@ -18,7 +18,7 @@ import userinterface.ClubOwner.ClubOwnerWorkAreaJPanel;
  */
 public class ClubOwnerRole extends Role {
 
-    public ClubOwnerRole(String name) {
+    public ClubOwnerRole() {
         super(Role.RoleType.ClubOwner.getValue());
     }
 
