@@ -86,5 +86,11 @@ public class League extends Organization{
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return  name;
+    }
+    
     
 }

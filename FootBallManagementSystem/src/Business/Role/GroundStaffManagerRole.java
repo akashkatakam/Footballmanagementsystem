@@ -26,4 +26,9 @@ public class GroundStaffManagerRole extends Role {
         return null;
     }
     
+    @Override
+    public String toString() {
+        return Role.RoleType.GroundStaff.getValue();
+    }
+    
 }

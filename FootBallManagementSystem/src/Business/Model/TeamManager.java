@@ -5,10 +5,28 @@
  */
 package Business.Model;
 
+import Business.Model.Abstract.Person;
+
 /**
  *
  * @author akash
  */
-public class TeamManager {
+public class TeamManager extends Person{
+    
+    private Club club;
+    
+    public TeamManager(String firstName,Club n) {
+        super(firstName);
+        this.club = n;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+    
     
 }

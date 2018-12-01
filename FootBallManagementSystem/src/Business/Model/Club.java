@@ -18,14 +18,14 @@ public class Club extends ClubEnterprise {
     
     private Team team;
     private Owner owner;
-    private ManagerOrganization teamManager;
+    private ManagerOrganization managerOrganization;
     private PlayerOrganization clubPlayers;
     private SupportingStaffOrganization supporttingStaff;
     
     
-    public Club(String name,Owner owner) {
+    public Club(String name,String owner) {
         super(name);
-        this.owner = owner;
+        this.owner = new Owner(owner,this);
     }
 
 
@@ -45,14 +45,15 @@ public class Club extends ClubEnterprise {
         this.team = team;
     }
 
-    public ManagerOrganization getTeamManager() {
-        return teamManager;
+    public ManagerOrganization getManagerOrganization() {
+        return managerOrganization;
     }
 
-    public void setTeamManager(ManagerOrganization teamManager) {
-        this.teamManager = teamManager;
+    public void setManagerOrganization(ManagerOrganization managerOrganization) {
+        this.managerOrganization = managerOrganization;
     }
 
+    
     public PlayerOrganization getClubPlayers() {
         return clubPlayers;
     }

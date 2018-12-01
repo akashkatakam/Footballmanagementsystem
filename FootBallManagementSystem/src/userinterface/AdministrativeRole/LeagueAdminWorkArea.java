@@ -41,6 +41,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     public LeagueAdminWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
         Director l = (Director) account.getPerson();
+        this.system = business;
         this.league = l.getLeague();
         this.layout = (CardLayout) LeagueAdminTopJPanel.getLayout();
         countryNameJText.setText(this.league.getName());
@@ -48,9 +49,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     }
     private void populateTable(League league){
         DefaultTableModel model = (DefaultTableModel) clubTable.getModel();
-        
         model.setRowCount(0);
-        
         for (Club club : league.getClubs()){
             Object[] row = new Object[2];
             row[0] = club.getName();
@@ -523,10 +522,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         String clubOwnerName = ClubOwnerTextField.getText();
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
-        Owner clubOwner = new Owner(clubOwnerName);
-        Club club = new Club(clubName,clubOwner);
+        Club club = new Club(clubName,clubOwnerName);
         league.addClub(club);
-        system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),clubOwner);
+        system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),club.getOwner());
         JOptionPane.showMessageDialog(null, "Club created succesfully!");
         populateTable(league);
     }//GEN-LAST:event_createUserJButtonActionPerformed

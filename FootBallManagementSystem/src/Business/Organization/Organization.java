@@ -76,11 +76,5 @@ public abstract class Organization {
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-    
     
 }

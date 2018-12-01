@@ -11,8 +11,11 @@ import Business.Network.League;
 public class Director extends Person{
    
     private League league;
+    private String name;
+    
     public Director(String name, League league) {
         super(name);
+        this.name = name;
         this.league = league;
     }
 
@@ -22,6 +25,11 @@ public class Director extends Person{
 
     public void setLeague(League league) {
         this.league = league;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
     
     
