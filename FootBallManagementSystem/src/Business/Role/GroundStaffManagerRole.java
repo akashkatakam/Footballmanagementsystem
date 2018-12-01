@@ -17,9 +17,13 @@ import javax.swing.JPanel;
  */
 public class GroundStaffManagerRole extends Role {
 
+    public GroundStaffManagerRole() {
+        super(Role.RoleType.GroundStaff.getValue());
+    }
+
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new GroundStaffManagerWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return null;
     }
     
 }

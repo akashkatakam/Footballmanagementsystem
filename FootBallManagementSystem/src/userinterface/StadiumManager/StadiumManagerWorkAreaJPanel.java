@@ -5,6 +5,11 @@
  */
 package userinterface.StadiumManager;
 
+import Business.EcoSystem;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author nikitagawde
@@ -16,6 +21,10 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
      */
     public StadiumManagerWorkAreaJPanel() {
         initComponents();
+    }
+
+    public StadiumManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

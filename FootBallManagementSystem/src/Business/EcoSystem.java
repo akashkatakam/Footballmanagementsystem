@@ -6,12 +6,10 @@
 package Business;
 
 import Business.Network.League;
-import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
-import jdk.nashorn.internal.runtime.UserAccessorProperty;
 
 /**
  *
@@ -42,12 +40,12 @@ public class EcoSystem extends Organization{
         this.userAccountDirectory = new UserAccountDirectory();
     }
 
-    public ArrayList<League> getNetworkList() {
+    public ArrayList<League> getleaguesList() {
         return leaguesList;
     }
 
-    public void setNetworkList(ArrayList<League> networkList) {
-        this.leaguesList = networkList;
+    public void setleaguesList(ArrayList<League> leaguesList) {
+        this.leaguesList = leaguesList;
     }
     
     public boolean checkIfUserIsUnique(String userName){
