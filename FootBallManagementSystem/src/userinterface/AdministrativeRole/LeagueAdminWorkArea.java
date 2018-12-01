@@ -43,10 +43,13 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         Director l = (Director) account.getPerson();
         this.league = l.getLeague();
         this.layout = (CardLayout) LeagueAdminTopJPanel.getLayout();
+        this.system = business;
         countryNameJText.setText(this.league.getName());
         this.revalidate();
+        populateClubsTable(league);
+        populateStadiumsTable(league);
     }
-    private void populateTable(League league){
+    private void populateClubsTable(League league){
         DefaultTableModel model = (DefaultTableModel) clubTable.getModel();
         
         model.setRowCount(0);
@@ -57,6 +60,26 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             row[1] = club.getOwner();
             model.addRow(row);
         }
+    }
+    
+    private void populateStadiumsTable(League league){
+        DefaultTableModel model = (DefaultTableModel) stadiumTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for (Stadium stadium : league.getStadiums()){
+            Object[] row = new Object[2];
+            row[0] = stadium.getName();
+            row[1] = stadium.getOwner();
+            model.addRow(row);
+        }
+    }
+    
+    public void resetTextFields(){
+        ClubNameTextField.setText("");
+        ClubOwnerTextField.setText("");
+        nameJTextField.setText("");
+        passwordJTextField.setText("");
     }
 
     /**
@@ -115,7 +138,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         backjButton2 = new javax.swing.JButton();
         createUserJButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        stadiumTable = new javax.swing.JTable();
 
         LeagueAdminTopJPanel.setLayout(new java.awt.CardLayout());
 
@@ -322,29 +345,30 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 .addGap(227, 227, 227)
                 .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ManageClubsJPanelLayout.createSequentialGroup()
-                        .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ClubOwnerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(ManageClubsJPanelLayout.createSequentialGroup()
-                                .addComponent(ClubNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(ManageClubsJPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(backjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88)
                         .addComponent(createUserJButton)
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ManageClubsJPanelLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ManageClubsJPanelLayout.createSequentialGroup()
+                                .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel1))
+                                    .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addGroup(ManageClubsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ClubOwnerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ClubNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ManageClubsJPanelLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(287, 287, 287))
         );
         ManageClubsJPanelLayout.setVerticalGroup(
@@ -400,7 +424,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        stadiumTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -411,7 +435,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 "Stadium ", "Stadium manager"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(stadiumTable);
 
         javax.swing.GroupLayout ManageStadiumsJPanelLayout = new javax.swing.GroupLayout(ManageStadiumsJPanel);
         ManageStadiumsJPanel.setLayout(ManageStadiumsJPanelLayout);
@@ -528,7 +552,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         league.addClub(club);
         system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),clubOwner);
         JOptionPane.showMessageDialog(null, "Club created succesfully!");
-        populateTable(league);
+        populateClubsTable(league);
+        resetTextFields();
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void createUserJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButton1ActionPerformed
@@ -541,10 +566,15 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         Stadium  stadium = new Stadium(stadiumName,stadiumOwner);
         league.addStadium(stadium);
         system.getUserAccountDirectory().createUserAccount(userName, password, new StadiumManagerRole(),stadiumOwner);
+        populateStadiumsTable(league);
+        StadiumNameTextField.setText("");
+        StadiumManagerTextField.setText("");
+        nameJTextField1.setText("");
+        passwordJTextField1.setText("");
     }//GEN-LAST:event_createUserJButton1ActionPerformed
 
     private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed
-        
+         layout.show(LeagueAdminTopJPanel,"card2");
     }//GEN-LAST:event_backjButton2ActionPerformed
 
     private void StadiumNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StadiumNameTextFieldActionPerformed
@@ -591,7 +621,6 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
@@ -600,6 +629,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JTextField nameJTextField1;
     private javax.swing.JTextField passwordJTextField;
     private javax.swing.JTextField passwordJTextField1;
+    private javax.swing.JTable stadiumTable;
     private javax.swing.JButton userJButton1;
     // End of variables declaration//GEN-END:variables
 }

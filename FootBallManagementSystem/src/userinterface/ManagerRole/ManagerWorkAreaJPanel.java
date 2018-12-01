@@ -6,9 +6,18 @@
 package userinterface.ManagerRole;
 
 import Business.EcoSystem;
+import Business.Model.Abstract.Person;
+import Business.Model.Club;
+import Business.Model.Player;
+import Business.Model.TeamManager;
+import Business.Network.League;
 import Business.Organization.Organization;
+import Business.Organization.PlayerOrganization;
+import static Business.Role.Role.RoleType.Manager;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,12 +28,35 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManagerWorkAreaJPanel
      */
+    private League league;
+    private EcoSystem system;
+    private CardLayout layout;
     public ManagerWorkAreaJPanel() {
         initComponents();
     }
-
+    
     public ManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         initComponents();
+         TeamManager manager = (Person) account.getPerson();
+        this.league = manager.getLeague();
+         this.league = league;
+         this.layout = (CardLayout) ManagerTopJPanel.getLayout();
+         populatePlayersTable(league);
+    }
+    private void populatePlayersTable(League league){
+        DefaultTableModel model = (DefaultTableModel) clubTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for(Club club : league.getClubs()){
+            for( Player player : club.getClubPlayers().players){
+                Object[] row = new Object[2];
+                row[0] = player.getName();
+                row[1] = club.getName();
+                row[3] = league.getName();
+                model.addRow(row);
+            }
+        }
     }
 
     /**
@@ -36,6 +68,11 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        SearchPlayerJPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        clubTable = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        ManagerTopJPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,6 +85,51 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+
+        setLayout(new java.awt.CardLayout());
+
+        clubTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Player name", "Club Name", "League Name"
+            }
+        ));
+        jScrollPane2.setViewportView(clubTable);
+
+        jButton4.setText("Bid Player");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SearchPlayerJPanelLayout = new javax.swing.GroupLayout(SearchPlayerJPanel);
+        SearchPlayerJPanel.setLayout(SearchPlayerJPanelLayout);
+        SearchPlayerJPanelLayout.setHorizontalGroup(
+            SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addContainerGap(310, Short.MAX_VALUE))
+        );
+        SearchPlayerJPanelLayout.setVerticalGroup(
+            SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(264, Short.MAX_VALUE))
+        );
+
+        add(SearchPlayerJPanel, "card3");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Welcome, Manager");
@@ -109,62 +191,62 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jButton3.setText("Check League Table");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout ManagerTopJPanelLayout = new javax.swing.GroupLayout(ManagerTopJPanel);
+        ManagerTopJPanel.setLayout(ManagerTopJPanelLayout);
+        ManagerTopJPanelLayout.setHorizontalGroup(
+            ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
+                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnViewSquad)
                             .addComponent(jButton1)
                             .addComponent(jButton2)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addComponent(btnSearchPlayer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTraining, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnContracts)))
                 .addContainerGap(87, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManagerTopJPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(63, 63, 63))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        ManagerTopJPanelLayout.setVerticalGroup(
+            ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(22, 22, 22)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManagerTopJPanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManagerTopJPanelLayout.createSequentialGroup()
                         .addComponent(btnViewSquad)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addGap(46, 46, 46)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearchPlayer)
                     .addComponent(btnTraining)
                     .addComponent(btnContracts))
@@ -172,6 +254,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addGap(31, 31, 31))
         );
+
+        add(ManagerTopJPanel, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -184,6 +268,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSearchPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchPlayerActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnSearchPlayerActionPerformed
 
     private void btnContractsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContractsActionPerformed
@@ -194,19 +279,28 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTrainingActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ManagerTopJPanel;
+    private javax.swing.JPanel SearchPlayerJPanel;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnContracts;
     private javax.swing.JButton btnSearchPlayer;
     private javax.swing.JButton btnTraining;
     private javax.swing.JButton btnViewSquad;
+    private javax.swing.JTable clubTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

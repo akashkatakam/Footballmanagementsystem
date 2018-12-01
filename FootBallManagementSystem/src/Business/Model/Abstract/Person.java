@@ -16,6 +16,8 @@ public abstract class Person {
     String email;
     String phone;
     Date dateofBirth;
+
+   
     
     public Person(String name){
         this.name = name;
@@ -43,6 +45,14 @@ public abstract class Person {
 
     public void setDateofBirth(Date dateofBirth) {
         this.dateofBirth = dateofBirth;
+    }
+    
+     public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
 }
