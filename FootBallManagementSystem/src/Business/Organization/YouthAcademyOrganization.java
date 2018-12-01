@@ -5,7 +5,7 @@
  */
 package Business.Organization;
 
-import Business.Model.BOD;
+import Business.Model.Director;
 import Business.Model.Player;
 import Business.Role.BODRole;
 import Business.Role.PlayerRole;

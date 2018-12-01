@@ -7,6 +7,9 @@ package Business.Model;
 
 import Business.Model.Abstract.Person;
 
-public class BOD extends Person{
-    
+public class Director extends Person{
+   
+    public Director(String name) {
+        super(name);
+    }
 }

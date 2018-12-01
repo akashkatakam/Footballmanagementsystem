@@ -8,6 +8,7 @@ package Business.Model;
 import Business.Enterprise.ClubEnterprise;
 import Business.Organization.ManagerOrganization;
 import Business.Organization.PlayerOrganization;
+import Business.Organization.SupportingStaffOrganization;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Club extends ClubEnterprise {
     private Owner owner;
     private ManagerOrganization teamManager;
     private PlayerOrganization clubPlayers;
+    private SupportingStaffOrganization supporttingStaff;
     
     
     public Club(String name,Owner owner) {
@@ -58,6 +60,13 @@ public class Club extends ClubEnterprise {
     public void setClubPlayers(PlayerOrganization clubPlayers) {
         this.clubPlayers = clubPlayers;
     }
-    
+
+    public SupportingStaffOrganization getSupporttingStaff() {
+        return supporttingStaff;
+    }
+
+    public void setSupporttingStaff(SupportingStaffOrganization supporttingStaff) {
+        this.supporttingStaff = supporttingStaff;
+    }
     
 }
