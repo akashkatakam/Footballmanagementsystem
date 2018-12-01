@@ -10,12 +10,17 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.StadiumManager.StadiumManagerWorkAreaJPanel;
 
 /**
  *
  * @author chowd
  */
 public class StadiumManagerRole extends Role {
+
+    public StadiumManagerRole(String name) {
+        super(name);
+    }
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {

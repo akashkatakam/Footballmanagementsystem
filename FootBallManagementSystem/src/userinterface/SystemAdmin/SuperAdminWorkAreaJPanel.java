@@ -8,6 +8,7 @@ package userinterface.SystemAdmin;
 import Business.EcoSystem;
 import Business.Model.Abstract.Person;
 import Business.Network.League;
+import Business.Organization.Organization;
 import Business.Role.LeagueDirectorRole;
 import Business.Role.SuperAdminRole;
 import Business.UserAccount.UserAccount;
@@ -29,6 +30,10 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.system = system;
         this.userProcessContainer = userProcessContainer;
+    }
+
+    public SuperAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -178,8 +183,8 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     String userName = leagueAdminUsernameText.getText();
     String password = leagueAdminPassword.getText();
     League l = new League(leagueName, leagueAdminName);
-    system.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole());
-    system.getNetworkList().add(l);
+    l.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole());
+    system.getleaguesList().add(l);
     }//GEN-LAST:event_submitLeagueActionPerformed
 
 

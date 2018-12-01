@@ -5,9 +5,13 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.EcoSystem;
 import Business.Model.Club;
 import Business.Model.Owner;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,6 +24,10 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
      */
     public LeagueAdminWorkArea() {
         initComponents();
+    }
+
+    public LeagueAdminWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -454,8 +462,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         String clubOwnerName = ClubOwnerTextField.getText();
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
-        Owner clubOwner = new Owner();
-        Club club = new Club(clubName,clubOwner);
+        //Owner clubOwner = new Owner();
+        //Club club = new Club(clubName,clubOwner);
         
         
     }//GEN-LAST:event_createUserJButtonActionPerformed
@@ -466,8 +474,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         String clubOwnerName = StadiumManagerTextField.getText();
         String userName = nameJTextField1.getText();
         String password = passwordJTextField1.getText();
-        Owner clubOwner = new Owner();
-        Club club = new Club(clubName,clubOwner);
+        //Owner clubOwner = new Owner();
+        //Club club = new Club(clubName,clubOwner);
     }//GEN-LAST:event_createUserJButton1ActionPerformed
 
     private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed

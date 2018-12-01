@@ -10,12 +10,17 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.PlayerRole.PlayerWorkAreaJPanel;
 
 /**
  *
  * @author chowd
  */
     public class PlayerRole extends Role {
+
+    public PlayerRole() {
+        super(Role.RoleType.Player.getValue());
+    }
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
