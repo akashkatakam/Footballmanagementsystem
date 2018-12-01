@@ -13,4 +13,22 @@ import Business.Model.Abstract.Person;
  */
 public class Owner extends Person{
     
+   private Club club;
+   
+    public Owner(String n) {
+        super(n);
+    }
+    public Owner(String n,Club c){
+        super(n);
+        this.club = c;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+    
 }

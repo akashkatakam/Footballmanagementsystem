@@ -5,9 +5,8 @@
  */
 package Business.Organization;
 
-import Business.Model.BOD;
+import Business.Model.Director;
 import Business.Model.Player;
-import Business.Role.BODRole;
 import Business.Role.PlayerRole;
 import Business.Role.Role;
 import java.util.ArrayList;

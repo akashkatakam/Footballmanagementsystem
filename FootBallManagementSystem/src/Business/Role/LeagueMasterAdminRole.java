@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.SystemAdmin.SuperAdminWorkAreaJPanel;
 
 /**
  *
@@ -17,9 +18,13 @@ import javax.swing.JPanel;
  */
 public class LeagueMasterAdminRole extends Role {
 
+    public LeagueMasterAdminRole(String name) {
+        super(name);
+    }
+
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LeagueMasterAdminWorkAreaJPanel(userProcessContainer, account, organization, business);
+        return new SuperAdminWorkAreaJPanel(userProcessContainer, account, organization, business);
     }
     
 }

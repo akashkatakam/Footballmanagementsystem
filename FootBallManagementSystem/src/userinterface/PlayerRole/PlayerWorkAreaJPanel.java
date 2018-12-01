@@ -5,6 +5,11 @@
  */
 package userinterface.PlayerRole;
 
+import Business.EcoSystem;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author nikitagawde
@@ -16,6 +21,10 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
      */
     public PlayerWorkAreaJPanel() {
         initComponents();
+    }
+
+    public PlayerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+        
     }
 
     /**

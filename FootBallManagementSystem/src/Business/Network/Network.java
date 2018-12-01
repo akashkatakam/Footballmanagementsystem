@@ -6,18 +6,24 @@
 package Business.Network;
 
 import Business.Enterprise.EnterpriseDirectory;
+import Business.Organization.Organization;
+import Business.Role.Role;
+import java.util.ArrayList;
 
 /**
  *
  * @author MyPC1
  */
-public class Network {
+public class Network extends Organization {
     private String name;
     private EnterpriseDirectory enterpriseDirectory;
-    
-    public Network(){
-        enterpriseDirectory=new EnterpriseDirectory();
+
+    public Network(String name) {
+        super(null);
+        this.enterpriseDirectory = new EnterpriseDirectory();
     }
+    
+    
     public String getName() {
         return name;
     }
@@ -33,6 +39,11 @@ public class Network {
     @Override
     public String toString(){
         return name;
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -13,15 +13,17 @@ import Business.WorkQueue.WorkQueue;
  * @author raunak
  */
 public class UserAccount {
-    
     private String username;
     private String password;
     private Person person;
     private Role role;
     private WorkQueue workQueue;
 
-    public UserAccount() {
-        workQueue = new WorkQueue();
+    public UserAccount(String username,String password, Role role, Person person) {
+        this.password = password;
+        this.username = username;
+        this.role = role;
+        this.person = person;
     }
     
     

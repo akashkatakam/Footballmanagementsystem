@@ -10,12 +10,17 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.TicketSeller.TicketSellerWorkAreaJPanel;
 
 /**
  *
  * @author chowd
  */
 public class TicketSellerRole extends Role {
+
+    public TicketSellerRole() {
+        super(Role.RoleType.TicketSeller.getValue());
+    }
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {

@@ -7,6 +7,7 @@ package Business.Organization;
 
 
 import Business.Model.Player;
+import Business.Role.PlayerRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class PlayerOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        //roles.add(new LabAssistantRole());
+        roles.add(new PlayerRole());
         return roles;
     }
 
@@ -37,6 +38,11 @@ public class PlayerOrganization extends Organization{
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
+    }
+    
+    public Player addPlayer(Player p){
+        this.players.add(p);
+        return p;
     }
     
     

@@ -10,21 +10,24 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.AdministrativeRole.LeagueAdminWorkArea;
 
 /**
  *
- * @author chowd
+ * @author akash
  */
-public class LeagueDirectorRole extends Role {
+public class YouthPlayerRole extends Role {
 
-    public LeagueDirectorRole() {
-        super("League Director");
-    }
-
-    @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LeagueAdminWorkArea(userProcessContainer, account, organization, business);
+    public YouthPlayerRole() {
+        super(Role.RoleType.YouthPlayer.getValue());
     }
     
+    
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+        return null;
+    }
+    @Override
+    public String toString() {
+        return Role.RoleType.YouthPlayer.getValue();
+    }
 }

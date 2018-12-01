@@ -13,6 +13,7 @@ public class StadiumEnterprise extends Enterprise {
     public StadiumEnterprise(String name){
         super(name,EnterpriseType.Stadium);
     }
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
         return null;
