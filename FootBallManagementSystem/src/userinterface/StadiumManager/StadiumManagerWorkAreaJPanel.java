@@ -5,15 +5,23 @@
  */
 package userinterface.StadiumManager;
 
+import Business.EcoSystem;
+import Business.Model.GroundStaff;
+import Business.Model.TicketSeller;
+import Business.Role.TicketSellerRole;
+import java.awt.CardLayout;
+
 /**
  *
  * @author nikitagawde
  */
+
 public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form StadiumManagerWorkAreaJPanel
      */
+    private EcoSystem system;
     public StadiumManagerWorkAreaJPanel() {
         initComponents();
     }
@@ -27,24 +35,45 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        StadiumManagerJpanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        GroundStaffJPanel = new javax.swing.JPanel();
+        passwordJTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        nameJTextField = new javax.swing.JTextField();
+        backjButton1 = new javax.swing.JButton();
+        createUserJButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        GsNameTextField = new javax.swing.JTextField();
+        TicketSellerJPanel = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        TSNameTextField = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        nameJTextField1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        passwordJTextField1 = new javax.swing.JTextField();
+        backjButton2 = new javax.swing.JButton();
+        createUserJButton1 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Stadium Name: ");
+        setLayout(new java.awt.CardLayout());
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
-        jLabel2.setText("Requests issued:");
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel5.setText("Stadium Name: ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel6.setText("Requests issued:");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,88 +84,309 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                 "Upcoming matches", "Practice matches", "Date", "Time"
             }
         ));
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(jTable2);
+        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jButton1.setText("Approve Request");
+        jButton3.setText("Approve Request");
 
-        jLabel3.setText("Select Department:");
+        jLabel7.setText("Select Department:");
 
-        jButton2.setText("Proceed");
+        jButton4.setText("Proceed");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ground maintenance", "Painting", "Security", "Stadium lighting", "Catering Services" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ground maintenance", "Painting", "Security", "Stadium lighting", "Catering Services" }));
+        jComboBox2.setToolTipText("");
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel4.setText("Stadium Manager Work area");
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel8.setText("Stadium Manager Work area");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        javax.swing.GroupLayout StadiumManagerJpanelLayout = new javax.swing.GroupLayout(StadiumManagerJpanel);
+        StadiumManagerJpanel.setLayout(StadiumManagerJpanelLayout);
+        StadiumManagerJpanelLayout.setHorizontalGroup(
+            StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StadiumManagerJpanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButton3)
                 .addGap(192, 192, 192))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
+                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton2)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
+                        .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton4)
+                                .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
+                                    .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
                         .addGap(177, 177, 177)
-                        .addComponent(jLabel4)))
+                        .addComponent(jLabel8)))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        StadiumManagerJpanelLayout.setVerticalGroup(
+            StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel4)
+                .addComponent(jLabel8)
                 .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(jButton3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jButton4)
                 .addContainerGap(111, Short.MAX_VALUE))
         );
+
+        add(StadiumManagerJpanel, "card2");
+
+        jLabel2.setText("Password");
+
+        jLabel1.setText("User Name");
+
+        backjButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backjButton1.setText("<< Back");
+        backjButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backjButton1ActionPerformed(evt);
+            }
+        });
+
+        createUserJButton.setText("Create");
+        createUserJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createUserJButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Ground Staff Name");
+
+        javax.swing.GroupLayout GroundStaffJPanelLayout = new javax.swing.GroupLayout(GroundStaffJPanel);
+        GroundStaffJPanel.setLayout(GroundStaffJPanelLayout);
+        GroundStaffJPanelLayout.setHorizontalGroup(
+            GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
+                        .addComponent(backjButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createUserJButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GroundStaffJPanelLayout.createSequentialGroup()
+                        .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(34, 34, 34)
+                        .addComponent(GsNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(174, Short.MAX_VALUE))
+        );
+        GroundStaffJPanelLayout.setVerticalGroup(
+            GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(GsNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createUserJButton)
+                    .addComponent(backjButton1))
+                .addContainerGap(200, Short.MAX_VALUE))
+        );
+
+        add(GroundStaffJPanel, "card3");
+
+        jLabel9.setText("Ticket Seller Name");
+
+        jLabel11.setText("User Name");
+
+        jLabel12.setText("Password");
+
+        backjButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backjButton2.setText("<< Back");
+        backjButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backjButton2ActionPerformed(evt);
+            }
+        });
+
+        createUserJButton1.setText("Create");
+        createUserJButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createUserJButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TicketSellerJPanelLayout = new javax.swing.GroupLayout(TicketSellerJPanel);
+        TicketSellerJPanel.setLayout(TicketSellerJPanelLayout);
+        TicketSellerJPanelLayout.setHorizontalGroup(
+            TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TSNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel12)
+                                .addComponent(jLabel11))
+                            .addGap(40, 40, 40)
+                            .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nameJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
+                        .addComponent(backjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88)
+                        .addComponent(createUserJButton1)))
+                .addContainerGap(188, Short.MAX_VALUE))
+        );
+        TicketSellerJPanelLayout.setVerticalGroup(
+            TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(TSNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(nameJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(passwordJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createUserJButton1)
+                    .addComponent(backjButton2))
+                .addContainerGap(183, Short.MAX_VALUE))
+        );
+
+        add(TicketSellerJPanel, "card4");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) StadiumManagerJpanel.getLayout();
+        layout.show(this,"card2");
+    }//GEN-LAST:event_backjButton1ActionPerformed
+
+    private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
+
+        String clubName = GsNameTextField.getText();
+        String userName = nameJTextField.getText();
+        String password = passwordJTextField.getText();
+        GroundStaff gs = new GroundStaff(clubName);
+        system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole());
+
+    }//GEN-LAST:event_createUserJButtonActionPerformed
+
+    private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) StadiumManagerJpanel.getLayout();
+        layout.show(this,"card2");
+    }//GEN-LAST:event_backjButton2ActionPerformed
+
+    private void createUserJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButton1ActionPerformed
+        // TODO add your handling code here:
+        String stadiumName = TSNameTextField.getText();
+        String userName = nameJTextField1.getText();
+        String password = passwordJTextField1.getText();
+        TicketSeller  ts = new TicketSeller(stadiumName);
+        system.getUserAccountDirectory().createUserAccount(userName, password, new TicketSellerRole(),ts);
+    }//GEN-LAST:event_createUserJButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) StadiumManagerJpanel.getLayout();
+        if(jComboBox2.getSelectedItem() == "Ground maintenance"){
+            layout.show(this,"card3");
+        }else{
+            layout.show(this,"card4");
+        }
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JPanel GroundStaffJPanel;
+    private javax.swing.JTextField GsNameTextField;
+    private javax.swing.JPanel StadiumManagerJpanel;
+    private javax.swing.JTextField TSNameTextField;
+    private javax.swing.JPanel TicketSellerJPanel;
+    private javax.swing.JButton backjButton1;
+    private javax.swing.JButton backjButton2;
+    private javax.swing.JButton createUserJButton;
+    private javax.swing.JButton createUserJButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nameJTextField;
+    private javax.swing.JTextField nameJTextField1;
+    private javax.swing.JTextField passwordJTextField;
+    private javax.swing.JTextField passwordJTextField1;
     // End of variables declaration//GEN-END:variables
 }

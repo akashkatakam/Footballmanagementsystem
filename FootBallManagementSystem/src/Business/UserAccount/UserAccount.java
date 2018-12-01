@@ -20,10 +20,11 @@ public class UserAccount {
     private Role role;
     private WorkQueue workQueue;
 
-    public UserAccount(String username,String password, Role role) {
+    public UserAccount(String username,String password, Role role, Person person) {
         this.password = password;
         this.username = username;
         this.role = role;
+        this.person = person;
     }
     
     

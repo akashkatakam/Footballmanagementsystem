@@ -10,8 +10,19 @@ import Business.Model.Abstract.Person;
 
 public class TicketSeller extends Person{
     
-    public TicketSeller(String n) {
+    private Stadium stadium;
+    
+    public TicketSeller(String n,Stadium stadium) {
         super(n);
+        this.stadium = stadium;
+    }
+
+    public Stadium getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
     }
     
 }

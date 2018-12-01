@@ -18,22 +18,22 @@ import Business.Organization.TicketSellingOrganization;
  */
 public class Stadium extends StadiumEnterprise {
     
-    private GroundStaff groundStaffManager;
+    private Owner owner;
     private GroundStaffOrganization groundStaff;
     private TicketSellingOrganization ticketSellers;
     
     
-    public Stadium(String name,GroundStaff groundStaffManager) {
+    public Stadium(String name,Owner owner) {
         super(name);
-        this.groundStaffManager = groundStaffManager;
+        this.owner = owner;
     }
 
-    public GroundStaff getGroundStaffManager() {
-        return groundStaffManager;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setGroundStaffManager(GroundStaff groundStaffManager) {
-        this.groundStaffManager = groundStaffManager;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
     
     public GroundStaffOrganization getGroundStaff() {

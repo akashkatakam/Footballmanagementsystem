@@ -8,6 +8,7 @@ package Business.Network;
 import Business.Model.Abstract.Person;
 import Business.Model.Club;
 import Business.Model.Director;
+import Business.Model.Stadium;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import java.util.ArrayList;
@@ -20,13 +21,15 @@ public class League extends Organization{
     
     private String name;
     private ArrayList<Club> clubs;
+    private ArrayList<Stadium> stadiums;
     private ArrayList<Director> boardOfDirectors;
     private Director leagueAdmin;
+
     
     public League(String leaguename,String leagueAdminName){
         super(null);
         this.name = leaguename;
-        this.leagueAdmin = new Director(leagueAdminName);
+        this.leagueAdmin = new Director(leagueAdminName,this);
     }
 
     public ArrayList<Club> getClubs() {
@@ -48,7 +51,28 @@ public class League extends Organization{
     public void addClub(Club c){
         this.clubs.add(c);
     }
+    
+    public ArrayList<Stadium> getStadiums() {
+        return stadiums;
+    }
 
+    public void setStadiums(ArrayList<Stadium> stadiums) {
+        this.stadiums = stadiums;
+    }
+    
+    public void addStadium(Stadium s){
+        this.stadiums.add(s);
+    }
+
+    public Director getLeagueAdmin() {
+        return leagueAdmin;
+    }
+
+    public void setLeagueAdmin(Director leagueAdmin) {
+        this.leagueAdmin = leagueAdmin;
+    }
+    
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
         return null;

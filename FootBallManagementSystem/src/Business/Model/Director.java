@@ -6,10 +6,23 @@
 package Business.Model;
 
 import Business.Model.Abstract.Person;
+import Business.Network.League;
 
 public class Director extends Person{
    
-    public Director(String name) {
+    private League league;
+    public Director(String name, League league) {
         super(name);
+        this.league = league;
     }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
+    }
+    
+    
 }

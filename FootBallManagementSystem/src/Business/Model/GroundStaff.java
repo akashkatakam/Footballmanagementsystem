@@ -12,9 +12,18 @@ import Business.Model.Abstract.Person;
  * @author chowd
  */
 public class GroundStaff extends Person{
-    
-    public GroundStaff(String n) {
+    private Stadium stadium;
+    public GroundStaff(String n,Stadium stadium) {
         super(n);
+        this.stadium = stadium;
+    }
+
+    public Stadium getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
     }
     
 }
