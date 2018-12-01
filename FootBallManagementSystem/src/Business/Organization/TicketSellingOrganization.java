@@ -15,11 +15,11 @@ import java.util.ArrayList;
  *
  * @author chowd
  */
-public class TicketSelllingOrganization extends Organization{
+public class TicketSellingOrganization extends Organization{
     
     public ArrayList<TicketSeller> TicketSellers;
     
-    public TicketSelllingOrganization() {
+    public TicketSellingOrganization() {
      super(Organization.Type.TicketSelling.getValue());
      this.TicketSellers = new ArrayList<>();
     }
