@@ -1,51 +1,98 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Business.Model;
 
-import Business.Model.Abstract.Person;
-import java.util.Date;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-/**
- *
- * @author akash
- */
-public class Player extends Person {
-    
-    private Club club;
-    private String position;
-    private int yearsOfContract;
-    private  String email;
-    
-    public Player(String firstName,String lastName,String email) {
-        super(firstName);
-    }
-    
-    public Club getClub() {
-        return club;
+public class Player {
+
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("position")
+    @Expose
+    private Object position;
+    @SerializedName("dateOfBirth")
+    @Expose
+    private String dateOfBirth;
+    @SerializedName("countryOfBirth")
+    @Expose
+    private String countryOfBirth;
+    @SerializedName("nationality")
+    @Expose
+    private String nationality;
+    @SerializedName("shirtNumber")
+    @Expose
+    private Object shirtNumber;
+    @SerializedName("role")
+    @Expose
+    private String role;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setClub(Club club) {
-        this.club = club;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getPosition() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Object getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Object position) {
         this.position = position;
     }
 
-    public int getYearsOfContract() {
-        return yearsOfContract;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setYearsOfContract(int yearsOfContract) {
-        this.yearsOfContract = yearsOfContract;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
-    
-    
+
+    public String getCountryOfBirth() {
+        return countryOfBirth;
+    }
+
+    public void setCountryOfBirth(String countryOfBirth) {
+        this.countryOfBirth = countryOfBirth;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public Object getShirtNumber() {
+        return shirtNumber;
+    }
+
+    public void setShirtNumber(Object shirtNumber) {
+        this.shirtNumber = shirtNumber;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 }

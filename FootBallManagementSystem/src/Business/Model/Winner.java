@@ -12,14 +12,10 @@ import com.google.gson.annotations.SerializedName;
  *
  * @author akash
  */
-public class Team {
-    
+public class Winner {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("area")
-    @Expose
-    private Object area;
     @SerializedName("name")
     @Expose
     private String name;
@@ -32,29 +28,4 @@ public class Team {
     @SerializedName("crestUrl")
     @Expose
     private String crestUrl;
-    @SerializedName("address")
-    @Expose
-    private String address;
-    @SerializedName("phone")
-    @Expose
-    private String phone;
-    @SerializedName("website")
-    @Expose
-    private String website;
-    @SerializedName("email")
-    @Expose
-    private String email;
-    @SerializedName("founded")
-    @Expose
-    private Integer founded;
-    @SerializedName("clubColors")
-    @Expose
-    private String clubColors;
-    @SerializedName("venue")
-    @Expose
-    private String venue;
-    @SerializedName("lastUpdated")
-    @Expose
-    private String lastUpdated;
-    
 }

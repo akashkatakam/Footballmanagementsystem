@@ -10,6 +10,7 @@ import Business.Network.League;
 import Business.Organization.Organization;
 import Business.Role.LeagueDirectorRole;
 import Business.UserAccount.UserAccount;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -187,6 +188,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     League l = new League(leagueName, leagueAdminName);
     system.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole(),l.getLeagueAdmin());
     system.getleaguesList().add(l);
+        JOptionPane.showMessageDialog(this,"");
     }//GEN-LAST:event_submitLeagueActionPerformed
 
 public void populateTable(){

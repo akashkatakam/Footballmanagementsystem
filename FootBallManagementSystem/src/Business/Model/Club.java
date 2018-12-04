@@ -6,9 +6,11 @@
 package Business.Model;
 
 import Business.Enterprise.ClubEnterprise;
+import Business.Network.League;
 import Business.Organization.ManagerOrganization;
 import Business.Organization.PlayerOrganization;
 import Business.Organization.SupportingStaffOrganization;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +23,9 @@ public class Club extends ClubEnterprise {
     private ManagerOrganization managerOrganization;
     private PlayerOrganization clubPlayers;
     private SupportingStaffOrganization supporttingStaff;
+    private ArrayList<Match> matches;
+    private Stadium stadium;
+    private League league;
     
     
     public Club(String name,String owner) {

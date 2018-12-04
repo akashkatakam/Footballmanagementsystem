@@ -5,29 +5,56 @@
  */
 package Business.Network;
 
-import Business.Model.Abstract.Person;
 import Business.Model.Club;
 import Business.Model.Director;
+import Business.Model.Season;
 import Business.Model.Stadium;
 import Business.Organization.Organization;
 import Business.Role.Role;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
  *
  * @author akash
  */
-public class League extends Organization{
+public class League {
     
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("area")
+    @Expose
+    private Object area;
+    @SerializedName("name")
+    @Expose
     private String name;
+    @SerializedName("code")
+    @Expose
+    private String code;
+    @SerializedName("emblemUrl")
+    @Expose
+    private Object emblemUrl;
+    @SerializedName("plan")
+    @Expose
+    private String plan;
+    @SerializedName("currentSeason")
+    @Expose
+    private Season currentSeason;
+    @SerializedName("numberOfAvailableSeasons")
+    @Expose
+    private Integer numberOfAvailableSeasons;
+    @SerializedName("lastUpdated")
+    @Expose
+    private String lastUpdated;
     private ArrayList<Club> clubs;
     private ArrayList<Stadium> stadiums;
     private ArrayList<Director> boardOfDirectors;
     private Director leagueAdmin;
-
     
     public League(String leaguename,String leagueAdminName){
-        super(null);
+        //super(null);
         this.name = leaguename;
         this.clubs = new ArrayList<>();
         this.stadiums = new ArrayList<>();
@@ -83,7 +110,7 @@ public class League extends Organization{
     }
     
     
-    @Override
+    //@Override
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
