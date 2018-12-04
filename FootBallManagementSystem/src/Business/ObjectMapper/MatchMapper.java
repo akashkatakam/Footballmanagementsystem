@@ -16,7 +16,7 @@ public class MatchMapper {
     private Object filters;
     @SerializedName("competition")
     @Expose
-    private League competition;
+    private Competition competition;
     @SerializedName("matches")
     @Expose
     private List<Match> matches = null;

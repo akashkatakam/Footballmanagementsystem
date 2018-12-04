@@ -5,12 +5,11 @@
  */
 package Business.Service;
 
-import Business.Model.League;
+import Business.Model.Club;
 import Business.Model.Match;
-import Business.ObjectMapper.ClubMapper;
+import Business.Network.League;
 import Business.ObjectMapper.LeagueObjectMapper;
 import Business.ObjectMapper.MatchMapper;
-import Business.ObjectMapper.PlayerMapper;
 import Business.ObjectMapper.StandingsMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -59,7 +58,7 @@ public class LeagueDataService {
           = Unirest.get("https://api.football-data.org/v2/competitions/"+id+"/teams")
           .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
         System.out.println(response.getBody());
-        ClubMapper cm = gson.fromJson(response.getBody().toString(),ClubMapper.class);
+        League cm = gson.fromJson(response.getBody().toString(),League.class);
     }
     
     public void getPlayers(int id) throws UnirestException{
@@ -67,7 +66,7 @@ public class LeagueDataService {
           = Unirest.get("https://api.football-data.org/v2/teams/"+id)
           .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
         System.out.println(response.getBody());
-        PlayerMapper cm = gson.fromJson(response.getBody().toString(),PlayerMapper.class);
+        Club cm = gson.fromJson(response.getBody().toString(),Club.class);
     }
     
     public void getMatches(String code) throws UnirestException{
