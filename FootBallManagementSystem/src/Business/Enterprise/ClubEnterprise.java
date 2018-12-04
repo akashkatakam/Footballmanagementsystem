@@ -5,7 +5,6 @@
  */
 package Business.Enterprise;
 
-import Business.Organization.SupportingStaffOrganization;
 import Business.Role.ManagerRole;
 import Business.Role.PlayerRole;
 import Business.Role.Role;

@@ -5,10 +5,10 @@
  */
 package Business.Service;
 
-import Business.Model.League;
-import Business.ObjectMapper.ClubMapper;
+import Business.Model.Club;
+import Business.Model.Player;
+import Business.Network.League;
 import Business.ObjectMapper.LeagueObjectMapper;
-import Business.ObjectMapper.PlayerMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.HttpResponse;
@@ -16,7 +16,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.HttpRequest;
+import java.util.List;
 
 /**
  *
@@ -56,15 +56,22 @@ public class LeagueDataService {
           = Unirest.get("https://api.football-data.org/v2/competitions/"+id+"/teams")
           .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
         System.out.println(response.getBody());
-        ClubMapper cm = gson.fromJson(response.getBody().toString(),ClubMapper.class);
+        League clubmap = gson.fromJson(response.getBody().toString(),League.class);
     }
     
-    public void getPlayers(int id) throws UnirestException{
+    public List<Player> getPlayers(int id) throws UnirestException{
          HttpResponse<JsonNode> response 
           = Unirest.get("https://api.football-data.org/v2/teams/"+id)
           .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
-        System.out.println(response.getBody());
-        PlayerMapper cm = gson.fromJson(response.getBody().toString(),PlayerMapper.class);
+        Club cm = gson.fromJson(response.getBody().toString(),Club.class);
+       return cm.getPlayers();
+        
     }
     
+    public static void main(String[] args) throws UnirestException {
+        LeagueDataService ls = new LeagueDataService();
+        ls.getAllLeagues();
+        ls.getPlayers(57);
+        ls.getClubs(2021);
+    }
 }
