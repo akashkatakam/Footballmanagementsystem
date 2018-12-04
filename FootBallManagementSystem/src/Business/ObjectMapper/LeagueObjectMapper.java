@@ -5,7 +5,7 @@
  */
 package Business.ObjectMapper;
 
-import Business.Model.League;
+import Business.Model.Competition;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
@@ -23,7 +23,7 @@ public class LeagueObjectMapper {
     private Object filters;
     @SerializedName("competitions")
     @Expose
-    private List<League> leagues;
+    private List<Competition> leagues;
 
     public Integer getCount() {
         return count;
@@ -41,14 +41,13 @@ public class LeagueObjectMapper {
         this.filters = filters;
     }
 
-    public List<League> getLeagues() {
+    public List<Competition> getLeagues() {
         return leagues;
     }
 
-    public void setLeagues(List<League> leagues) {
+    public void setLeagues(List<Competition> leagues) {
         this.leagues = leagues;
     }
-    
-    
+        
 
 }

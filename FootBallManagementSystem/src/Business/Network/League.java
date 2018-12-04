@@ -6,63 +6,47 @@
 package Business.Network;
 
 import Business.Model.Club;
+import Business.Model.Competition;
 import Business.Model.Director;
 import Business.Model.Season;
 import Business.Model.Stadium;
+import Business.Model.Team;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author akash
  */
-public class League {
+public class League extends Organization {
     
-    @SerializedName("id")
+  
+    @SerializedName("competition")
     @Expose
-    private Integer id;
-    @SerializedName("area")
+    private Competition league;
+    @SerializedName("season")
     @Expose
-    private Object area;
-    @SerializedName("name")
+    private Season season;
+    @SerializedName("teams")
     @Expose
-    private String name;
-    @SerializedName("code")
-    @Expose
-    private String code;
-    @SerializedName("emblemUrl")
-    @Expose
-    private Object emblemUrl;
-    @SerializedName("plan")
-    @Expose
-    private String plan;
-    @SerializedName("currentSeason")
-    @Expose
-    private Season currentSeason;
-    @SerializedName("numberOfAvailableSeasons")
-    @Expose
-    private Integer numberOfAvailableSeasons;
-    @SerializedName("lastUpdated")
-    @Expose
-    private String lastUpdated;
-    private ArrayList<Club> clubs;
+    private List<Club> clubs;
     private ArrayList<Stadium> stadiums;
     private ArrayList<Director> boardOfDirectors;
     private Director leagueAdmin;
     
     public League(String leaguename,String leagueAdminName){
-        //super(null);
-        this.name = leaguename;
+        super(null);
         this.clubs = new ArrayList<>();
         this.stadiums = new ArrayList<>();
         this.leagueAdmin = new Director(leagueAdminName,this);
     }
 
     public ArrayList<Club> getClubs() {
-        return clubs;
+        return (ArrayList<Club>) clubs;
     }
 
     public void setClubs(ArrayList<Club> clubs) {
@@ -100,25 +84,9 @@ public class League {
     public void setLeagueAdmin(Director leagueAdmin) {
         this.leagueAdmin = leagueAdmin;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
     
     //@Override
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
-
-    @Override
-    public String toString() {
-        return  name;
-    }
-    
-    
 }
