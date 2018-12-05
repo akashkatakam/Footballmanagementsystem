@@ -5,37 +5,47 @@
  */
 package Business.Network;
 
-import Business.Model.Abstract.Person;
 import Business.Model.Club;
+import Business.Model.Competition;
 import Business.Model.Director;
+import Business.Model.Season;
 import Business.Model.Stadium;
 import Business.Organization.Organization;
 import Business.Role.Role;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author akash
  */
-public class League extends Organization{
+public class League extends Organization {
     
-    private String name;
-    private ArrayList<Club> clubs;
+  
+    @SerializedName("competition")
+    @Expose
+    private Competition league;
+    @SerializedName("season")
+    @Expose
+    private Season season;
+    @SerializedName("teams")
+    @Expose
+    private List<Club> clubs;
     private ArrayList<Stadium> stadiums;
     private ArrayList<Director> boardOfDirectors;
     private Director leagueAdmin;
-
     
     public League(String leaguename,String leagueAdminName){
         super(null);
-        this.name = leaguename;
         this.clubs = new ArrayList<>();
         this.stadiums = new ArrayList<>();
         this.leagueAdmin = new Director(leagueAdminName,this);
     }
 
     public ArrayList<Club> getClubs() {
-        return clubs;
+        return (ArrayList<Club>) clubs;
     }
 
     public void setClubs(ArrayList<Club> clubs) {
@@ -73,25 +83,9 @@ public class League extends Organization{
     public void setLeagueAdmin(Director leagueAdmin) {
         this.leagueAdmin = leagueAdmin;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     
-    
-    @Override
+    //@Override
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
-
-    @Override
-    public String toString() {
-        return  name;
-    }
-    
-    
 }

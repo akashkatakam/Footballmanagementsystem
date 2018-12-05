@@ -46,17 +46,17 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) clubTable.getModel();    
         model.setRowCount(0);
-        for(League l :system.getleaguesList()){
-        for(Club club : l.getClubs()){
-            for( Player player : club.getClubPlayers().players){
-                Object[] row = new Object[3];
-                row[0] = player.getName();
-                row[1] = club.getName();
-                row[2] = l.getName();
-                model.addRow(row);
-            }
-        }
-        }
+//        for(Competition l :system.getleaguesList()){
+//        for(Club club : l.getClubs()){
+//            for( Player player : club.getClubPlayers().players){
+//                Object[] row = new Object[3];
+//                row[0] = player.getName();
+//                row[1] = club.getName();
+//                row[2] = l.getName();
+//                model.addRow(row);
+//            }
+//        }
+//        }
     }
 
     /**
@@ -68,10 +68,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SearchPlayerJPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        clubTable = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
         ManagerTopJPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -85,51 +81,12 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        SearchPlayerJPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        clubTable = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
-
-        clubTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Player name", "Club Name", "League Name"
-            }
-        ));
-        jScrollPane2.setViewportView(clubTable);
-
-        jButton4.setText("Bid Player");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SearchPlayerJPanelLayout = new javax.swing.GroupLayout(SearchPlayerJPanel);
-        SearchPlayerJPanel.setLayout(SearchPlayerJPanelLayout);
-        SearchPlayerJPanelLayout.setHorizontalGroup(
-            SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
-                .addContainerGap(310, Short.MAX_VALUE))
-        );
-        SearchPlayerJPanelLayout.setVerticalGroup(
-            SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(264, Short.MAX_VALUE))
-        );
-
-        add(SearchPlayerJPanel, "card3");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Welcome, Manager");
@@ -232,7 +189,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(22, 22, 22)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManagerTopJPanelLayout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -256,6 +213,49 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         );
 
         add(ManagerTopJPanel, "card2");
+
+        clubTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Player name", "Club Name", "League Name"
+            }
+        ));
+        jScrollPane2.setViewportView(clubTable);
+
+        jButton4.setText("Bid Player");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SearchPlayerJPanelLayout = new javax.swing.GroupLayout(SearchPlayerJPanel);
+        SearchPlayerJPanel.setLayout(SearchPlayerJPanelLayout);
+        SearchPlayerJPanelLayout.setHorizontalGroup(
+            SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addContainerGap(310, Short.MAX_VALUE))
+        );
+        SearchPlayerJPanelLayout.setVerticalGroup(
+            SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+
+        add(SearchPlayerJPanel, "card3");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
