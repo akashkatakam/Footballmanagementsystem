@@ -9,6 +9,7 @@ import Business.Network.League;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 public class StandingsMapper {
 
@@ -23,7 +24,7 @@ public class StandingsMapper {
     private Season season;
     @SerializedName("standings")
     @Expose
-    private List<Standing> standings = null;
+    private ArrayList<Standing> standings = null;
 
     public Object getFilters() {
         return filters;
@@ -37,11 +38,11 @@ public class StandingsMapper {
         this.season = season;
     }
 
-    public List<Standing> getStandings() {
+    public ArrayList<Standing> getStandings() {
         return standings;
     }
 
-    public void setStandings(List<Standing> standings) {
+    public void setStandings(ArrayList<Standing> standings) {
         this.standings = standings;
     }
 

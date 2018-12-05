@@ -11,7 +11,7 @@ public class Table {
     private Integer position;
     @SerializedName("team")
     @Expose
-    private Team team;
+    private Club club;
     @SerializedName("playedGames")
     @Expose
     private Integer playedGames;
@@ -45,13 +45,15 @@ public class Table {
         this.position = position;
     }
 
-    public Team getTeam() {
-        return team;
+    public Club getClub() {
+        return club;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setClub(Club club) {
+        this.club = club;
     }
+    
+    
 
     public Integer getPlayedGames() {
         return playedGames;

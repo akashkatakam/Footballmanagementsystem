@@ -15,7 +15,7 @@ import com.google.gson.annotations.SerializedName;
 public class Competition {
     @SerializedName("id")
     @Expose
-    private Integer id;
+    public int id;
     @SerializedName("area")
     @Expose
     private Object area;
@@ -111,6 +111,11 @@ public class Competition {
 
     public void setLastUpdated(String lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
     
     

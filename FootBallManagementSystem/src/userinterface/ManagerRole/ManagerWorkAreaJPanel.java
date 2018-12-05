@@ -46,17 +46,17 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) clubTable.getModel();    
         model.setRowCount(0);
-        for(League l :system.getleaguesList()){
-        for(Club club : l.getClubs()){
-            for( Player player : club.getClubPlayers().players){
-                Object[] row = new Object[3];
-                row[0] = player.getName();
-                row[1] = club.getName();
-                row[2] = l.getName();
-                model.addRow(row);
-            }
-        }
-        }
+//        for(Competition l :system.getleaguesList()){
+//        for(Club club : l.getClubs()){
+//            for( Player player : club.getClubPlayers().players){
+//                Object[] row = new Object[3];
+//                row[0] = player.getName();
+//                row[1] = club.getName();
+//                row[2] = l.getName();
+//                model.addRow(row);
+//            }
+//        }
+//        }
     }
 
     /**
