@@ -1,5 +1,6 @@
 package Business;
 
+import Business.Handler.DataHandler;
 import Business.Role.SuperAdminRole;
 import Business.UserAccount.UserAccount;
 
@@ -9,15 +10,12 @@ import Business.UserAccount.UserAccount;
  */
 public class ConfigureASystem {
     
+    private DataHandler ch;
+    
     public static EcoSystem configure(){
         
         EcoSystem system = EcoSystem.getInstance();
         
-        //Create a network
-        //create an enterprise
-        //initialize some organizations
-        //have some employees 
-        //create user account
         
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", new SuperAdminRole(),null);
         

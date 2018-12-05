@@ -10,7 +10,6 @@ import Business.Model.Competition;
 import Business.Model.Director;
 import Business.Model.Season;
 import Business.Model.Stadium;
-import Business.Model.Team;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import com.google.gson.annotations.Expose;

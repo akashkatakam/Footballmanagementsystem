@@ -5,11 +5,13 @@
  */
 package Business;
 
+import Business.Model.Competition;
 import Business.Network.League;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +20,8 @@ import java.util.ArrayList;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
-    private ArrayList<League> leaguesList;
+    private Competition championsLeague;
+    private List<Competition> leaguesList;
     private UserAccountDirectory userAccountDirectory;
     
     public static EcoSystem getInstance(){
@@ -36,24 +39,36 @@ public class EcoSystem extends Organization{
     }
     private EcoSystem(){
         super(null);
-        leaguesList=new ArrayList<League>();
+        leaguesList=new ArrayList<Competition>();
         this.userAccountDirectory = new UserAccountDirectory();
         this.leaguesList = new ArrayList<>();
     }
 
-    public ArrayList<League> getleaguesList() {
+    public List<Competition> getleaguesList() {
         return leaguesList;
     }
 
-    public void setleaguesList(ArrayList<League> leaguesList) {
-        this.leaguesList = leaguesList;
+    public void setleaguesList(List<Competition> leaguesList) {
+        for(Competition c:leaguesList){
+            if(c.id == 2001){
+                this.championsLeague = c;
+            }else this.leaguesList.add(c);
+        }
+    }
+
+    public Competition getChampionsLeague() {
+        return championsLeague;
+    }
+
+    public void setChampionsLeague(Competition championsLeague) {
+        this.championsLeague = championsLeague;
     }
     
     public boolean checkIfUserIsUnique(String userName){
         if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
             return false;
         }
-        for(League league:leaguesList){
+        for(Competition league:leaguesList){
             
         }
         return true;

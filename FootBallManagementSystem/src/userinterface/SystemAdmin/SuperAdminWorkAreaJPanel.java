@@ -6,13 +6,19 @@
 package userinterface.SystemAdmin;
 
 import Business.EcoSystem;
+import Business.Handler.DataHandler;
+import Business.Model.Club;
+import Business.Model.Competition;
 import Business.Network.League;
 import Business.Organization.Organization;
 import Business.Role.LeagueDirectorRole;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -25,6 +31,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     private EcoSystem system;
     private JPanel userProcessContainer;
+    private DataHandler ch;
     
     public SuperAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
@@ -35,8 +42,13 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     public SuperAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
        initComponents();
        this.system = business;
+       ch = new DataHandler();
+        if(this.system.getleaguesList().isEmpty()){
+            this.system.setleaguesList(ch.getChampionsLeague());
+        }
         this.userProcessContainer = userProcessContainer;
         populateTable();
+        populateTree();
     }
 
     /**
@@ -48,8 +60,6 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         createLeague = new javax.swing.JButton();
         removeLeague = new javax.swing.JButton();
         viewLeague = new javax.swing.JButton();
@@ -64,19 +74,8 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
         leagueAdminPassword = new javax.swing.JTextField();
         leagueAdminConfirmPassword = new javax.swing.JTextField();
         submitLeague = new javax.swing.JButton();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "League", "League admin"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
 
         createLeague.setText("Create league");
 
@@ -101,6 +100,10 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,14 +113,12 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(221, 221, 221)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(viewLeague)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(removeLeague)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(createLeague))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewLeague)
+                                .addGap(62, 62, 62)
+                                .addComponent(removeLeague)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(createLeague))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel5)
@@ -142,14 +143,14 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(355, 355, 355)
                         .addComponent(submitLeague)))
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(223, 223, 223)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createLeague)
                     .addComponent(removeLeague)
@@ -177,6 +178,10 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(submitLeague)
                 .addContainerGap(87, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,21 +192,44 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     String password = leagueAdminPassword.getText();
     League l = new League(leagueName, leagueAdminName);
     system.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole(),l.getLeagueAdmin());
-    system.getleaguesList().add(l);
         JOptionPane.showMessageDialog(this,"");
     }//GEN-LAST:event_submitLeagueActionPerformed
 
-public void populateTable(){
-    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
-    dtm.setRowCount(0);
-    for(League l : system.getleaguesList()){
-    Object[] row = new Object[2];
-            row[0] = l;
-            row[1] = l.getLeagueAdmin();
-            dtm.addRow(row);
+    public void populateTable(){
+    //    DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
+    //    dtm.setRowCount(0);
+    //    for(Competition l : system.getleaguesList()){
+    //    Object[] row = new Object[2];
+    //            row[0] = l;
+    //            row[1] = l;
+    //            dtm.addRow(row);
+    //    }
     }
-}
 
+     public void populateTree(){
+        DefaultMutableTreeNode leagueNode;
+        DefaultMutableTreeNode clubNode;
+        Competition league;
+        Club club;
+        DefaultTreeModel model=(DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode leagues=new DefaultMutableTreeNode(this.system.getChampionsLeague());
+        DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
+        root.removeAllChildren();
+        model.setRoot(root);
+        root.insert(leagues, 0);
+        for(int i = 0;i<this.system.getleaguesList().size();i++){
+            league=this.system.getleaguesList().get(i);
+            leagueNode=new DefaultMutableTreeNode(league.getName());
+            leagues.insert(leagueNode, i);
+            ArrayList<Club> topClubs = ch.getTopFourTeams(ch.getStandings(league.getId()));
+            for(int j= 0; j<topClubs.size();j++){
+                club = topClubs.get(j);
+                clubNode = new DefaultMutableTreeNode(club.getName());
+                leagueNode.insert(clubNode,j);
+            }
+        }
+         model.reload();
+     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createLeague;
     private javax.swing.JLabel jLabel1;
@@ -210,7 +238,7 @@ public void populateTable(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTree jTree1;
     private javax.swing.JTextField leagueAdminConfirmPassword;
     private javax.swing.JTextField leagueAdminPassword;
     private javax.swing.JTextField leagueAdminUsernameText;
