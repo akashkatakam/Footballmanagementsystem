@@ -22,6 +22,8 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -33,7 +35,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form ClubOwnerWorkAreaJPanel
      */
     private EcoSystem system;
-    private Enterprise enterprise;
+    private Club c;
     public ClubOwnerWorkAreaJPanel() {
         initComponents();
     }
@@ -42,7 +44,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.system = business;
         Owner o = (Owner) account.getPerson();
-        this.enterprise = o.getClub();
+        this.c = o.getClub();
         populateComboBox();
     }
 
@@ -112,16 +114,15 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(413, Short.MAX_VALUE)
+                .addContainerGap(363, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGap(181, 181, 181)
-                    .addComponent(jLabel4)
-                    .addContainerGap(617, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(318, 318, 318)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,16 +130,13 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(413, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel4)
-                    .addContainerGap(410, Short.MAX_VALUE)))
         );
 
         add(jPanel1, "ownerMain");
@@ -200,7 +198,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(226, Short.MAX_VALUE)
+                .addContainerGap(436, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -283,7 +281,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(73, 73, 73))
         );
@@ -308,7 +306,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        Role r = (Role) jComboBox1.getSelectedItem();
-       Club c = (Club) this.enterprise;
+       Club club = c;
        String firstName = fName.getText();
        String lastName = lName.getText();
        String email = eMail.getText();
@@ -337,8 +335,39 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     public void populateComboBox(){
         DefaultComboBoxModel cbm = (DefaultComboBoxModel) jComboBox1.getModel();
         cbm.removeAllElements();
-        for(Role r :enterprise.getSupportedRole()){
+        for(Role r :c.getSupportedRole()){
             cbm.addElement(r);
+        }
+    }
+    
+    public void populateTable(){
+        DefaultMutableTreeNode organizationNode;
+        DefaultMutableTreeNode playerNode;
+        DefaultMutableTreeNode managerNode;
+        DefaultMutableTreeNode supportingNode;
+        DefaultTreeModel model=(DefaultTreeModel)jTree1.getModel();
+        DefaultMutableTreeNode ClubOwnerNode =new DefaultMutableTreeNode(c.getOwner());
+        DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
+        root.removeAllChildren();
+        model.setRoot(root);
+        root.insert(ClubOwnerNode, 0);
+        for(int i = 0;i<c.getSupportedRole().size();i++){
+            Role r = c.getSupportedRole().get(i);
+            organizationNode = new DefaultMutableTreeNode(r);
+            ClubOwnerNode.insert(organizationNode,i);
+            if(r instanceof PlayerRole){
+              int countp = 0;
+              for(Player p: c.getPlayers()){
+                  p = c.getPlayers().get(countp);
+                  playerNode = new DefaultMutableTreeNode(p);
+                  organizationNode.insert(playerNode, countp);
+                  countp++;
+              }
+            }else if(r instanceof ManagerRole){
+                organizationNode.insert(new DefaultMutableTreeNode(c.getManagerOrganization()), i);
+            }else{
+                
+            }
         }
     }
 

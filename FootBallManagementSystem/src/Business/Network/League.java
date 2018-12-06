@@ -23,7 +23,6 @@ import java.util.List;
  */
 public class League extends Organization {
     
-  
     @SerializedName("competition")
     @Expose
     private Competition league;
@@ -47,11 +46,27 @@ public class League extends Organization {
     public ArrayList<Club> getClubs() {
         return (ArrayList<Club>) clubs;
     }
-
+    
     public void setClubs(ArrayList<Club> clubs) {
         this.clubs = clubs;
     }
+    
+    public Competition getLeague() {
+       return league;
+   }
 
+   public void setLeague(Competition league) {
+       this.league = league;
+   }
+
+   public Season getSeason() {
+       return season;
+   }
+
+   public void setSeason(Season season) {
+       this.season = season;
+   }
+   
     public ArrayList<Director> getBoardOfDirectors() {
         return boardOfDirectors;
     }
@@ -83,9 +98,15 @@ public class League extends Organization {
     public void setLeagueAdmin(Director leagueAdmin) {
         this.leagueAdmin = leagueAdmin;
     }
-    
-    //@Override
+
+    @Override
+    public String toString() {
+        return this.league.getName();
+    }
+
+    @Override
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
+    
 }
