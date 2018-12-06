@@ -80,11 +80,16 @@ public class League extends Organization {
     }
     
     public ArrayList<Stadium> getStadiums() {
-        return stadiums;
+        return (ArrayList<Stadium>) stadiums;
     }
 
-    public void setStadiums(ArrayList<Stadium> stadiums) {
-        this.stadiums = stadiums;
+    public void setStadiums(ArrayList<Club> clubs) {
+        this.stadiums = new ArrayList<>();
+        for(Club club : clubs){
+            String name = club.getVenue();
+            Stadium s = new Stadium(name, null);
+            this.stadiums.add(s);
+        }
     }
     
     public void addStadium(Stadium s){
