@@ -38,6 +38,19 @@ public class DataHandler {
         return lds.getStandings(i);
     }
     
+    public ArrayList<Table> getTableofStanding(ArrayList<Standing> plStandings){
+        ArrayList<Table> table = new ArrayList<>();
+        for(Standing s : plStandings){
+            if(s.getType().equals("TOTAL") ){
+                for(Table t : s.getTable()){
+                    table.add(t);
+                }
+            }
+        }
+        return table;
+        
+    }
+    
     public ArrayList<Club> getTopFourTeams(ArrayList<Standing> plStandings){
         ArrayList<Club> topFourClubs = new ArrayList<>();
         for(Standing s : plStandings){

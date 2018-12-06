@@ -14,6 +14,8 @@ import Business.Handler.DataHandler;
 import Business.Model.Competition;
 import Business.Model.Director;
 import Business.Model.Stadium;
+import Business.Model.Standing;
+import Business.Model.Table;
 import Business.Organization.Organization;
 import Business.Role.ClubOwnerRole;
 import Business.Role.StadiumManagerRole;
@@ -41,6 +43,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private CardLayout layout;
     private LeagueDataService ch;
     private DataHandler dh;
+    private Standing standing;
     public LeagueAdminWorkArea() {
         initComponents();
         this.league = league;
@@ -59,7 +62,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 //        }
         if(this.league.getStadiums() == null){
             this.league.setStadiums(this.league.getClubs());
-        }    
+        } 
+        
+        
         this.layout = (CardLayout) LeagueAdminTopJPanel.getLayout();
         countryNameJText.setText(this.league.getLeague().getName());
         this.revalidate();
@@ -67,6 +72,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         populateStadiumsTable(this.league);
         populateTree();
         //populateClubComboBox();
+        populateStandingsTable(dh.getTableofStanding(ch.getStandings(this.league.getLeague().getId())));
         this.clubCreate.setVisible(false);
         //this.loginCreate.setVisible(false);
     }
@@ -116,16 +122,29 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         }
     }
     
-    private void populateStadiumsTable(League league){
+    private void populateStadiumsTable(League l){
         DefaultTableModel model = (DefaultTableModel) stadiumTable.getModel();
         model.setRowCount(0);
-        for (Stadium stadium : league.getStadiums()){
+        for (Stadium s : l.getStadiums()){
             Object[] row = new Object[2];
-            row[0] = stadium.getName();
-            row[1] = stadium.getOwner();
+            row[0] = s.getName();
+            row[1] = s.getOwner();
             model.addRow(row);
         }
     }
+    
+    private void populateStandingsTable(ArrayList<Table> s){
+        DefaultTableModel model = (DefaultTableModel) standingTable.getModel();
+        model.setRowCount(0);
+        for (Table t : s){
+            Object[] row = new Object[3];
+            row[0] = t.getClub().getName();
+            row[1] = t.getPosition();
+            row[2] = t.getPoints();
+            model.addRow(row);
+        }
+    }
+    
     
     public void resetTextFields(){
         ClubNameTextField.setText("");
@@ -202,7 +221,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         stadiumTable = new javax.swing.JTable();
         LeagueTable = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        clubTable1 = new javax.swing.JTable();
+        standingTable = new javax.swing.JTable();
+        backjButton3 = new javax.swing.JButton();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -615,7 +635,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 
         LeagueAdminTopJPanel.add(ManageStadiumsJPanel, "card4");
 
-        clubTable1.setModel(new javax.swing.table.DefaultTableModel(
+        standingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -626,7 +646,15 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 "Club Name", "Position"
             }
         ));
-        jScrollPane5.setViewportView(clubTable1);
+        jScrollPane5.setViewportView(standingTable);
+
+        backjButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backjButton3.setText("<< Back");
+        backjButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backjButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout LeagueTableLayout = new javax.swing.GroupLayout(LeagueTable);
         LeagueTable.setLayout(LeagueTableLayout);
@@ -634,7 +662,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             LeagueTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeagueTableLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(LeagueTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backjButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(452, Short.MAX_VALUE))
         );
         LeagueTableLayout.setVerticalGroup(
@@ -642,7 +672,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             .addGroup(LeagueTableLayout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(383, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(backjButton3)
+                .addContainerGap(311, Short.MAX_VALUE))
         );
 
         LeagueAdminTopJPanel.add(LeagueTable, "card5");
@@ -722,6 +754,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        layout.show(LeagueAdminTopJPanel,"card5");
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void createUserJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButton3ActionPerformed
@@ -749,6 +783,11 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameJTextFieldActionPerformed
 
+    private void backjButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton3ActionPerformed
+        // TODO add your handling code here:
+        layout.show(LeagueAdminTopJPanel,"card2");
+    }//GEN-LAST:event_backjButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ClubNameTextField;
@@ -762,10 +801,10 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JTextField StadiumNameTextField;
     private javax.swing.JButton backjButton1;
     private javax.swing.JButton backjButton2;
+    private javax.swing.JButton backjButton3;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel clubCreate;
     private javax.swing.JTable clubTable;
-    private javax.swing.JTable clubTable1;
     private javax.swing.JTextField countryNameJText;
     private javax.swing.JButton createUserJButton1;
     private javax.swing.JButton createUserJButton2;
@@ -810,6 +849,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JTextField passwordJTextField;
     private javax.swing.JTextField passwordJTextField1;
     private javax.swing.JTable stadiumTable;
+    private javax.swing.JTable standingTable;
     private javax.swing.JButton userJButton1;
     // End of variables declaration//GEN-END:variables
 }
