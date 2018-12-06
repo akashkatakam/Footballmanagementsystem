@@ -9,6 +9,7 @@ import Business.Model.Club;
 import Business.Model.Competition;
 import Business.Model.Standing;
 import Business.Model.Table;
+import Business.Network.League;
 import Business.Service.LeagueDataService;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,13 +22,13 @@ import java.util.List;
 public class DataHandler {
     
     LeagueDataService lds = new LeagueDataService();
-    public List<Competition> getChampionsLeague(){
-        List<Competition> TopLeagues = new ArrayList<>();
+    public List<League> getChampionsLeague(){
+        List<League> TopLeagues = new ArrayList<>();
         HashMap<Integer, List> clubs = new HashMap<>(); 
         List<Competition> leagues = lds.getAllLeagues();
         for(Competition cm : leagues){
             if(cm.id == 2001 ||  cm.id == 2021 || cm.id == 2002 || cm.id == 2014 || cm.id == 2019 || cm.id == 2015){
-                TopLeagues.add(cm);
+                TopLeagues.add(lds.getClubs(cm.id));
             }
         } 
         return TopLeagues;

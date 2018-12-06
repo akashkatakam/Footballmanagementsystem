@@ -63,14 +63,14 @@ public class LeagueDataService {
         }
         
         }
-    public ArrayList<Club> getClubs(int id){
+    public League getClubs(int id){
          try{
              HttpResponse<JsonNode> response 
           = Unirest.get("https://api.football-data.org/v2/competitions/"+id+"/teams")
           .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
         System.out.println(response.getBody());
         League cm = gson.fromJson(response.getBody().toString(),League.class);
-        return cm.getClubs();
+        return cm;
          }
          catch(Exception e){
              return null;

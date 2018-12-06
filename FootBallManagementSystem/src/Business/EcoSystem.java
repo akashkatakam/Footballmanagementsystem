@@ -21,7 +21,7 @@ public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private Competition championsLeague;
-    private List<Competition> leaguesList;
+    private List<League> leaguesList;
     private UserAccountDirectory userAccountDirectory;
     
     public static EcoSystem getInstance(){
@@ -39,19 +39,19 @@ public class EcoSystem extends Organization{
     }
     private EcoSystem(){
         super(null);
-        leaguesList=new ArrayList<Competition>();
+        leaguesList=new ArrayList<League>();
         this.userAccountDirectory = new UserAccountDirectory();
         this.leaguesList = new ArrayList<>();
     }
 
-    public List<Competition> getleaguesList() {
+    public List<League> getleaguesList() {
         return leaguesList;
     }
 
-    public void setleaguesList(List<Competition> leaguesList) {
-        for(Competition c:leaguesList){
-            if(c.id == 2001){
-                this.championsLeague = c;
+    public void setleaguesList(List<League> leaguesList) {
+        for(League c:leaguesList){
+            if(c.getLeague().getId() == 2001){
+                this.championsLeague = c.getLeague();
             }else this.leaguesList.add(c);
         }
     }
@@ -67,9 +67,6 @@ public class EcoSystem extends Organization{
     public boolean checkIfUserIsUnique(String userName){
         if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
             return false;
-        }
-        for(Competition league:leaguesList){
-            
         }
         return true;
     }
