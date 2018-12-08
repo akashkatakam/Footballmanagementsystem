@@ -1,10 +1,11 @@
 
 package Business.Model;
 
+import Business.Model.Abstract.Person;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Player {
+public class Player extends Person {
 
     @SerializedName("id")
     @Expose
@@ -30,6 +31,11 @@ public class Player {
     @SerializedName("role")
     @Expose
     private String role;
+    private Club club;
+
+    public Player() {
+        super();
+    }
 
     public Integer getId() {
         return id;
@@ -95,4 +101,13 @@ public class Player {
         this.role = role;
     }
 
+    public Club getClub() {
+        return club;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+    
+    
 }

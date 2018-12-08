@@ -12,6 +12,7 @@ import Business.Organization.PlayerOrganization;
 import Business.Organization.SupportingStaffOrganization;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,8 +23,8 @@ public class Club extends ClubEnterprise {
     
     private Team team;
     private Owner owner;
-    private ManagerOrganization managerOrganization;
-    private PlayerOrganization clubPlayers;
+    private ManagerOrganization managerOrganization = new ManagerOrganization();
+    private PlayerOrganization clubPlayers ;
     private SupportingStaffOrganization supporttingStaff;
     private Stadium stadium;
     private League league;
@@ -71,15 +72,23 @@ public class Club extends ClubEnterprise {
     private String venue;
     @SerializedName("squad")
     @Expose
-    private List<Player> players = null;
+    private ArrayList<Player> players = null;
     @SerializedName("lastUpdated")
     @Expose
     private String lastUpdated;
     
     
     public Club(String name,String owner) {
-        super(null);
+        super(name);
+        this.name = name;
         this.owner = new Owner(owner,this);
+        this.clubPlayers = new PlayerOrganization();
+        this.supporttingStaff = new SupportingStaffOrganization();
+        this.managerOrganization = new ManagerOrganization();
+    }
+    public Club(){
+        super();
+        this.players = new ArrayList<>();
         this.clubPlayers = new PlayerOrganization();
         this.supporttingStaff = new SupportingStaffOrganization();
         this.managerOrganization = new ManagerOrganization();
@@ -214,11 +223,12 @@ public class Club extends ClubEnterprise {
         this.venue = venue;
     }
 
-    public List<Player> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(ArrayList<Player> players) {
+        this.clubPlayers.setPlayers(this.players);
         this.players = players;
     }
 
@@ -270,6 +280,11 @@ public class Club extends ClubEnterprise {
 
     public void setSupporttingStaff(SupportingStaffOrganization supporttingStaff) {
         this.supporttingStaff = supporttingStaff;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
     
 }

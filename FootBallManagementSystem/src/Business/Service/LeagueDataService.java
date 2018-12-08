@@ -8,6 +8,7 @@ package Business.Service;
 import Business.Model.Club;
 import Business.Model.Competition;
 import Business.Model.Match;
+import Business.Model.Player;
 import Business.Model.Standing;
 import Business.Network.League;
 import Business.ObjectMapper.LeagueObjectMapper;
@@ -77,12 +78,18 @@ public class LeagueDataService {
          }
     }
     
-    public void getPlayers(int id) throws UnirestException{
+    public ArrayList<Player> getPlayers(int id){
+        try{
          HttpResponse<JsonNode> response 
           = Unirest.get("https://api.football-data.org/v2/teams/"+id)
           .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
         System.out.println(response.getBody());
         Club cm = gson.fromJson(response.getBody().toString(),Club.class);
+        return (ArrayList<Player>) cm.getPlayers();
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     
     public void getMatches(String code) throws UnirestException{
@@ -109,6 +116,7 @@ public class LeagueDataService {
     public static void main(String[] args) throws UnirestException {
         LeagueDataService ls = new LeagueDataService();
         ls.getAllLeagues();
+        ls.getClubs(2021);
     }
     
 }

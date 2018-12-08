@@ -7,6 +7,7 @@ package Business.Handler;
 
 import Business.Model.Club;
 import Business.Model.Competition;
+import Business.Model.Player;
 import Business.Model.Standing;
 import Business.Model.Table;
 import Business.Network.League;
@@ -63,5 +64,9 @@ public class DataHandler {
             }
         }
         return topFourClubs;
+    }
+    
+    public ArrayList<Player> getPlayers(int id){
+        return lds.getPlayers(id);
     }
 }

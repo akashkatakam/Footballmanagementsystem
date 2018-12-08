@@ -14,7 +14,10 @@ import java.util.ArrayList;
 public class ClubEnterprise extends Enterprise {
     
     public ClubEnterprise(String name){
-        super(name,EnterpriseType.Club);
+         super(name,EnterpriseType.Club);
+    }
+    public ClubEnterprise(){
+    super(EnterpriseType.Club.getValue());
     }
 
     @Override
