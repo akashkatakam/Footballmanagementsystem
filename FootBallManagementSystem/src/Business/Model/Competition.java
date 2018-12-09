@@ -16,9 +16,6 @@ public class Competition {
     @SerializedName("id")
     @Expose
     public int id;
-    @SerializedName("area")
-    @Expose
-    private Object area;
     @SerializedName("name")
     @Expose
     private String name;
@@ -27,7 +24,7 @@ public class Competition {
     private String code;
     @SerializedName("emblemUrl")
     @Expose
-    private Object emblemUrl;
+    private String emblemUrl;
     @SerializedName("plan")
     @Expose
     private String plan;
@@ -49,14 +46,6 @@ public class Competition {
         this.id = id;
     }
 
-    public Object getArea() {
-        return area;
-    }
-
-    public void setArea(Object area) {
-        this.area = area;
-    }
-
     public String getName() {
         return name;
     }
@@ -73,11 +62,11 @@ public class Competition {
         this.code = code;
     }
 
-    public Object getEmblemUrl() {
+    public String getEmblemUrl() {
         return emblemUrl;
     }
 
-    public void setEmblemUrl(Object emblemUrl) {
+    public void setEmblemUrl(String emblemUrl) {
         this.emblemUrl = emblemUrl;
     }
 

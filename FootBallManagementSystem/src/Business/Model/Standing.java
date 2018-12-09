@@ -23,7 +23,7 @@ public class Standing {
     private String type;
     @SerializedName("group")
     @Expose
-    private Object group;
+    private String group;
     @SerializedName("table")
     @Expose
     private ArrayList<Table> table = null;
@@ -44,11 +44,11 @@ public class Standing {
         this.type = type;
     }
 
-    public Object getGroup() {
+    public String getGroup() {
         return group;
     }
 
-    public void setGroup(Object group) {
+    public void setGroup(String group) {
         this.group = group;
     }
 

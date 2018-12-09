@@ -17,9 +17,6 @@ public class Team {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("area")
-    @Expose
-    private Object area;
     @SerializedName("name")
     @Expose
     private String name;

@@ -22,7 +22,7 @@ public class Match {
     private String status;
     @SerializedName("matchday")
     @Expose
-    private Object matchday;
+    private String matchday;
     @SerializedName("stage")
     @Expose
     private String stage;
@@ -77,11 +77,11 @@ public class Match {
         this.status = status;
     }
 
-    public Object getMatchday() {
+    public String getMatchday() {
         return matchday;
     }
 
-    public void setMatchday(Object matchday) {
+    public void setMatchday(String matchday) {
         this.matchday = matchday;
     }
 

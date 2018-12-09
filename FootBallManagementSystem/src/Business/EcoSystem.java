@@ -39,7 +39,6 @@ public class EcoSystem extends Organization{
     }
     private EcoSystem(){
         super(null);
-        leaguesList=new ArrayList<League>();
         this.userAccountDirectory = new UserAccountDirectory();
         this.leaguesList = new ArrayList<>();
     }
@@ -63,6 +62,16 @@ public class EcoSystem extends Organization{
     public void setChampionsLeague(Competition championsLeague) {
         this.championsLeague = championsLeague;
     }
+
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
+    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
+        this.userAccountDirectory = userAccountDirectory;
+    }
+    
+    
     
     public boolean checkIfUserIsUnique(String userName){
         if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){

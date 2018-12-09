@@ -12,7 +12,7 @@ import java.util.Date;
  * @author akash
  */
 public abstract class Person {
-    String name;
+    String personName;
     String email;
     String phone;
     Date dateofBirth;
@@ -20,7 +20,7 @@ public abstract class Person {
    
     
     public Person(String name){
-        this.name = name;
+        this.personName = name;
     }
     public Person(){
         
@@ -50,16 +50,16 @@ public abstract class Person {
     }
     
      public String getName() {
-        return name;
+        return personName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.personName = name;
     }
 
     @Override
     public String toString() {
-        return name;
+        return personName;
     }
     
     

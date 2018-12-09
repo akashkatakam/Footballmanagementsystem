@@ -5,6 +5,7 @@ import Business.Model.*;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 public class MatchMapper {
 
@@ -19,7 +20,7 @@ public class MatchMapper {
     private Competition competition;
     @SerializedName("matches")
     @Expose
-    private List<Match> matches = null;
+    private ArrayList<Match> matches = null;
 
     public Integer getCount() {
         return count;
@@ -30,11 +31,11 @@ public class MatchMapper {
     }
 
 
-    public List<Match> getMatches() {
+    public ArrayList<Match> getMatches() {
         return matches;
     }
 
-    public void setMatches(List<Match> matches) {
+    public void setMatches(ArrayList<Match> matches) {
         this.matches = matches;
     }
 

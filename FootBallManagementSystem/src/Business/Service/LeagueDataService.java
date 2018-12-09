@@ -55,7 +55,7 @@ public class LeagueDataService {
     try{
         HttpResponse<JsonNode> response = 
                 Unirest.get("https://api.football-data.org/v2/competitions?plan=TIER_ONE")
-          .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
+          .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
         String responseAsString = response.getBody().toString();
         LeagueObjectMapper lm = gson.fromJson(responseAsString,LeagueObjectMapper.class );
         return lm.getLeagues();
@@ -68,12 +68,13 @@ public class LeagueDataService {
          try{
              HttpResponse<JsonNode> response 
           = Unirest.get("https://api.football-data.org/v2/competitions/"+id+"/teams")
-          .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
+          .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
         System.out.println(response.getBody());
         League cm = gson.fromJson(response.getBody().toString(),League.class);
         return cm;
          }
          catch(Exception e){
+             e.printStackTrace();
              return null;
          }
     }
@@ -82,7 +83,7 @@ public class LeagueDataService {
         try{
          HttpResponse<JsonNode> response 
           = Unirest.get("https://api.football-data.org/v2/teams/"+id)
-          .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
+          .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
         System.out.println(response.getBody());
         Club cm = gson.fromJson(response.getBody().toString(),Club.class);
         return (ArrayList<Player>) cm.getPlayers();
@@ -92,19 +93,25 @@ public class LeagueDataService {
         }
     }
     
-    public void getMatches(String code) throws UnirestException{
+    public ArrayList<Match> getMatches(String code) {
+        try{
          HttpResponse<JsonNode> response 
           = Unirest.get("https://api.football-data.org/v2/competitions/"+code+"/matches")
-          .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
+          .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
         System.out.println(response.getBody());
         MatchMapper mm = gson.fromJson(response.getBody().toString(),MatchMapper.class);
+        return mm.getMatches();
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     
     public ArrayList<Standing> getStandings(int code){
          try{
         HttpResponse<JsonNode> response 
           = Unirest.get("https://api.football-data.org/v2/competitions/"+code+"/standings")
-          .header("X-Auth-Token", "d84604099194435ca39551f3071238c6").asJson();
+          .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
         System.out.println(response.getBody());
         StandingsMapper mm = gson.fromJson(response.getBody().toString(),StandingsMapper.class);
         return mm.getStandings();
@@ -113,10 +120,12 @@ public class LeagueDataService {
          }
     }
     
-    public static void main(String[] args) throws UnirestException {
-        LeagueDataService ls = new LeagueDataService();
-        ls.getAllLeagues();
-        ls.getClubs(2021);
-    }
+//    public static void main(String[] args) throws UnirestException {
+//        LeagueDataService ls = new LeagueDataService();
+//        DataHandler dh = new DataHandler();
+//        ls.getAllLeagues();
+//        ls.getClubs(2021);
+//        dh.getChampionsLeague();
+//    }
     
 }

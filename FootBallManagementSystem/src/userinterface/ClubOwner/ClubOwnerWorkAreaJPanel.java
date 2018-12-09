@@ -461,7 +461,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CardLayout cl = (CardLayout) this.getLayout();
-        cl.show(this, "createMember");
+        cl.show(this, "card4");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void submitPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPlayerActionPerformed

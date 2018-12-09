@@ -31,9 +31,6 @@ public class Club extends ClubEnterprise {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("area")
-    @Expose
-    private Object area;
     @SerializedName("activeCompetitions")
     @Expose
     private List<Competition> activeCompetitions = null;
@@ -116,14 +113,6 @@ public class Club extends ClubEnterprise {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Object getArea() {
-        return area;
-    }
-
-    public void setArea(Object area) {
-        this.area = area;
     }
 
     public List<Competition> getActiveCompetitions() {

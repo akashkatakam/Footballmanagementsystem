@@ -17,7 +17,7 @@ public abstract class Organization {
 
     private String organizationName;
     private WorkQueue workQueue;
-    private UserAccountDirectory userAccountDirectory;
+   // private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter=0;
     
@@ -42,16 +42,16 @@ public abstract class Organization {
         this.organizationName = name;
         workQueue = new WorkQueue();
        // employeeDirectory = new EmployeeDirectory();
-        userAccountDirectory = new UserAccountDirectory();
+     //   userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
         ++counter;
     }
 
     public abstract ArrayList<Role> getSupportedRole();
     
-    public UserAccountDirectory getUserAccountDirectory() {
-        return userAccountDirectory;
-    }
+//    public UserAccountDirectory getUserAccountDirectory() {
+//        return userAccountDirectory;
+//    }
 
     public int getOrganizationID() {
         return organizationID;

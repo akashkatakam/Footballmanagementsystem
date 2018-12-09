@@ -15,7 +15,7 @@ public class Player extends Person {
     private String name;
     @SerializedName("position")
     @Expose
-    private Object position;
+    private String position;
     @SerializedName("dateOfBirth")
     @Expose
     private String dateOfBirth;
@@ -27,7 +27,7 @@ public class Player extends Person {
     private String nationality;
     @SerializedName("shirtNumber")
     @Expose
-    private Object shirtNumber;
+    private String shirtNumber;
     @SerializedName("role")
     @Expose
     private String role;
@@ -57,7 +57,7 @@ public class Player extends Person {
         return position;
     }
 
-    public void setPosition(Object position) {
+    public void setPosition(String position) {
         this.position = position;
     }
 
@@ -89,7 +89,7 @@ public class Player extends Person {
         return shirtNumber;
     }
 
-    public void setShirtNumber(Object shirtNumber) {
+    public void setShirtNumber(String shirtNumber) {
         this.shirtNumber = shirtNumber;
     }
 
@@ -108,6 +108,12 @@ public class Player extends Person {
     public void setClub(Club club) {
         this.club = club;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+    
     
     
 }
