@@ -7,9 +7,13 @@ package Business.Handler;
 
 import Business.Model.Club;
 import Business.Model.Competition;
+import Business.Model.Goal;
+import Business.Model.Match;
 import Business.Model.Player;
 import Business.Model.Standing;
 import Business.Model.Table;
+import Business.Model.Booking;
+import Business.Model.PlayerStatistics;
 import Business.Network.League;
 import Business.Service.LeagueDataService;
 import java.util.ArrayList;
@@ -69,4 +73,39 @@ public class DataHandler {
     public ArrayList<Player> getPlayers(int id){
         return lds.getPlayers(id);
     }
-}
+    
+    public PlayerStatistics getPlayerStatistics(int id){
+        int numberOFGoals = 0;
+        int numberOfAssists = 0;
+        int numberOFRedCards = 0;
+        int numberOfYellowCards = 0;
+        PlayerStatistics ps = new PlayerStatistics();
+        ArrayList<Match> allMatches = lds.getMatches(id);
+            for(Match m :allMatches){
+                for(Goal g:m.getGoals()){
+                    if(id == g.getScorer().getId()){
+                        numberOFGoals++;
+                    }
+                    if(g.getAssist() != null){
+                        if(id == g.getAssist().getId()){
+                            numberOfAssists++;
+                        }
+                    }
+                }
+                for(Booking b : m.getBookings()){
+                    if(id == b.getPlayer().getId()){
+                        if(b.getCard().equals("YELLOW_CARD"))
+                        numberOfYellowCards++;
+                        else{
+                                numberOFRedCards ++;
+                                }
+                    }
+                }
+            }
+            ps.setNumberOFGoals(numberOFGoals);
+            ps.setNumberOfAssists(numberOfAssists);
+            ps.setNumberOFRedCards(numberOFRedCards);
+            ps.setNumberOfYellowCards(numberOfYellowCards);
+            return ps;
+        }
+    }

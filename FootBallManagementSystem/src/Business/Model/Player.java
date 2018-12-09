@@ -32,6 +32,7 @@ public class Player extends Person {
     @Expose
     private String role;
     private Club club;
+    private String userName;
 
     public Player() {
         super();
@@ -44,14 +45,24 @@ public class Player extends Person {
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
+    
 
     public Object getPosition() {
         return position;

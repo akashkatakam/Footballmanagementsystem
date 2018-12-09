@@ -93,16 +93,17 @@ public class LeagueDataService {
         }
     }
     
-    public ArrayList<Match> getMatches(String code) {
+    public ArrayList<Match> getMatches(int id) {
         try{
          HttpResponse<JsonNode> response 
-          = Unirest.get("https://api.football-data.org/v2/competitions/"+code+"/matches")
+          = Unirest.get("https://api.football-data.org/v2/players/"+id+"/matches")
           .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
         System.out.println(response.getBody());
         MatchMapper mm = gson.fromJson(response.getBody().toString(),MatchMapper.class);
         return mm.getMatches();
         }
         catch(Exception e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -122,10 +123,7 @@ public class LeagueDataService {
     
 //    public static void main(String[] args) throws UnirestException {
 //        LeagueDataService ls = new LeagueDataService();
-//        DataHandler dh = new DataHandler();
-//        ls.getAllLeagues();
-//        ls.getClubs(2021);
-//        dh.getChampionsLeague();
+//        ls.getMatches(44);
 //    }
     
 }
