@@ -38,7 +38,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
      * Creates new form LeagueAdminWorkArea
      */
     private Competition competition;
-    private League league;
+    private League currentLeague;
     private EcoSystem system;
     private CardLayout layout;
     private LeagueDataService ch;
@@ -47,7 +47,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private Club selectedClub;
     public LeagueAdminWorkArea() {
         initComponents();
-        this.league = league;
+        this.currentLeague = currentLeague;
         this.layout = (CardLayout) LeagueAdminTopJPanel.getLayout();
     }
 
@@ -55,23 +55,22 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         initComponents();
         Director l = (Director) account.getPerson();
         this.system = business;
-        this.league = l.getLeague();
-        ch = new LeagueDataService();
+        this.currentLeague = l.getLeague();
         dh = new DataHandler();
 //        if(this.system.getleaguesList().isEmpty()){
 //            this.system.setleaguesList(dh.getChampionsLeague());
 //        }
-        if(this.league.getStadiums() == null){
-            this.league.setStadiums(this.league.getClubs());
+        if(this.currentLeague.getStadiums() == null){
+            this.currentLeague.setStadiums(this.currentLeague.getClubs());
         } 
         this.layout = (CardLayout) LeagueAdminTopJPanel.getLayout();
-        countryNameJText.setText(this.league.getLeague().getName());
+        countryNameJText.setText(this.currentLeague.getLeague().getName());
         this.revalidate();
-        populateClubsTable(this.league);
-        populateStadiumsTable(this.league);
+        populateClubsTable(this.currentLeague);
+        populateStadiumsTable(this.currentLeague);
         populateTree();
         //populateClubComboBox();
-        populateStandingsTable(dh.getTableofStanding(ch.getStandings(this.league.getLeague().getId())));
+        populateStandingsTable(dh.getTableofStanding(dh.getStandings(this.currentLeague.getLeague().getId())));
         this.clubCreate.setVisible(false);
         //this.loginCreate.setVisible(false);
     }
@@ -83,21 +82,21 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         Club club;
         Stadium s;
         DefaultTreeModel model=(DefaultTreeModel)jTree1.getModel();
-        DefaultMutableTreeNode MainLeague = new DefaultMutableTreeNode(this.league.getLeague().getName());
+        DefaultMutableTreeNode MainLeague = new DefaultMutableTreeNode(this.currentLeague.getLeague().getName());
         DefaultMutableTreeNode clubs = new DefaultMutableTreeNode("AllClubs");
         DefaultMutableTreeNode stadiums = new DefaultMutableTreeNode("AllStadiums");
         DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
         root.removeAllChildren();
         model.setRoot(root);
         root.insert(MainLeague, 0);
-        for(int i = 0;i<this.league.getClubs().size();i++){
-            club = this.league.getClubs().get(i);
+        for(int i = 0;i<this.currentLeague.getClubs().size();i++){
+            club = this.currentLeague.getClubs().get(i);
             clubNode=new DefaultMutableTreeNode(club.getName());
             clubs.insert(clubNode, i); 
         }
         MainLeague.insert(clubs, 0);
-        for(int i = 0;i<this.league.getStadiums().size();i++){
-            s = this.league.getStadiums().get(i);
+        for(int i = 0;i<this.currentLeague.getStadiums().size();i++){
+            s = this.currentLeague.getStadiums().get(i);
             stadiumNode = new DefaultMutableTreeNode(s.getName());
             stadiums.insert(stadiumNode, i);
         }
@@ -780,18 +779,19 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         String clubOwnerName = ClubOwnerTextField.getText();
         if(this.selectedClub == null){
            Club club = new Club(clubName,clubOwnerName);
-            league.addClub(club); 
+            currentLeague.addClub(club); 
             system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),club.getOwner());
             JOptionPane.showMessageDialog(null, "Club created succesfully!");
         }else {
             ClubNameTextField.setText(this.selectedClub.getName());
             Owner o = new Owner(clubOwnerName,this.selectedClub);
             this.selectedClub.setOwner(o);
+            this.selectedClub.setLeague(currentLeague);
             system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),o);
             JOptionPane.showMessageDialog(null, "Club owner created succesfully!");
             this.selectedClub = null;
         }
-        populateClubsTable(league);
+        populateClubsTable(currentLeague);
         ClubNameTextField.setText("");
         ClubOwnerTextField.setText("");
         nameJTextField.setText("");

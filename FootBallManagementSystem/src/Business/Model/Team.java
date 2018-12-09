@@ -7,6 +7,7 @@ package Business.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,38 +21,17 @@ public class Team {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("shortName")
+    @SerializedName("coach")
     @Expose
-    private String shortName;
-    @SerializedName("tla")
+    private Player coach;
+    @SerializedName("captain")
     @Expose
-    private String tla;
-    @SerializedName("crestUrl")
+    private Player captain;
+    @SerializedName("lineup")
     @Expose
-    private String crestUrl;
-    @SerializedName("address")
+    private ArrayList<Player> lineup;
+    @SerializedName("bench")
     @Expose
-    private String address;
-    @SerializedName("phone")
-    @Expose
-    private String phone;
-    @SerializedName("website")
-    @Expose
-    private String website;
-    @SerializedName("email")
-    @Expose
-    private String email;
-    @SerializedName("founded")
-    @Expose
-    private Integer founded;
-    @SerializedName("clubColors")
-    @Expose
-    private String clubColors;
-    @SerializedName("venue")
-    @Expose
-    private String venue;
-    @SerializedName("lastUpdated")
-    @Expose
-    private String lastUpdated;
+    private ArrayList<Player> bench;
     
 }

@@ -44,6 +44,15 @@ public class Match {
     @SerializedName("referees")
     @Expose
     private List<Player> referees = null;
+     @SerializedName("goals")
+    @Expose
+    private List<Goal> goals = null;
+    @SerializedName("bookings")
+    @Expose
+    private List<Booking> bookings = null;
+    @SerializedName("substitutions")
+    @Expose
+    private List<Substitution> substitutions = null;
 
     public Integer getId() {
         return id;
@@ -117,6 +126,53 @@ public class Match {
         this.score = score;
     }
 
-    
+    public Team getHomeTeam() {
+        return homeTeam;
+    }
 
+    public void setHomeTeam(Team homeTeam) {
+        this.homeTeam = homeTeam;
+    }
+
+    public Team getAwayTeam() {
+        return awayTeam;
+    }
+
+    public void setAwayTeam(Team awayTeam) {
+        this.awayTeam = awayTeam;
+    }
+
+    public List<Player> getReferees() {
+        return referees;
+    }
+
+    public void setReferees(List<Player> referees) {
+        this.referees = referees;
+    }
+
+    public List<Goal> getGoals() {
+        return goals;
+    }
+
+    public void setGoals(List<Goal> goals) {
+        this.goals = goals;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public List<Substitution> getSubstitutions() {
+        return substitutions;
+    }
+
+    public void setSubstitutions(List<Substitution> substitutions) {
+        this.substitutions = substitutions;
+    }
+    
+    
 }
