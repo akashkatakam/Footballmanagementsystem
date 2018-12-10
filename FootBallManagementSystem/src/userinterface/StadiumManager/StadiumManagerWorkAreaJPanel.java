@@ -14,6 +14,7 @@ import Business.Role.ClubOwnerRole;
 import Business.Role.GroundStaffManagerRole;
 import Business.Role.TicketSellerRole;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.GroundStaffWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -53,13 +54,12 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        createRequest = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         GroundStaffJPanel = new javax.swing.JPanel();
         passwordJTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -82,12 +82,15 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         setLayout(new java.awt.CardLayout());
 
         StadiumManagerJpanel.setBackground(new java.awt.Color(102, 51, 0));
+        StadiumManagerJpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel5.setText("Stadium Name: ");
+        StadiumManagerJpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 428, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setText("Requests issued:");
+        StadiumManagerJpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 489, 180, 33));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,113 +106,40 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable2);
         jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
+        StadiumManagerJpanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 529, 464, 124));
+
         jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(204, 0, 0));
-        jButton3.setText("Approve Request");
+        jButton3.setText("Save Match");
+        StadiumManagerJpanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, 237, 49));
+        StadiumManagerJpanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 428, 140, 30));
 
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel7.setText("Select Department:");
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        jLabel8.setText("Stadium Manager Work area");
+        StadiumManagerJpanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 10, -1, -1));
 
-        jButton4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(204, 0, 0));
-        jButton4.setText("<<Back");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/stadiumBanner.jpeg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        StadiumManagerJpanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 79, 994, 275));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ground maintenance", "Painting", "Security", "Stadium lighting", "Catering Services" }));
         jComboBox2.setToolTipText("");
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        StadiumManagerJpanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 700, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
-        jLabel8.setText("Stadium Manager Work area");
-
-        jButton5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 0, 0));
-        jButton5.setText("Proceed");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        createRequest.setText("Create request");
+        createRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                createRequestActionPerformed(evt);
             }
         });
+        StadiumManagerJpanel.add(createRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 700, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/stadiumBanner.jpeg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-
-        javax.swing.GroupLayout StadiumManagerJpanelLayout = new javax.swing.GroupLayout(StadiumManagerJpanel);
-        StadiumManagerJpanel.setLayout(StadiumManagerJpanelLayout);
-        StadiumManagerJpanelLayout.setHorizontalGroup(
-            StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                        .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel8))
-                            .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(159, 159, 159)))))
-                        .addGap(0, 135, Short.MAX_VALUE))
-                    .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                .addGap(314, 314, 314)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        StadiumManagerJpanelLayout.setVerticalGroup(
-            StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(StadiumManagerJpanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StadiumManagerJpanelLayout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)))
-                .addGap(29, 29, 29)
-                .addGroup(StadiumManagerJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
-        );
+        jLabel7.setText("Select Department:");
+        StadiumManagerJpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 700, -1, -1));
 
         add(StadiumManagerJpanel, "card2");
 
@@ -408,25 +338,31 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         system.getUserAccountDirectory().createUserAccount(userName, password, new TicketSellerRole(),ts);
     }//GEN-LAST:event_createUserJButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout) StadiumManagerJpanel.getLayout();
-        if(jComboBox2.getSelectedItem() == "Ground maintenance"){
-            layout.show(this,"card3");
-        }else{
-            layout.show(this,"card4");
-        }
-        
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void createRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRequestActionPerformed
+        GroundStaffWorkRequest gr = null;
+        if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.CateringServices)){
+            gr = new GroundStaffWorkRequest();
+            gr.setRequestType(GroundStaffWorkRequest.RequestType.CateringServices);
+        }
+        else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.GrassMaintenance)){
+            gr = new GroundStaffWorkRequest();
+            gr.setRequestType(GroundStaffWorkRequest.RequestType.GrassMaintenance);
+        }
+        else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.Lighting)){
+            gr = new GroundStaffWorkRequest();
+            gr.setRequestType(GroundStaffWorkRequest.RequestType.Lighting);
+        }
+        else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.Painting)){
+            gr = new GroundStaffWorkRequest();
+            gr.setRequestType(GroundStaffWorkRequest.RequestType.Painting);
+        }
+        gr.setStatus("REQUESTED");
+        this.stadium.getGroundStaff().getWorkQueue().getWorkRequestList().add(gr);
+    }//GEN-LAST:event_createRequestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -437,11 +373,10 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel TicketSellerJPanel;
     private javax.swing.JButton backjButton1;
     private javax.swing.JButton backjButton2;
+    private javax.swing.JButton createRequest;
     private javax.swing.JButton createUserJButton;
     private javax.swing.JButton createUserJButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

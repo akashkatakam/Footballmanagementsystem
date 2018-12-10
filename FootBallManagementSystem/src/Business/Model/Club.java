@@ -217,7 +217,18 @@ public class Club extends ClubEnterprise {
     }
 
     public void setPlayers(ArrayList<Player> players) {
-        this.clubPlayers.setPlayers(this.players);
+        for(Player p : players){
+            if(p.getRole().equals("PLAYER")){
+                this.clubPlayers.addPlayer(p);
+            }else{
+                if(this.managerOrganization.getTm() == null){
+                    TeamManager tm = new TeamManager();
+                    tm.setManager(p);
+                    this.managerOrganization.setTm(tm);
+                }
+                else this.supporttingStaff.addSupportingStaff(p);
+            }
+        }
         this.players = players;
     }
 

@@ -13,6 +13,7 @@ import Business.Model.Abstract.Person;
  */
 public class GroundStaff extends Person{
     private Stadium stadium;
+    
     public GroundStaff(String n,Stadium stadium) {
         super(n);
         this.stadium = stadium;
