@@ -3,26 +3,44 @@
  * and open the template in the editor.
  */
 package Business.WorkQueue;
-
-import Business.Model.Contract;
+import Business.Model.Club;
+import Business.Model.Match;
 
 /**
  *
  * @author raunak
  */
-public class ContractWorkRequest extends WorkRequest{
+public class MatchWorkRequest extends WorkRequest{
     
-    private Contract  contract;
-    
-    public ContractWorkRequest(Contract contract){
-        this.contract = contract;
-    }
-    
-    public Contract getContract() {
-        return contract;
+    private Match match; 
+    private Club homeClub;
+    private Club awayClub;
+    public MatchWorkRequest(Match m){
+        this.match = match;
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    public Match getMatch() {
+        return match;
     }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    }
+
+    public Club getHomeClub() {
+        return homeClub;
+    }
+
+    public void setHomeClub(Club homeClub) {
+        this.homeClub = homeClub;
+    }
+
+    public Club getAwayClub() {
+        return awayClub;
+    }
+
+    public void setAwayClub(Club awayClub) {
+        this.awayClub = awayClub;
+    }
+    
 }

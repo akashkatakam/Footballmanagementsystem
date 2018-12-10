@@ -53,6 +53,7 @@ public class Match {
     @SerializedName("substitutions")
     @Expose
     private List<Substitution> substitutions = null;
+    private Stadium venue;
 
     public Integer getId() {
         return id;
@@ -61,6 +62,16 @@ public class Match {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Stadium getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Stadium venue) {
+        this.venue = venue;
+    }
+    
+    
 
     public Season getSeason() {
         return season;

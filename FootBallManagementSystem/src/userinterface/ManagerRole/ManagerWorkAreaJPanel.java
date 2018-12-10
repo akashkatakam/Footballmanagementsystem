@@ -10,22 +10,23 @@ import Business.Handler.DataHandler;
 import Business.Model.Abstract.Person;
 import Business.Model.Club;
 import Business.Model.Competition;
+import Business.Model.Contract;
+import Business.Model.Match;
 import Business.Model.Player;
 import Business.Model.TeamManager;
 import Business.Network.League;
 import Business.Organization.Organization;import Business.Service.LeagueDataService;
 ;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.ContractWorkRequest;
+import Business.WorkQueue.MatchWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author nikitagawde
- */
 public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
@@ -36,6 +37,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private CardLayout layout;
     private DataHandler dh;
     private LeagueDataService ch;
+    private Match selectedMatch;
     public ManagerWorkAreaJPanel() {
         initComponents();
     }
@@ -45,11 +47,13 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
          TeamManager manager = (TeamManager) (Person) account.getPerson();
          this.system = business;
          this.club = manager.getClub();
+         this.selectedMatch = null;
          this.layout = (CardLayout) this.getLayout();
          populateLeagueComboBox();
          dh = new DataHandler();
          ch = new LeagueDataService();
          populatePositionComboBox();
+         populateUpcomingMatches();
          //populateStandingsTable(dh.getTableofStanding(ch.getStandings(this.club.getLeague().getLeague().getId())));
     }
     
@@ -57,40 +61,30 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) clubTable.getModel();    
         model.setRowCount(0);
-        if(c.getPlayers().isEmpty()){
+        if(c.getClubPlayers().getPlayers().isEmpty()){
             c.setPlayers(dh.getPlayers(c.getId()));
         }
         for( Player player : c.getPlayers()){
            if(player.getPosition() != null && player.getPosition().equals(Position)){
                Object[] row = new Object[3];
-                row[0] = player.getName();
+                row[0] = player;
                 row[1] = c.getName();
                 row[2] = Position;
                 model.addRow(row);
            }
         }
     }
-    
-//    public void populateGkComboBox(){
-//        gkComboBox.removeAllItems();
-//        for (Player player : this.club.getPlayers()){
-//            if(player.getPosition() == "Goalkeeper"){
-//                gkComboBox.addItem(player);
-//            } 
-//        }
-//    }
-//    public void populateDefComboBox(){
-//        def1.removeAllItems();
-//        def2.removeAllItems();
-//        def3.removeAllItems();
-//        for (Player player : this.club.getPlayers()){
-//            if(player.getPosition() == "Defender"){
-//                def1.addItem(player);
-//                def2.addItem(player);
-//                def3.addItem(player);
-//            } 
-//        }
-//    }
+    private void populateUpcomingMatches(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();    
+        model.setRowCount(0);
+        for(WorkRequest wr : this.club.getManagerOrganization().getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[3];
+            MatchWorkRequest matchWr = (MatchWorkRequest) wr;
+                row[0] = matchWr.getAwayClub();
+                row[1] = matchWr.getMatch().getVenue();
+                row[2] = matchWr.getMatch().getUtcDate();
+        }
+    }
     public void populateSquad1ComboBox(){
         mid1.removeAllItems();
         mid2.removeAllItems();
@@ -103,7 +97,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         at2.removeAllItems();
         at3.removeAllItems();
         gkComboBox.removeAllItems();
-        for (Player player : this.club.getPlayers()){
+        for (Player player : this.club.getClubPlayers().getPlayers()){
             if(player.getPosition().equals("Midfielder")){
                 mid1.addItem(player);
                 mid2.addItem(player);
@@ -186,15 +180,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             } 
         }
     }
-    
-//    public void populateAtckComboBox(){
-//        at1.removeAllItems();
-//        at2.removeAllItems();
-//        at3.removeAllItems();
-//        for (Player player : this.club.getPlayers()){
-//            
-//        }
-//    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -235,6 +221,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel18 = new javax.swing.JLabel();
         jComboBox13 = new javax.swing.JComboBox();
         jButton5 = new javax.swing.JButton();
+        btnBack1 = new javax.swing.JButton();
         UpdateSquadJpanel = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
@@ -281,6 +268,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        btnBack2 = new javax.swing.JButton();
         squad2 = new javax.swing.JPanel();
         att3 = new javax.swing.JComboBox();
         att2 = new javax.swing.JComboBox();
@@ -537,6 +525,14 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnBack1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnBack1.setText("<<Back");
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout SearchPlayerJPanelLayout = new javax.swing.GroupLayout(SearchPlayerJPanel);
         SearchPlayerJPanel.setLayout(SearchPlayerJPanelLayout);
         SearchPlayerJPanelLayout.setHorizontalGroup(
@@ -549,7 +545,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
                                 .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
-                                    .addComponent(jLabel18))
+                                    .addComponent(jLabel18)
+                                    .addComponent(btnBack1))
                                 .addGap(29, 29, 29)
                                 .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBox13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -618,7 +615,9 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138))
         );
 
         add(SearchPlayerJPanel, "card3");
@@ -681,7 +680,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 309, Short.MAX_VALUE))
+                .addGap(0, 337, Short.MAX_VALUE))
         );
 
         add(UpdateSquadJpanel, "card4");
@@ -783,7 +782,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         squad1.add(gkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 670, -1, -1));
 
         def3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(def3, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 465, -1, -1));
+        squad1.add(def3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 153, 0));
@@ -893,6 +892,15 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("Mid Fielders");
         squad1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 510, -1, -1));
+
+        btnBack2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnBack2.setText("<<Back");
+        btnBack2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack2ActionPerformed(evt);
+            }
+        });
+        squad1.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, 40));
 
         add(squad1, "card6");
 
@@ -1109,7 +1117,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
                 .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
                         .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1171,8 +1179,14 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnViewSquadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSquadActionPerformed
         // TODO add your handling code here:
-        this.layout.show(this, "card4");
-        populateSquad1ComboBox();
+        int selectedRow = jTable1.getSelectedRow();
+        if(selectedRow>= 0){
+            Match m = (Match) jTable1.getValueAt(selectedRow, 0);
+            this.selectedMatch = m;
+            this.layout.show(this, "card4");
+            populateSquad1ComboBox();
+        }else JOptionPane.showMessageDialog(null, "Please select a Club!");
+        
         
     }//GEN-LAST:event_btnViewSquadActionPerformed
 
@@ -1188,6 +1202,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             jComboBox11.addItem(l);
         }
     }
+     
     public void populateClubComboBox(League league){
         jComboBox13.removeAllItems();
         if(league != null){
@@ -1213,7 +1228,9 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+        Club club = (Club) jComboBox13.getSelectedItem();
+        String pos = (String) jComboBox12.getSelectedItem();
+        populatePlayersTable(club,pos);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1272,6 +1289,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         Player d3 = (Player) def3.getSelectedItem();
         checkPlayerSelecetd(d3,lineUp);
         if(lineUp.size() == 10){
+            this.selectedMatch.getl
              JOptionPane.showMessageDialog(this, "Squad Saved Succesfull");
         }
     }//GEN-LAST:event_jButton14ActionPerformed
@@ -1341,11 +1359,34 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        String price = jTextField2.getText();
+        int selectedRow = clubTable.getSelectedRow();
+        if(selectedRow>= 0){
+            Player p = (Player)clubTable.getValueAt(selectedRow, 0);
+            Club fromClub = (Club) jComboBox13.getSelectedItem();
+            if(p.getClub() == null){                                                 
+                p.setClub(fromClub);
+            }
+            Contract c = new Contract(p,fromClub,this.club,price);
+            ContractWorkRequest contractWr = new ContractWorkRequest(c);
+            contractWr.setStatus("Initiated");
+            fromClub.getClubPlayers().getWorkQueue().addWorkQueue(contractWr);
+            fromClub.getManagerOrganization().getWorkQueue().addWorkQueue(contractWr);
+            JOptionPane.showMessageDialog(this, "Contract Send Succesfull");
+        }else JOptionPane.showMessageDialog(null, "Please select a Club!"); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void gkComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gkComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_gkComboBoxActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack2ActionPerformed
      
     public void checkPlayerSelecetd(Player p,HashMap<Integer,Player> checklist){
        if(p != null){
@@ -1376,6 +1417,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox att3;
     private javax.swing.JButton backjButton3;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnContracts;
     private javax.swing.JButton btnSearchPlayer;
     private javax.swing.JButton btnTraining;

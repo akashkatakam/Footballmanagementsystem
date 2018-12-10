@@ -28,6 +28,7 @@ public class Club extends ClubEnterprise {
     private SupportingStaffOrganization supporttingStaff;
     private Stadium stadium;
     private League league;
+    private ArrayList<Match> upcomingMatches;
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -89,6 +90,7 @@ public class Club extends ClubEnterprise {
         this.clubPlayers = new PlayerOrganization();
         this.supporttingStaff = new SupportingStaffOrganization();
         this.managerOrganization = new ManagerOrganization();
+        this.upcomingMatches = new ArrayList<>();
     }
 
     public Stadium getStadium() {
@@ -275,5 +277,14 @@ public class Club extends ClubEnterprise {
     public String toString() {
         return this.name;
     }
+
+    public ArrayList<Match> getUpcomingMatches() {
+        return upcomingMatches;
+    }
+
+    public void setUpcomingMatches(ArrayList<Match> upcomingMatches) {
+        this.upcomingMatches = upcomingMatches;
+    }
+    
     
 }
