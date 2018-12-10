@@ -14,11 +14,15 @@ import Business.Network.League;
  */
 public class TeamManager extends Person{
     
+    private Player manager;
     private Club club;
     
     public TeamManager(String firstName,Club n) {
         super(firstName);
         this.club = n;
+    }
+    public TeamManager(){
+        super();
     }
 
     public Club getClub() {
@@ -29,8 +33,12 @@ public class TeamManager extends Person{
         this.club = club;
     }
 
-    public League getLeague() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Player getManager() {
+        return manager;
+    }
+
+    public void setManager(Player manager) {
+        this.manager = manager;
     }
     
     

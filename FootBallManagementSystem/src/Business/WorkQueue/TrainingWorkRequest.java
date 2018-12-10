@@ -8,17 +8,34 @@ package Business.WorkQueue;
  *
  * @author raunak
  */
-public class LabTestWorkRequest extends WorkRequest{
+public class TrainingWorkRequest extends WorkRequest{
     
-    private String testResult;
+    private int trainingHours;
+    
+    public enum TrainingType{
+        Dribbling("Dribbling"),
+        Shooting("Shooting"),
+        Passing("Passing"),
+        Defensive("Defensive"),
+        Fitness("Fitness");
+        
+        private String value;
+        private TrainingType(String value){
+            this.value = value;
+        }
 
-    public String getTestResult() {
-        return testResult;
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
     }
 
-    public void setTestResult(String testResult) {
-        this.testResult = testResult;
-    }
+    public TrainingWorkRequest() {
     
+    }
     
 }

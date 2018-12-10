@@ -107,6 +107,20 @@ public class LeagueDataService {
             return null;
         }
     }
+    public ArrayList<Match> getTeamMatches(int id) {
+        try{
+         HttpResponse<JsonNode> response 
+          = Unirest.get("https://api.football-data.org/v2/teams/"+id+"/matches?status=FINISHED ")
+          .header("X-Auth-Token", "8a560fde4b7b4ec3b5dfae2ba97fe928").asJson();
+        System.out.println(response.getBody());
+        MatchMapper mm = gson.fromJson(response.getBody().toString(),MatchMapper.class);
+        return mm.getMatches();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
     
     public ArrayList<Standing> getStandings(int code){
          try{

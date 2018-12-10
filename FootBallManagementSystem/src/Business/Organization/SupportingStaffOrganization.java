@@ -5,13 +5,13 @@
  */
 package Business.Organization;
 
-import Business.Model.Staff;
+import Business.Model.Player;
 import Business.Role.Role;
 import java.util.ArrayList;
 
 public class SupportingStaffOrganization extends Organization{
     
-    public ArrayList<Staff> staff;
+    public ArrayList<Player> staff;
     
     public SupportingStaffOrganization() {
      super(Organization.Type.SupportingStaff.getValue());
@@ -24,5 +24,19 @@ public class SupportingStaffOrganization extends Organization{
         //roles.add(new LabAssistantRole());
         return roles;
     }
+    
+    public void addSupportingStaff(Player p){
+        this.staff.add(p);
+    }
+
+    public ArrayList<Player> getStaff() {
+        return staff;
+    }
+
+    public void setStaff(ArrayList<Player> staff) {
+        this.staff = staff;
+    }
+    
+    
     
 }
