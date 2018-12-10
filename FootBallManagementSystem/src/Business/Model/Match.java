@@ -55,6 +55,12 @@ public class Match {
     private List<Substitution> substitutions = null;
     private Stadium venue;
 
+    public Match() {
+        this.homeTeam = new Team();
+        this.awayTeam = new Team();
+    }
+    
+    
     public Integer getId() {
         return id;
     }

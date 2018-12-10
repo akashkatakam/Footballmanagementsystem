@@ -33,6 +33,10 @@ public class Team {
     @SerializedName("bench")
     @Expose
     private ArrayList<Player> bench;
+    
+    public Team(){
+        this.lineup = new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;

@@ -13,6 +13,7 @@ import Business.EcoSystem;
 import Business.Handler.DataHandler;
 import Business.Model.Competition;
 import Business.Model.Director;
+import Business.Model.Match;
 import Business.Model.Stadium;
 import Business.Model.Standing;
 import Business.Model.Table;
@@ -21,6 +22,7 @@ import Business.Role.ClubOwnerRole;
 import Business.Role.StadiumManagerRole;
 import Business.Service.LeagueDataService;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.MatchWorkRequest;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -100,12 +102,14 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         MainLeague.insert(stadiums, 1);
         model.reload();
      }
-//     public void populateClubComboBox(){
-//        jComboBox1.removeAllItems();       
-//        for (Club club : this.league.getClubs()){
-//            jComboBox1.addItem(club);
-//        }
-//    }
+     public void populateClubComboBox(){
+        homeTeam.removeAllItems(); 
+        awayTeam.removeAllItems();
+        for (Club club : this.currentLeague.getClubs()){
+            homeTeam.addItem(club);
+            awayTeam.addItem(club);
+        }
+    }
     private void populateClubsTable(League league){
         DefaultTableModel model = (DefaultTableModel) clubTable.getModel();
         model.setRowCount(0);
@@ -173,6 +177,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        jCheckBox1 = new javax.swing.JCheckBox();
         ManageClubsJPanel = new javax.swing.JPanel();
         backjButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -208,6 +213,14 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         standingTable = new javax.swing.JTable();
         backjButton3 = new javax.swing.JButton();
+        MatchCreation = new javax.swing.JPanel();
+        homeTeam = new javax.swing.JComboBox();
+        jLabel21 = new javax.swing.JLabel();
+        awayTeam = new javax.swing.JComboBox();
+        jLabel23 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -260,6 +273,11 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         jButton5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 102));
         jButton5.setText("Schedule Matches");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         LeagueAdminJPanel.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 238, 220, 37));
 
         leagueNameJLabel.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
@@ -278,6 +296,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         jScrollPane4.setViewportView(jTree1);
 
         LeagueAdminJPanel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 114, 261, 420));
+
+        jCheckBox1.setText("jCheckBox1");
+        LeagueAdminJPanel.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 130, -1, -1));
 
         LeagueAdminTopJPanel.add(LeagueAdminJPanel, "card2");
 
@@ -542,7 +563,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 .addComponent(stadiumCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(backjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         LeagueAdminTopJPanel.add(ManageStadiumsJPanel, "card4");
@@ -591,12 +612,89 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             .addGroup(LeagueTableLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backjButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158))
         );
 
         LeagueAdminTopJPanel.add(LeagueTable, "card5");
+
+        homeTeam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EPL", "La Liga", "Bundesliga", "Italy Serie A" }));
+        homeTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeTeamActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel21.setText("Select Home Team:");
+
+        awayTeam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EPL", "La Liga", "Bundesliga", "Italy Serie A" }));
+
+        jLabel23.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel23.setText("Select Date:");
+
+        jButton7.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton7.setText("Create Match");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel24.setText("Select Away Team:");
+
+        javax.swing.GroupLayout MatchCreationLayout = new javax.swing.GroupLayout(MatchCreation);
+        MatchCreation.setLayout(MatchCreationLayout);
+        MatchCreationLayout.setHorizontalGroup(
+            MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MatchCreationLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(MatchCreationLayout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MatchCreationLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(homeTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(MatchCreationLayout.createSequentialGroup()
+                            .addComponent(jLabel23)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(MatchCreationLayout.createSequentialGroup()
+                            .addComponent(jLabel24)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(awayTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 407, Short.MAX_VALUE))
+        );
+        MatchCreationLayout.setVerticalGroup(
+            MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MatchCreationLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(homeTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(awayTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(87, 87, 87)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(751, Short.MAX_VALUE))
+        );
+
+        LeagueAdminTopJPanel.add(MatchCreation, "card6");
 
         add(LeagueAdminTopJPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -712,6 +810,39 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         }else JOptionPane.showMessageDialog(null, "Please select a Stadium!");
     }//GEN-LAST:event_createStadiumLoginActionPerformed
 
+    private void homeTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeTeamActionPerformed
+        // TODO add your handling code here:
+//                League league = (League) homeTeam.getSelectedItem();
+//                populateClubComboBox(league);
+    }//GEN-LAST:event_homeTeamActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Club hTeam = (Club) homeTeam.getSelectedItem();
+        if(hTeam.getStadium() == null){
+            hTeam.setStadium(new Stadium(hTeam.getVenue(), null));
+        }
+        Club awaTeam = (Club) awayTeam.getSelectedItem();
+        if(hTeam !=null && awaTeam !=null){
+            Match m = new Match();
+            m.setVenue(hTeam.getStadium());
+            m.getHomeTeam().setId(hTeam.getId());
+            m.getAwayTeam().setId(awaTeam.getId());
+            MatchWorkRequest wr = new MatchWorkRequest(m);
+            wr.setMatch(m);
+            wr.setStatus("Initiated");
+            wr.setHomeClub(hTeam);
+            wr.setAwayClub(awaTeam);
+            hTeam.getManagerOrganization().getWorkQueue().addWorkQueue(wr);
+            awaTeam.getManagerOrganization().getWorkQueue().addWorkQueue(wr);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.layout.show(LeagueAdminTopJPanel, "card6");
+        populateClubComboBox();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ClubNameTextField;
@@ -721,8 +852,10 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JPanel LeagueTable;
     private javax.swing.JPanel ManageClubsJPanel;
     private javax.swing.JPanel ManageStadiumsJPanel;
+    private javax.swing.JPanel MatchCreation;
     private javax.swing.JTextField StadiumManagerTextField;
     private javax.swing.JTextField StadiumNameTextField;
+    private javax.swing.JComboBox awayTeam;
     private javax.swing.JButton backjButton1;
     private javax.swing.JButton backjButton2;
     private javax.swing.JButton backjButton3;
@@ -732,13 +865,19 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton createStadiumLogin;
     private javax.swing.JButton createUserJButton2;
     private javax.swing.JButton createUserJButton3;
+    private javax.swing.JComboBox homeTeam;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -753,6 +892,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTree jTree1;
     private javax.swing.JLabel leagueNameJLabel;
     private javax.swing.JButton manageEmployeeJButton1;

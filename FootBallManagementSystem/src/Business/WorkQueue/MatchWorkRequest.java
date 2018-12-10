@@ -16,7 +16,7 @@ public class MatchWorkRequest extends WorkRequest{
     private Club homeClub;
     private Club awayClub;
     public MatchWorkRequest(Match m){
-        this.match = match;
+        this.match = m;
     }
 
     public Match getMatch() {
