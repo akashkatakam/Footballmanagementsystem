@@ -26,7 +26,8 @@ public abstract class Role {
         GroundStaff("Ground Staff"),
         TicketSeller("Ticket seller"),
         StadiumManager("Stadium manager"),
-        ClubOwner("Club owner");
+        ClubOwner("Club owner"),
+        SupportingStaffManager("Supporting Staff");
         
         private String value;
         private RoleType(String value){

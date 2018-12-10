@@ -12,11 +12,13 @@ import Business.Model.Goal;
 import Business.Model.Match;
 import Business.Model.Owner;
 import Business.Model.Player;
+import Business.Model.Staff;
 import Business.Model.Table;
 import Business.Model.TeamManager;
 import Business.Organization.Organization;
 import Business.Role.ManagerRole;
 import Business.Role.PlayerRole;
+import Business.Role.SupportingStaffManagerRole;
 import Business.Service.LeagueDataService;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -24,6 +26,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -54,6 +57,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private Player player;
     private LeagueDataService dataService;
     private ArrayList<Match> clubMatches;
+    private CardLayout cl;
     public ClubOwnerWorkAreaJPanel() {
         initComponents();
     }
@@ -70,8 +74,10 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         clubNameJLabel.setText(currentClub.getName());
         this.clubMatches = dataService.getTeamMatches(this.currentClub.getId());
+        this.cl = (CardLayout) this.getLayout();
         populatePlayerTable();
         populateTree();
+        populateSupportingStaffComboBox();
         populateStandingsTable(dh.getTableofStanding(dh.getStandings(this.currentClub.getLeague().getLeague().getId())));
     }
 
@@ -92,7 +98,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jTree1 = new javax.swing.JTree();
         jScrollPane5 = new javax.swing.JScrollPane();
         standingTable = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
+        pieChatButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -101,16 +107,18 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jPanel10 = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
+        supportingStaffPanel = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        fName4 = new javax.swing.JTextField();
+        supportingStaffName = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        supportingStaffuserName = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        supportingStaffPwd = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        submitManager2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        submitSupportingStaffManager = new javax.swing.JButton();
+        supportingStaff = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -128,6 +136,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         label3 = new javax.swing.JLabel();
         salary = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -139,6 +148,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         submitManager = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(818, 938));
         setLayout(new java.awt.CardLayout());
@@ -171,10 +181,10 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(standingTable);
 
-        jButton7.setText("Win analysis");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        pieChatButton.setText("Win analysis");
+        pieChatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                pieChatButtonActionPerformed(evt);
             }
         });
 
@@ -184,7 +194,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Top Manager :");
 
-        jButton2.setText("Bar");
+        jButton2.setText("barChatButton");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -213,7 +223,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7)))
+                        .addComponent(pieChatButton)))
                 .addGap(113, 113, 113)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -236,7 +246,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton7)
+                                .addComponent(pieChatButton)
                                 .addComponent(jButton2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -262,6 +272,11 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
         jButton9.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jButton9.setText("Create supporting staff");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jButton10.setText("Create Manager");
@@ -271,16 +286,24 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton7.setText("Back");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(766, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -292,21 +315,23 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jButton9)
                 .addGap(23, 23, 23)
                 .addComponent(jButton10)
-                .addContainerGap(498, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(222, 222, 222))
         );
 
         add(jPanel9, "card4");
 
-        jPanel10.setBackground(new java.awt.Color(51, 51, 51));
+        supportingStaffPanel.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel18.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
         jLabel18.setText("First name :");
 
-        fName4.setText("                                  ");
-        fName4.addActionListener(new java.awt.event.ActionListener() {
+        supportingStaffName.setText("                                  ");
+        supportingStaffName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fName4ActionPerformed(evt);
+                supportingStaffNameActionPerformed(evt);
             }
         });
 
@@ -322,73 +347,83 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel21.setForeground(new java.awt.Color(204, 204, 204));
         jLabel21.setText("Create Supporting staff");
 
-        submitManager2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        submitManager2.setText("Submit");
-        submitManager2.addActionListener(new java.awt.event.ActionListener() {
+        submitSupportingStaffManager.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        submitSupportingStaffManager.setText("Submit");
+        submitSupportingStaffManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitManager2ActionPerformed(evt);
+                submitSupportingStaffManagerActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jButton4.setText("Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
+        javax.swing.GroupLayout supportingStaffPanelLayout = new javax.swing.GroupLayout(supportingStaffPanel);
+        supportingStaffPanel.setLayout(supportingStaffPanelLayout);
+        supportingStaffPanelLayout.setHorizontalGroup(
+            supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(supportingStaffPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel21))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(submitManager2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel10Layout.createSequentialGroup()
-                                    .addGap(49, 49, 49)
-                                    .addComponent(jLabel19)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField9))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                    .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                            .addGap(48, 48, 48)
+                            .addComponent(jLabel18)
+                            .addGap(18, 18, 18)
+                            .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(supportingStaff, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(supportingStaffName, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
+                        .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                            .addGap(49, 49, 49)
+                            .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(supportingStaffPanelLayout.createSequentialGroup()
                                     .addComponent(jLabel20)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel10Layout.createSequentialGroup()
-                                    .addGap(48, 48, 48)
-                                    .addComponent(jLabel18)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(fName4, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))))))
+                                    .addGap(25, 25, 25)
+                                    .addComponent(supportingStaffPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                                        .addComponent(jButton4)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(submitSupportingStaffManager, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(supportingStaffuserName)))))))
                 .addContainerGap(606, Short.MAX_VALUE))
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+        supportingStaffPanelLayout.setVerticalGroup(
+            supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(supportingStaffPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel21)
                 .addGap(48, 48, 48)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(supportingStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(fName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(supportingStaffName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(supportingStaffuserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(supportingStaffPwd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(submitManager2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitSupportingStaffManager, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
                 .addContainerGap(404, Short.MAX_VALUE))
         );
 
-        add(jPanel10, "card5");
+        add(supportingStaffPanel, "card5");
 
         jPanel11.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -496,6 +531,13 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jButton5.setText("Back");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -511,8 +553,11 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -524,7 +569,9 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(67, 67, 67)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton5))
                 .addGap(32, 32, 32)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(174, Short.MAX_VALUE))
@@ -556,6 +603,13 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton6.setText("Back");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -580,11 +634,13 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fName1))
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submitManager, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel12)
+                            .addComponent(jButton6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(submitManager, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
@@ -609,7 +665,9 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel12)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(submitManager)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(submitManager)
+                    .addComponent(jButton6))
                 .addContainerGap(439, Short.MAX_VALUE))
         );
 
@@ -617,11 +675,10 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        CardLayout cl = (CardLayout) this.getLayout();
         cl.show(this, "card4");
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void pieChatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pieChatButtonActionPerformed
        DefaultPieDataset dataset = new DefaultPieDataset( );
        double wins = 0;
        double loses = 0;
@@ -648,25 +705,34 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         ChartFrame frame = new ChartFrame("Pie chart",chart);
         frame.setVisible(true);
         frame.setSize(450,500);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_pieChatButtonActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       CardLayout cl = (CardLayout) this.getLayout();
         cl.show(this, "card6");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        CardLayout cl = (CardLayout) this.getLayout();
         cl.show(this, "card6");
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void fName4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fName4ActionPerformed
+    private void supportingStaffNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supportingStaffNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fName4ActionPerformed
+    }//GEN-LAST:event_supportingStaffNameActionPerformed
 
-    private void submitManager2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitManager2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitManager2ActionPerformed
+    private void submitSupportingStaffManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitSupportingStaffManagerActionPerformed
+        String firstName = supportingStaffName.getText();
+        String userName = supportingStaffuserName.getText();
+        String passWord = supportingStaffPwd.getText();
+        Player supportingStaffManager = (Player) supportingStaff.getSelectedItem();
+        if(supportingStaffManager != null){
+            supportingStaffName.setText(supportingStaffManager.getName());
+            system.getUserAccountDirectory().createUserAccount(userName, passWord, new SupportingStaffManagerRole(),supportingStaffManager);
+        }else {
+            Player p = new Player();
+            p.setName(firstName);
+            system.getUserAccountDirectory().createUserAccount(userName, passWord, new SupportingStaffManagerRole(),supportingStaffManager);
+        }
+    }//GEN-LAST:event_submitSupportingStaffManagerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
@@ -749,9 +815,30 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         frame.setVisible(true);
         frame.setSize(450,500);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        cl.show(this,"card5");
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        cl.show(this,"ownerMain");
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       cl.show(this,"ownerMain");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       cl.show(this,"ownerMain");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        cl.show(this,"ownerMain");
+    }//GEN-LAST:event_jButton7ActionPerformed
     
     public void populateTree(){
         DefaultMutableTreeNode allPlayers;
+        DefaultMutableTreeNode supportingStaff;
         DefaultMutableTreeNode playerNode;
         DefaultMutableTreeNode managerNode;
         DefaultMutableTreeNode supportingNode;
@@ -768,14 +855,21 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         ClubOwnerNode.insert(managerNode,1);
         ClubOwnerNode.insert(supportingNode,2);
         int countp = 0;
-        for(Player p: this.currentClub.getPlayers()){
-        p = this.currentClub.getPlayers().get(countp);
+        for(Player p: this.currentClub.getClubPlayers().getPlayers()){
+        p = this.currentClub.getClubPlayers().getPlayers().get(countp);
         allPlayers = new DefaultMutableTreeNode(p);
         playerNode.insert(allPlayers, countp);
         countp++;
         }
-        DefaultMutableTreeNode teamManager = new DefaultMutableTreeNode(this.currentClub.getManagerOrganization().getTm());
+        DefaultMutableTreeNode teamManager = new DefaultMutableTreeNode(this.currentClub.getManagerOrganization().getTm().getManager());
         managerNode.insert(teamManager,0);
+         int countS = 0;
+        for(Player p: this.currentClub.getSupporttingStaff().getStaff()){
+        p = this.currentClub.getSupporttingStaff().getStaff().get(countS);
+        supportingStaff = new DefaultMutableTreeNode(p);
+        supportingNode.insert(supportingStaff, countS);
+        countS++;
+        }
     }
     
     private void populateStandingsTable(ArrayList<Table> s){
@@ -793,7 +887,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private void populatePlayerTable(){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        for (Player p : this.currentClub.getPlayers()){
+        for (Player p : this.currentClub.getClubPlayers().getPlayers()){
             Object[] row = new Object[3];
             row[0] = p;
             row[1] = p;
@@ -802,32 +896,30 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         }
     }
    
-   private JFreeChart createChart( PieDataset dataset ) {
-      JFreeChart chart = ChartFactory.createPieChart(      
-         "Club performance",   // chart title 
-         dataset,          // data    
-         true,             // include legend   
-         true, 
-         false);
-
-      return chart;
-   }
-   
+    private void populateSupportingStaffComboBox(){
+        DefaultComboBoxModel cbm = (DefaultComboBoxModel) supportingStaff.getModel();
+        
+            for(Player s: this.currentClub.getSupporttingStaff().getStaff()){
+                cbm.addElement(s);
+            }
+        
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel clubNameJLabel;
     private javax.swing.JTextField fName;
     private javax.swing.JTextField fName1;
-    private javax.swing.JTextField fName4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -844,7 +936,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel7;
@@ -854,20 +945,24 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTree jTree1;
     private javax.swing.JLabel label2;
     private javax.swing.JLabel label3;
     private javax.swing.JLabel label4;
+    private javax.swing.JButton pieChatButton;
     private javax.swing.JTextField salary;
     private javax.swing.JTable standingTable;
     private javax.swing.JButton submitManager;
-    private javax.swing.JButton submitManager2;
     private javax.swing.JButton submitPlayer;
+    private javax.swing.JButton submitSupportingStaffManager;
+    private javax.swing.JComboBox<String> supportingStaff;
+    private javax.swing.JTextField supportingStaffName;
+    private javax.swing.JPanel supportingStaffPanel;
+    private javax.swing.JTextField supportingStaffPwd;
+    private javax.swing.JTextField supportingStaffuserName;
     private javax.swing.JTextField yearsOfContract;
     private javax.swing.JTextField yearsOfContract1;
     // End of variables declaration//GEN-END:variables

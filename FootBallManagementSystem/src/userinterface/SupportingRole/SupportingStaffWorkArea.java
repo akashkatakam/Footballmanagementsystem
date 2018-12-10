@@ -5,6 +5,11 @@
  */
 package userinterface.SupportingRole;
 
+import Business.EcoSystem;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author akash
@@ -15,6 +20,10 @@ public class SupportingStaffWorkArea extends javax.swing.JPanel {
      * Creates new form SupportingStaffWorkArea
      */
     public SupportingStaffWorkArea() {
+        initComponents();
+    }
+
+    public SupportingStaffWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
     }
 
