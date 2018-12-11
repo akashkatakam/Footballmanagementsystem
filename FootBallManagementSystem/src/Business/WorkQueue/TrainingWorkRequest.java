@@ -92,6 +92,11 @@ public class TrainingWorkRequest extends WorkRequest{
     public void setMatch(MatchWorkRequest match) {
         this.matchReqst = match;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(passingHours); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     

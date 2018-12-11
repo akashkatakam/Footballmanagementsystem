@@ -10,6 +10,7 @@ import Business.Handler.DataHandler;
 import Business.Model.Abstract.Person;
 import Business.Model.Club;
 import Business.Model.Contract;
+import Business.Model.Goal;
 import Business.Model.Match;
 import Business.Model.Player;
 import Business.Model.TeamManager;
@@ -28,6 +29,11 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -38,8 +44,9 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private CardLayout layout;
     private DataHandler dh;
-    private LeagueDataService ch;
+    private LeagueDataService dataService;
     private MatchWorkRequest selectedWorkRequest;
+    private ArrayList<Match> clubMatches;
     public ManagerWorkAreaJPanel() {
         initComponents();
     }
@@ -52,7 +59,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
          this.layout = (CardLayout) this.getLayout();
          populateLeagueComboBox();
          dh = new DataHandler();
-         ch = new LeagueDataService();
+         dataService = new LeagueDataService();
+         this.clubMatches = dataService.getTeamMatches(this.club.getId());
          populatePositionComboBox();
          populateUpcomingMatches();
          //populateStandingsTable(dh.getTableofStanding(ch.getStandings(this.club.getLeague().getLeague().getId())));
@@ -81,12 +89,15 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(WorkRequest wr : this.club.getManagerOrganization().getWorkQueue().getWorkRequestList()){
             if(wr instanceof MatchWorkRequest){
-                Object[] row = new Object[4];
+                Object[] row = new Object[3];
                 MatchWorkRequest matchWr = (MatchWorkRequest) wr;
-                row[0] = wr;
-                row[1] = matchWr.getAwayClub();
-                row[2] = matchWr.getMatch().getVenue().getName();
-                row[3] = matchWr.getStatus();
+                if(!matchWr.getAwayClub().getId().equals(this.club.getId())){
+                     row[0] =  matchWr.getAwayClub();
+                }else{
+                     row[0] =  matchWr.getHomeClub();
+                }
+                row[1] =  matchWr.getMatch().getVenue().getName();
+                row[2] =  matchWr;
                 model.addRow(row);
                 //row[2] = matchWr.getMatch().getUtcDate();
             }
@@ -199,6 +210,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel9 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox();
         ManagerTopJPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -208,10 +220,9 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         btnViewSquad = new javax.swing.JButton();
         btnSearchPlayer = new javax.swing.JButton();
         btnTraining = new javax.swing.JButton();
-        btnContracts = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         SearchPlayerJPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         clubTable = new javax.swing.JTable();
@@ -321,6 +332,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jTextField6 = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        btnBack3 = new javax.swing.JButton();
+        MatchSummary = new javax.swing.JPanel();
 
         jLabel9.setText("GK");
 
@@ -334,6 +347,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setLayout(new java.awt.CardLayout());
 
@@ -402,22 +417,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnContracts.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        btnContracts.setText("View Players");
-        btnContracts.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContractsActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton2.setText("View Previous Match Summary");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jButton3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jButton3.setText("Check League Table");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -427,6 +426,13 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/manager_banner.jpg"))); // NOI18N
+
+        jButton2.setText("PlayersStatistics");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ManagerTopJPanelLayout = new javax.swing.GroupLayout(ManagerTopJPanel);
         ManagerTopJPanel.setLayout(ManagerTopJPanelLayout);
@@ -440,28 +446,28 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnViewSquad)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)))
-                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSearchPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTraining, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnContracts)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ManagerTopJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE))
+                            .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
+                                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnViewSquad)
+                                    .addComponent(jButton3)))
+                            .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
+                                .addComponent(btnSearchPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)
+                                .addComponent(btnTraining, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(271, Short.MAX_VALUE))
             .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
-                .addGap(267, 267, 267)
-                .addComponent(btnBack)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
+                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         ManagerTopJPanelLayout.setVerticalGroup(
             ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -470,25 +476,23 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
+                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ManagerTopJPanelLayout.createSequentialGroup()
                         .addComponent(btnViewSquad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearchPlayer)
                     .addComponent(btnTraining)
-                    .addComponent(btnContracts))
-                .addGap(50, 50, 50)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(72, 72, 72))
         );
 
         add(ManagerTopJPanel, "card2");
@@ -547,10 +551,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
         jLabel18.setText("Select Club:");
 
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EPL", "La Liga", "Bundesliga", "Italy Serie A" }));
-
         jButton5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton5.setText("Bid Player");
+        jButton5.setText("Send Contract");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -570,49 +572,42 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         SearchPlayerJPanelLayout.setHorizontalGroup(
             SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addGap(62, 62, 62)
+                        .addGap(70, 70, 70)
                         .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel18)
-                                    .addComponent(btnBack1))
-                                .addGap(29, 29, 29)
-                                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(37, 37, 37)
-                                .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(48, 48, 48)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel13))
+                        .addGap(29, 29, 29)
                         .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                            .addComponent(jTextField3))
-                        .addGap(101, 101, 101))
+                            .addComponent(jComboBox13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox11, 0, 130, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77))))
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox12, 0, 130, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
+                            .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGap(48, 48, 48)
+                            .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                                .addComponent(jTextField3)))
+                        .addComponent(btnBack1)))
+                .addGap(40, 40, 40))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchPlayerJPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addGap(351, 351, 351))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(193, 193, 193))))
+                .addComponent(jLabel12)
+                .addGap(351, 351, 351))
         );
         SearchPlayerJPanelLayout.setVerticalGroup(
             SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -622,34 +617,35 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel18))
                         .addGap(18, 18, 18)
-                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(139, Short.MAX_VALUE))))
         );
 
         add(SearchPlayerJPanel, "card3");
@@ -779,28 +775,28 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         squad1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         mid2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(mid2, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 551, -1, -1));
+        squad1.add(mid2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, -1, -1));
 
         at3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(at3, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 551, -1, -1));
+        squad1.add(at3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, -1, -1));
 
         mid1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         squad1.add(mid1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, -1, -1));
 
         at1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(at1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, -1, -1));
+        squad1.add(at1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
 
         def1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         squad1.add(def1, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 551, -1, -1));
 
         at2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(at2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, -1));
+        squad1.add(at2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, -1, -1));
 
         mid4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         squad1.add(mid4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, -1, -1));
 
         def2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(def2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, -1, -1));
+        squad1.add(def2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, -1, -1));
 
         mid3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         squad1.add(mid3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, -1));
@@ -814,7 +810,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         squad1.add(gkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 670, -1, -1));
 
         def3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(def3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, -1, -1));
+        squad1.add(def3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 550, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 153, 0));
@@ -857,7 +853,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel38.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(255, 0, 0));
         jLabel38.setText("CF");
-        squad1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, 35));
+        squad1.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, 35));
 
         jLabel39.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(51, 153, 255));
@@ -882,7 +878,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel45.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(255, 0, 0));
         jLabel45.setText("CF");
-        squad1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, -1, 35));
+        squad1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, -1, 35));
 
         jLabel6.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -1227,34 +1223,44 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel30.setText("Fitness");
 
+        btnBack3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnBack3.setText("<<Back");
+        btnBack3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout TrainingScheduleJpanelLayout = new javax.swing.GroupLayout(TrainingScheduleJpanel);
         TrainingScheduleJpanel.setLayout(TrainingScheduleJpanelLayout);
         TrainingScheduleJpanelLayout.setHorizontalGroup(
             TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TrainingScheduleJpanelLayout.createSequentialGroup()
                 .addGap(141, 141, 141)
-                .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel30)
-                    .addGroup(TrainingScheduleJpanelLayout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addGap(59, 59, 59)
-                        .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                            .addComponent(jTextField6)))
-                    .addGroup(TrainingScheduleJpanelLayout.createSequentialGroup()
-                        .addComponent(jLabel28)
-                        .addGap(71, 71, 71)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(TrainingScheduleJpanelLayout.createSequentialGroup()
-                        .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel27))
-                        .addGap(64, 64, 64)
-                        .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField1))))
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack3)
+                    .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1)
+                        .addComponent(jLabel30)
+                        .addGroup(TrainingScheduleJpanelLayout.createSequentialGroup()
+                            .addComponent(jLabel29)
+                            .addGap(59, 59, 59)
+                            .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                                .addComponent(jTextField6)))
+                        .addGroup(TrainingScheduleJpanelLayout.createSequentialGroup()
+                            .addComponent(jLabel28)
+                            .addGap(71, 71, 71)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(TrainingScheduleJpanelLayout.createSequentialGroup()
+                            .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15)
+                                .addComponent(jLabel27))
+                            .addGap(64, 64, 64)
+                            .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField4)
+                                .addComponent(jTextField1)))))
+                .addContainerGap(551, Short.MAX_VALUE))
         );
         TrainingScheduleJpanelLayout.setVerticalGroup(
             TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1281,10 +1287,25 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jButton1)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBack3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(381, Short.MAX_VALUE))
         );
 
         add(TrainingScheduleJpanel, "card9");
+
+        javax.swing.GroupLayout MatchSummaryLayout = new javax.swing.GroupLayout(MatchSummary);
+        MatchSummary.setLayout(MatchSummaryLayout);
+        MatchSummaryLayout.setHorizontalGroup(
+            MatchSummaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 930, Short.MAX_VALUE)
+        );
+        MatchSummaryLayout.setVerticalGroup(
+            MatchSummaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 740, Short.MAX_VALUE)
+        );
+
+        add(MatchSummary, "card10");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -1295,8 +1316,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedRow = jTable1.getSelectedRow();
         if(selectedRow>= 0){
-            WorkRequest wr =  (WorkRequest) jTable1.getValueAt(selectedRow, 0);
-            this.selectedWorkRequest = (MatchWorkRequest) wr;
+            MatchWorkRequest matchWork =  (MatchWorkRequest)  jTable1.getValueAt(selectedRow, 2);
+            this.selectedWorkRequest = matchWork;
             this.layout.show(this, "card4");
             populateSquad1ComboBox();
         }else JOptionPane.showMessageDialog(null, "Please select a Club!");
@@ -1332,23 +1353,19 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jComboBox12.addItem("Midfielder");
         jComboBox12.addItem("Goalkeeper");
     }
-    private void btnContractsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContractsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContractsActionPerformed
-
     private void btnTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrainingActionPerformed
         // TODO add your handling code here:
         int selectedRow = jTable1.getSelectedRow();
         if(selectedRow >= 0){
-            WorkRequest wr =  (WorkRequest) jTable1.getValueAt(selectedRow, 0);
-            this.selectedWorkRequest = (MatchWorkRequest) wr;
+            MatchWorkRequest matchWrkRqst =  (MatchWorkRequest) jTable1.getValueAt(selectedRow, 2);
+            this.selectedWorkRequest = matchWrkRqst;
             if(this.selectedWorkRequest.getMatch().getAwayTeam().getId().equals(this.club.getId())){
                 if(this.selectedWorkRequest.getMatch().getAwayTeam().getLineup().size() > 10 ){
                      this.layout.show(this, "card9");
                 }
             }
             if(this.selectedWorkRequest.getMatch().getHomeTeam().getId().equals(this.club.getId())){
-               if(this.selectedWorkRequest.getMatch().getAwayTeam().getLineup().size() > 0 ){
+               if(this.selectedWorkRequest.getMatch().getHomeTeam().getLineup().size() > 0 ){
                      this.layout.show(this, "card9");
                 }
             }
@@ -1361,10 +1378,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         String pos = (String) jComboBox12.getSelectedItem();
         populatePlayersTable(club,pos);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -1429,6 +1442,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             this.club.getClubPlayers().getWorkQueue().getWorkRequestList().add(this.selectedWorkRequest);
             this.selectedWorkRequest.setStatus("LineUpCreated");
             JOptionPane.showMessageDialog(this, "Squad Saved Succesfully");
+            this.layout.show(this, "card2");
+            populateUpcomingMatches();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -1533,19 +1548,69 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String shootHrs = jTextField1.getText();
-        String DribbleHrs = jTextField1.getText();
-        String passingHrs = jTextField1.getText();
-        String defHrs = jTextField1.getText();
-        String fitHrs = jTextField1.getText();
+        String DribbleHrs = jTextField4.getText();
+        String passingHrs = jTextField5.getText();
+        String defHrs = jTextField6.getText();
+        String fitHrs = jTextField7.getText();
         TrainingWorkRequest Twr = new TrainingWorkRequest();
         Twr.setShootingours(Integer.parseInt(shootHrs));
-        Twr.setShootingours(Integer.parseInt(DribbleHrs));
-        Twr.setShootingours(Integer.parseInt(passingHrs));
-        Twr.setShootingours(Integer.parseInt(defHrs));
-        Twr.setShootingours(Integer.parseInt(fitHrs));
+        Twr.setDribblingHours(Integer.parseInt(DribbleHrs));
+        Twr.setPassingHours(Integer.parseInt(passingHrs));
+        Twr.setDefensiveHours(Integer.parseInt(defHrs));
+        Twr.setFitnessHours(Integer.parseInt(fitHrs));
         Twr.setMatch(this.selectedWorkRequest);
         this.club.getSupporttingStaff().getWorkQueue().addWorkQueue(Twr);
+        this.club.getClubPlayers().getWorkQueue().addWorkQueue(Twr);
+        Twr.setStatus("Initiated");
+        
+        JOptionPane.showMessageDialog(this, "Training Work Request sent Succesfully");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed
+        // TODO add your handling code here:
+        this.layout.show(this, "card2");
+    }//GEN-LAST:event_btnBack3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        HashMap<Integer,Integer> playerGoalsMap = new HashMap<>();
+        HashMap<Integer,Integer> playerAssistsMap = new HashMap<>();
+        for(Match m : this.clubMatches){
+            for(Goal g : m.getGoals()){
+                int scorer = g.getScorer().getId();
+                if(g.getAssist() != null){
+                    int assist = g.getAssist().getId();
+                    if(playerAssistsMap.containsKey(assist)){
+                        playerAssistsMap.put(assist, playerAssistsMap.get(assist)+1);
+                    }else playerAssistsMap.put(assist, 1);
+                }
+                if(playerGoalsMap.containsKey(scorer)){
+                    playerGoalsMap.put(scorer, playerGoalsMap.get(scorer)+1);
+                }else playerGoalsMap.put(scorer, 1);
+            }
+        }
+        for(Player p: this.club.getClubPlayers().getPlayers()){
+            for(int i : playerAssistsMap.keySet()){
+                if(p.getId()== i){
+                    dataset.addValue(playerAssistsMap.get(i), p.getName(), "Assists");
+                }
+            }
+            for(int j : playerGoalsMap.keySet()){
+                if(p.getId()== j){
+                    dataset.addValue(playerGoalsMap.get(j), p.getName(), "Goals");
+                }
+            }
+        }
+        JFreeChart barChart = ChartFactory.createBarChart("Player performance",
+            "Category",
+            "Score",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true, true, false);
+        ChartFrame frame = new ChartFrame("Pie chart",barChart);
+        frame.setVisible(true);
+        frame.setSize(450,500);
+    }//GEN-LAST:event_jButton2ActionPerformed
      
     public void checkPlayerSelecetd(Player p,HashMap<Integer,Player> checklist){
        if(p != null){
@@ -1564,6 +1629,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CheckLeagueJPanel;
     private javax.swing.JPanel ManagerTopJPanel;
+    private javax.swing.JPanel MatchSummary;
     private javax.swing.JPanel SearchPlayerJPanel;
     private javax.swing.JPanel TrainingScheduleJpanel;
     private javax.swing.JPanel UpdateSquadJpanel;
@@ -1579,7 +1645,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnBack2;
-    private javax.swing.JButton btnContracts;
+    private javax.swing.JButton btnBack3;
     private javax.swing.JButton btnSearchPlayer;
     private javax.swing.JButton btnTraining;
     private javax.swing.JButton btnViewSquad;
@@ -1609,6 +1675,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox11;
     private javax.swing.JComboBox jComboBox12;
     private javax.swing.JComboBox jComboBox13;

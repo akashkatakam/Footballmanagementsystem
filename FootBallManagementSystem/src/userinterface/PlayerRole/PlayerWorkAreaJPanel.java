@@ -15,7 +15,6 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ContractWorkRequest;
 import Business.WorkQueue.MatchWorkRequest;
 import Business.WorkQueue.WorkRequest;
-import com.sun.corba.se.pept.transport.ContactInfo;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;

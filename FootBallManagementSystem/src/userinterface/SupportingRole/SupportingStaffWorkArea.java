@@ -6,15 +6,25 @@
 package userinterface.SupportingRole;
 
 import Business.EcoSystem;
+import Business.Model.Club;
+import Business.Model.Owner;
+import Business.Model.Player;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.MatchWorkRequest;
+import Business.WorkQueue.TrainingWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author akash
  */
 public class SupportingStaffWorkArea extends javax.swing.JPanel {
+    private Club currentClub;
+    private TrainingWorkRequest selectedWorkRequest;
 
     /**
      * Creates new form SupportingStaffWorkArea
@@ -25,8 +35,31 @@ public class SupportingStaffWorkArea extends javax.swing.JPanel {
 
     public SupportingStaffWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
+        Player p = (Player) account.getPerson();
+        this.currentClub = p.getClub();
+        populateUpcomingMatches();
     }
-
+    private void populateUpcomingMatches(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();    
+        model.setRowCount(0);
+        for(WorkRequest wr : this.currentClub.getSupporttingStaff().getWorkQueue().getWorkRequestList()){
+            if(wr instanceof TrainingWorkRequest){
+                Object[] row = new Object[6];
+                TrainingWorkRequest trRequest = (TrainingWorkRequest) wr;
+                if(!trRequest.getMatch().getAwayClub().getId().equals(this.currentClub.getId())){
+                     row[0] =  trRequest.getMatch().getAwayClub();
+                }else{
+                     row[0] =  trRequest.getMatch().getHomeClub();
+                }
+                row[1] =  trRequest.getDribblingHours();          
+                row[2] =  trRequest.getShootingours();
+                row[3] =  trRequest.getDefensiveHours();
+                row[4] =  trRequest.getFitnessHours();
+                row[5] =  trRequest;
+                model.addRow(row);
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,16 +71,24 @@ public class SupportingStaffWorkArea extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Player name", "Type of training"
+                "UpcomingMatch", "Dribbling (Hours)", "Shooting  (Hours)", "Defesive  (Hours)", "Fitness  (Hours)", "Passing  (Hours)"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setText("Accept WorkRequest");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -55,20 +96,40 @@ public class SupportingStaffWorkArea extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(44, 44, 44)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+        if(selectedRow>= 0){
+            TrainingWorkRequest trWork =  (TrainingWorkRequest)  jTable1.getValueAt(selectedRow, 5);
+            JOptionPane.showMessageDialog(null, "Training  Completed!");
+            this.currentClub.getSupporttingStaff().getWorkQueue().getWorkRequestList().remove(trWork);
+            populateUpcomingMatches();
+            trWork.getMatch().setStatus("Training Finished");
+        }else JOptionPane.showMessageDialog(null, "Please select a Match!");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
