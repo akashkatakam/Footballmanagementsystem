@@ -747,22 +747,22 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         squad1.add(mid2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, -1, -1));
 
         at3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(at3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, -1, -1));
+        squad1.add(at3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 290, -1, 20));
 
         mid1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(mid1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, -1, -1));
+        squad1.add(mid1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 410, -1, -1));
 
         at1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(at1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
+        squad1.add(at1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, -1, -1));
 
         def1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(def1, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 551, -1, -1));
+        squad1.add(def1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 570, -1, -1));
 
         at2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(at2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, -1, -1));
+        squad1.add(at2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, -1, -1));
 
         mid4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(mid4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, -1, -1));
+        squad1.add(mid4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 450, -1, -1));
 
         def2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         squad1.add(def2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, -1, -1));
@@ -779,7 +779,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         squad1.add(gkComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 670, -1, -1));
 
         def3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad1.add(def3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 550, -1, -1));
+        squad1.add(def3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 560, -1, -1));
 
         jLabel25.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 153, 0));
@@ -812,7 +812,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel36.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(51, 153, 0));
         jLabel36.setText("CB");
-        squad1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 570, -1, 35));
+        squad1.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 590, -1, 35));
 
         jLabel37.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(51, 153, 255));
@@ -832,7 +832,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel42.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(51, 153, 255));
         jLabel42.setText("AM");
-        squad1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 430, -1, 35));
+        squad1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, -1, 35));
 
         jLabel43.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(51, 153, 255));
@@ -842,12 +842,12 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel44.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(255, 0, 0));
         jLabel44.setText("RF");
-        squad1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 300, -1, 35));
+        squad1.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, 35));
 
         jLabel45.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel45.setForeground(new java.awt.Color(255, 0, 0));
         jLabel45.setText("CF");
-        squad1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, -1, 35));
+        squad1.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, -1, 35));
 
         jLabel6.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -932,7 +932,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         squad2.add(deff2, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 573, -1, -1));
 
         deff1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        squad2.add(deff1, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 573, -1, -1));
+        squad2.add(deff1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, -1, -1));
 
         gkComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         squad2.add(gkComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 670, -1, -1));
@@ -1379,21 +1379,29 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        String price = jTextField2.getText();
+        
         int selectedRow = clubTable.getSelectedRow();
         if(selectedRow>= 0){
-            Player p = (Player)clubTable.getValueAt(selectedRow, 0);
-            Club fromClub = (Club) jComboBox13.getSelectedItem();
-            if(p.getClub() == null){                                                 
-                p.setClub(fromClub);
+            try{
+                Integer yoc = Integer.parseInt(jTextField2.getText());
+                Integer price = Integer.parseInt(jTextField3.getText());
+                Player p = (Player)clubTable.getValueAt(selectedRow, 0);
+                Club fromClub = (Club) jComboBox13.getSelectedItem();
+                if(p.getClub() == null){                                                 
+                    p.setClub(fromClub);
+                }
+                Contract c = new Contract(p,fromClub,this.club,price,yoc);
+                ContractWorkRequest contractWr = new ContractWorkRequest(c);
+                contractWr.setStatus("Initiated");
+                fromClub.getClubPlayers().getWorkQueue().addWorkQueue(contractWr);
+                fromClub.getManagerOrganization().getWorkQueue().addWorkQueue(contractWr);
+                JOptionPane.showMessageDialog(this, "Contract Send Succesfully");
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "Please Enter Valid Integer!"); 
             }
-            Contract c = new Contract(p,fromClub,this.club,price);
-            ContractWorkRequest contractWr = new ContractWorkRequest(c);
-            contractWr.setStatus("Initiated");
-            fromClub.getClubPlayers().getWorkQueue().addWorkQueue(contractWr);
-            fromClub.getManagerOrganization().getWorkQueue().addWorkQueue(contractWr);
-            JOptionPane.showMessageDialog(this, "Contract Send Succesfull");
-        }else JOptionPane.showMessageDialog(null, "Please select a Club!"); 
+            jTextField2.setText("");
+            jTextField3.setText("");
+        }else JOptionPane.showMessageDialog(null, "Please Select a Club!"); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void gkComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gkComboBoxActionPerformed
@@ -1402,6 +1410,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         // TODO add your handling code here:
+        layout.show(this, "card2");
     }//GEN-LAST:event_btnBack1ActionPerformed
 
     private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed

@@ -99,7 +99,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="171" y="147" width="200" height="36"/>
+                  <AbsoluteConstraints x="171" y="147" width="170" height="36"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -225,7 +225,7 @@
                           <Component id="clubIcon" min="-2" pref="109" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="leagueNameJLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="494" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -463,6 +463,9 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="ClubNameTextField">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
@@ -709,6 +712,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="StadiumNameTextField">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>

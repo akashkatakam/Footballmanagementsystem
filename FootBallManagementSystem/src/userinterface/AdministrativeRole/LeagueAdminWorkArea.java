@@ -249,7 +249,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 userJButton1ActionPerformed(evt);
             }
         });
-        LeagueAdminJPanel.add(userJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 147, 200, 36));
+        LeagueAdminJPanel.add(userJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 147, 170, 36));
 
         manageEmployeeJButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         manageEmployeeJButton1.setForeground(new java.awt.Color(0, 0, 102));
@@ -309,7 +309,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 .addComponent(clubIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(leagueNameJLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(494, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,6 +377,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 createUserJButton3ActionPerformed(evt);
             }
         });
+
+        ClubNameTextField.setEnabled(false);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -492,6 +494,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel5.setText("Stadium Name");
+
+        StadiumNameTextField.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel6.setText("Stadium Owner");
@@ -775,29 +779,36 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private void createUserJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButton3ActionPerformed
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
-        String OwnerName = ClubOwnerTextField.getText();
         String clubName = ClubNameTextField.getText();
         String clubOwnerName = ClubOwnerTextField.getText();
-        if(this.selectedClub == null){
-           Club club = new Club(clubName,clubOwnerName);
-            currentLeague.addClub(club); 
-            system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),club.getOwner());
-            JOptionPane.showMessageDialog(null, "Club created succesfully!");
-        }else {
-            ClubNameTextField.setText(this.selectedClub.getName());
-            Owner o = new Owner(clubOwnerName,this.selectedClub);
-            this.selectedClub.setOwner(o);
-            this.selectedClub.setLeague(currentLeague);
-            system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),o);
-            JOptionPane.showMessageDialog(null, "Club owner created succesfully!");
-            this.selectedClub = null;
+        if(!userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("") && !clubOwnerName.equalsIgnoreCase("")){
+            if(system.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+                if(this.selectedClub == null){
+                Club club = new Club(clubName,clubOwnerName);
+                 currentLeague.addClub(club); 
+                 system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),club.getOwner());
+                 JOptionPane.showMessageDialog(null, "Club created succesfully!");
+                }else {
+                    ClubNameTextField.setText(this.selectedClub.getName());
+                    Owner o = new Owner(clubOwnerName,this.selectedClub);
+                    this.selectedClub.setOwner(o);
+                    this.selectedClub.setLeague(currentLeague);
+                    system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),o);
+                    JOptionPane.showMessageDialog(null, "Club owner created succesfully!");
+                    this.selectedClub = null;
+                }
+                populateClubsTable(currentLeague);
+                ClubNameTextField.setText("");
+                ClubOwnerTextField.setText("");
+                nameJTextField.setText("");
+                passwordJTextField.setText(""); 
+                this.clubCreate.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null ,"UserName Already Exists!");
+            }
+        }else{
+           JOptionPane.showMessageDialog(null ,"Please Enter a Valid Input!");
         }
-        populateClubsTable(currentLeague);
-        ClubNameTextField.setText("");
-        ClubOwnerTextField.setText("");
-        nameJTextField.setText("");
-        passwordJTextField.setText(""); 
-        this.clubCreate.setVisible(false);
     }//GEN-LAST:event_createUserJButton3ActionPerformed
 
     private void nameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameJTextFieldActionPerformed
@@ -819,16 +830,22 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         String userName = nameJTextField1.getText();
         String password = passwordJTextField1.getText();
         if(this.selectedStadium == null){
-            JOptionPane.showMessageDialog(null, "Please select a stadium!");
+            JOptionPane.showMessageDialog(null, "Please Select a Stadium!");
         }else {
-            //ClubNameTextField.setText(this.selectedClub.getName());
-            Owner o = new Owner(stadiumOwnerName,this.selectedStadium);
-            this.selectedStadium.setOwner(o);
-            system.getUserAccountDirectory().createUserAccount(userName, password, new StadiumManagerRole(),o);
-            JOptionPane.showMessageDialog(null, "Stadium Manager created succesfully!");
-            //this.selectedStadium = null;
+            if(!userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("") && !stadiumOwnerName.equalsIgnoreCase("")){
+                if(system.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+                    Owner o = new Owner(stadiumOwnerName,this.selectedStadium);
+                    this.selectedStadium.setOwner(o);
+                    system.getUserAccountDirectory().createUserAccount(userName, password, new StadiumManagerRole(),o);
+                    JOptionPane.showMessageDialog(null, "Stadium Manager Created Succesfully!");
+                    this.selectedStadium = null;
+                }else{
+                    JOptionPane.showMessageDialog(null ,"Username Alreay Exists");
+                }
+           }else{
+               JOptionPane.showMessageDialog(null ,"Please Enter a Valid Name!");
+           }
         }
-        // system.getUserAccountDirectory().createUserAccount(userName, password, new StadiumManagerRole(),stadiumOwner);
         StadiumNameTextField.setText("");
         StadiumManagerTextField.setText("");
         nameJTextField1.setText("");
@@ -859,7 +876,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 //            hTeam.setStadium(new Stadium(hTeam.getVenue(), null));
 //        }
         Club awaTeam = (Club) awayTeam.getSelectedItem();
-        if(hTeam !=null && awaTeam !=null){
+        if(hTeam !=null && awaTeam !=null && this.dateChooser.getDate()!=null){
             Match m = new Match();
             m.setVenue(hTeam.getStadium());
             m.getHomeTeam().setId(hTeam.getId());
@@ -875,9 +892,13 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             hTeam.getManagerOrganization().getWorkQueue().addWorkQueue(wr);
             awaTeam.getManagerOrganization().getWorkQueue().addWorkQueue(wr);
             hTeam.getStadium().getWorkQueue().addWorkQueue(wr);
+            JOptionPane.showMessageDialog(null, "Match succesfully created");
+            dateChooser.setDate(null);
+        }else{
+            JOptionPane.showMessageDialog(null, "Please Select Valid Input");
+            dateChooser.setDate(null);
         }
-        JOptionPane.showMessageDialog(null, "Match succesfully created");
-        dateChooser.setDate(null);
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

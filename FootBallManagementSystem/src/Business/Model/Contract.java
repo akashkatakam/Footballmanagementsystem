@@ -16,15 +16,17 @@ public class Contract {
    private Player Player;
    private Club fromClub;
    private Club toClub;
-   private String price;
+   private Integer price;
+   private Integer yearsOfContract;
    private static int counter = 0;
     
-   public Contract( Player player, Club fromClub, Club toClub, String p){
+   public Contract( Player player, Club fromClub, Club toClub, Integer p, Integer yoc){
        this.ContractID = counter;
        this.Player = player;
        this.fromClub = fromClub;
        this.toClub = toClub;
        this.price = p;
+       this.yearsOfContract = yoc;
        counter++;
     }
 
@@ -60,16 +62,26 @@ public class Contract {
         this.toClub = toClub;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
+
+    public Integer getYearsOfContract() {
+        return yearsOfContract;
+    }
+
+    public void setYearsOfContract(Integer yearsOfContract) {
+        this.yearsOfContract = yearsOfContract;
+    }
+
+    
     @Override
     public String toString() {
-        return this.price;
+        return String.valueOf(this.price);
     }
     
 }
