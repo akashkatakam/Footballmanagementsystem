@@ -208,9 +208,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel9 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
         ManagerTopJPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
@@ -300,6 +297,20 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         deff1 = new javax.swing.JComboBox();
         gkComboBox1 = new javax.swing.JComboBox();
         jButton9 = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
         squad3 = new javax.swing.JPanel();
         midf2 = new javax.swing.JComboBox();
         midf4 = new javax.swing.JComboBox();
@@ -312,14 +323,22 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         midf3 = new javax.swing.JComboBox();
         gkComboBox2 = new javax.swing.JComboBox();
         defn3 = new javax.swing.JComboBox();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
+        jLabel33 = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator11 = new javax.swing.JSeparator();
+        jSeparator12 = new javax.swing.JSeparator();
+        jLabel71 = new javax.swing.JLabel();
+        jLabel69 = new javax.swing.JLabel();
+        jLabel68 = new javax.swing.JLabel();
+        jLabel73 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
+        jLabel72 = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        jLabel77 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
         TrainingScheduleJpanel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -334,21 +353,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jTextField7 = new javax.swing.JTextField();
         btnBack3 = new javax.swing.JButton();
         MatchSummary = new javax.swing.JPanel();
-
-        jLabel9.setText("GK");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setLayout(new java.awt.CardLayout());
 
@@ -480,10 +484,11 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ManagerTopJPanelLayout.createSequentialGroup()
+                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addComponent(btnViewSquad)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -911,15 +916,15 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel8.setForeground(new java.awt.Color(204, 204, 204));
         jLabel8.setText("Attack");
-        squad1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 350, -1, -1));
+        squad1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 340, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(204, 204, 204));
         jLabel10.setText("Defense");
-        squad1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 620, -1, -1));
+        squad1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 610, -1, -1));
 
         jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("Mid Fielders");
-        squad1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 510, -1, -1));
+        squad1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
 
         btnBack2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         btnBack2.setText("<<Back");
@@ -932,27 +937,41 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         add(squad1, "card6");
 
+        squad2.setBackground(new java.awt.Color(51, 51, 51));
+        squad2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         att3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(att3, new org.netbeans.lib.awtextra.AbsoluteConstraints(131, 197, -1, -1));
 
         att2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(att2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 149, -1, -1));
 
         att1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(att1, new org.netbeans.lib.awtextra.AbsoluteConstraints(664, 197, -1, -1));
 
         midd1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(midd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
 
         deff4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(deff4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 506, -1, -1));
 
         midd2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(midd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, -1, -1));
 
         midd3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(midd3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, -1, -1));
 
         deff3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(deff3, new org.netbeans.lib.awtextra.AbsoluteConstraints(673, 506, -1, -1));
 
         deff2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(deff2, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 573, -1, -1));
 
         deff1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(deff1, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 573, -1, -1));
 
         gkComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad2.add(gkComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 670, -1, -1));
 
         jButton9.setText("Save Squad");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -960,83 +979,81 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 jButton9ActionPerformed(evt);
             }
         });
+        squad2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(759, 44, -1, -1));
 
-        javax.swing.GroupLayout squad2Layout = new javax.swing.GroupLayout(squad2);
-        squad2.setLayout(squad2Layout);
-        squad2Layout.setHorizontalGroup(
-            squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(squad2Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(deff4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(deff1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(deff2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(deff3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
-            .addGroup(squad2Layout.createSequentialGroup()
-                .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(squad2Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(att2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(240, 240, 240)
-                        .addComponent(att1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(squad2Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(midd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(att3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gkComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(midd2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(564, 564, 564)
-                        .addComponent(midd3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 87, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton9)
-                .addGap(70, 70, 70))
-        );
-        squad2Layout.setVerticalGroup(
-            squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(squad2Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jButton9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
-                .addComponent(att3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad2Layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(deff1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deff2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(squad2Layout.createSequentialGroup()
-                        .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(squad2Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(midd2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(squad2Layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(att2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(att1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(56, 56, 56)
-                                .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(midd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(midd3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(52, 52, 52)
-                        .addGroup(squad2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(deff4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deff3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(65, 65, 65)
-                .addComponent(gkComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
-        );
+        jLabel32.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel32.setText("4-3-3 Formation");
+        squad2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 260, 40));
+
+        jSeparator8.setBackground(new java.awt.Color(102, 102, 102));
+        squad2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 906, 14));
+
+        jSeparator9.setBackground(new java.awt.Color(102, 102, 102));
+        squad2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 284, 906, 14));
+
+        jLabel41.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel41.setText("LW");
+        squad2.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, -1, 35));
+
+        jLabel57.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel57.setText("CF");
+        squad2.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, -1, 35));
+
+        jLabel58.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel58.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel58.setText("RW");
+        squad2.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 230, -1, 35));
+
+        jLabel61.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel61.setText("CM");
+        squad2.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, 35));
+
+        jLabel59.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel59.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel59.setText("CM");
+        squad2.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 380, -1, 35));
+
+        jLabel62.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel62.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel62.setText("LB");
+        squad2.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 530, -1, 35));
+
+        jLabel65.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel65.setText("CB");
+        squad2.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 600, -1, 35));
+
+        jLabel60.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel60.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel60.setText("DM");
+        squad2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, -1, 35));
+
+        jLabel67.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel67.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel67.setText("CB");
+        squad2.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 600, -1, 35));
+
+        jLabel63.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel63.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel63.setText("RB");
+        squad2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 530, -1, 35));
+
+        jLabel31.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel31.setText("GoalKeeper");
+        squad2.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 690, 110, 35));
 
         add(squad2, "card7");
 
+        squad3.setBackground(new java.awt.Color(51, 51, 51));
+        squad3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         midf2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(midf2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 300, -1, -1));
 
         midf4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         midf4.addActionListener(new java.awt.event.ActionListener() {
@@ -1044,38 +1061,39 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 midf4ActionPerformed(evt);
             }
         });
+        squad3.add(midf4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, -1, -1));
 
         midf1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(midf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
 
         atk2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(atk2, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 149, -1, -1));
 
         defn1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(defn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, -1, -1));
 
         atk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(atk1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 149, -1, -1));
 
         defn4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        defn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                defn4ActionPerformed(evt);
+            }
+        });
+        squad3.add(defn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, -1, -1));
 
         defn2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(defn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, -1, -1));
 
         midf3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(midf3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, -1, -1));
 
         gkComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        squad3.add(gkComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 670, -1, -1));
 
         defn3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel19.setText("GK");
-
-        jLabel20.setText("GK");
-
-        jLabel21.setText("GK");
-
-        jLabel22.setText("GK");
-
-        jLabel23.setText("GK");
-
-        jLabel24.setText("GK");
-
-        jLabel26.setText("GK");
+        squad3.add(defn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 560, -1, -1));
 
         jButton10.setText("Save Squad");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -1083,120 +1101,76 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 jButton10ActionPerformed(evt);
             }
         });
+        squad3.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 61, -1, -1));
 
-        javax.swing.GroupLayout squad3Layout = new javax.swing.GroupLayout(squad3);
-        squad3.setLayout(squad3Layout);
-        squad3Layout.setHorizontalGroup(
-            squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(squad3Layout.createSequentialGroup()
-                .addGap(283, 283, 283)
-                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gkComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(squad3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton10)
-                .addGap(81, 81, 81))
-            .addGroup(squad3Layout.createSequentialGroup()
-                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(squad3Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
-                        .addComponent(defn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(defn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(defn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(squad3Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(midf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(defn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(squad3Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128)
-                                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(midf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(atk1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(80, 80, 80)
-                                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(atk2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(squad3Layout.createSequentialGroup()
-                                        .addComponent(midf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(61, 61, 61)
-                                        .addComponent(midf4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(339, Short.MAX_VALUE))
-            .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                    .addContainerGap(800, Short.MAX_VALUE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(105, 105, 105)))
-        );
-        squad3Layout.setVerticalGroup(
-            squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
-                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                        .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                                        .addComponent(atk2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(69, 69, 69))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                                        .addComponent(atk1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(78, 78, 78)))
-                                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(midf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(midf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                                .addComponent(midf4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)))
-                        .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                        .addComponent(midf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(squad3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(defn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(defn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
-                        .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(squad3Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(defn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(defn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(40, 40, 40)
-                .addComponent(gkComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7))
-            .addGroup(squad3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, squad3Layout.createSequentialGroup()
-                    .addContainerGap(636, Short.MAX_VALUE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(88, 88, 88)))
-        );
+        jLabel33.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel33.setText("4-4-2 Formation");
+        squad3.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 260, 40));
+
+        jSeparator10.setBackground(new java.awt.Color(102, 102, 102));
+        squad3.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 906, 14));
+
+        jSeparator11.setBackground(new java.awt.Color(102, 102, 102));
+        squad3.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 284, 906, 14));
+
+        jSeparator12.setBackground(new java.awt.Color(102, 102, 102));
+        squad3.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 906, 14));
+
+        jLabel71.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel71.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel71.setText("FW");
+        squad3.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, 35));
+
+        jLabel69.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel69.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel69.setText("FW");
+        squad3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, 35));
+
+        jLabel68.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel68.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel68.setText("LM");
+        squad3.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, 35));
+
+        jLabel73.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel73.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel73.setText("CM");
+        squad3.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, 35));
+
+        jLabel74.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel74.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel74.setText("CM");
+        squad3.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, 35));
+
+        jLabel72.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel72.setForeground(new java.awt.Color(51, 153, 255));
+        jLabel72.setText("RM");
+        squad3.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 320, -1, 35));
+
+        jLabel70.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel70.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel70.setText("RB");
+        squad3.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 510, -1, 35));
+
+        jLabel75.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel75.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel75.setText("CB");
+        squad3.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 580, -1, 35));
+
+        jLabel76.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel76.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel76.setText("CB");
+        squad3.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 590, -1, 35));
+
+        jLabel77.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel77.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel77.setText("LB");
+        squad3.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, 35));
+
+        jLabel40.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel40.setText("GoalKeeper");
+        squad3.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 690, 110, 35));
 
         add(squad3, "card8");
 
@@ -1337,7 +1311,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             jComboBox11.addItem(l);
         }
     }
-     
     public void populateClubComboBox(League league){
         jComboBox13.removeAllItems();
         if(league != null){
@@ -1387,10 +1360,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         layout.show(ManagerTopJPanel,"card2");
     }//GEN-LAST:event_backjButton3ActionPerformed
-
-    private void midf4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midf4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_midf4ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
@@ -1446,63 +1415,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             populateUpcomingMatches();
         }
     }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        HashMap<Integer,Player> lineUp = new HashMap<>();
-        Player a1 = (Player) att1.getSelectedItem();
-        checkPlayerSelecetd(a1,lineUp);
-        Player a2 = (Player) att2.getSelectedItem();
-        checkPlayerSelecetd(a2,lineUp);
-        Player a3 = (Player) att3.getSelectedItem();
-        checkPlayerSelecetd(a3,lineUp);
-        Player m1 = (Player) midd1.getSelectedItem();
-        checkPlayerSelecetd(m1,lineUp);
-        Player m2 = (Player) midd2.getSelectedItem();
-        checkPlayerSelecetd(m2,lineUp);
-        Player m3 = (Player) midd3.getSelectedItem();
-        checkPlayerSelecetd(m3,lineUp);
-        Player d4 = (Player) deff4.getSelectedItem();
-        checkPlayerSelecetd(d4,lineUp);
-        Player d1 = (Player) deff1.getSelectedItem();
-        checkPlayerSelecetd(d1,lineUp);
-        Player d2 = (Player) deff2.getSelectedItem(); 
-        checkPlayerSelecetd(d2,lineUp);
-        Player d3 = (Player) deff3.getSelectedItem();
-        checkPlayerSelecetd(d3,lineUp);
-        if(lineUp.size() == 10){
-             JOptionPane.showMessageDialog(this, "Squad Saved Succesfull");
-        }
-        
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-        HashMap<Integer,Player> lineUp = new HashMap<>();
-        Player a1 = (Player) atk1.getSelectedItem();
-        checkPlayerSelecetd(a1,lineUp);
-        Player a2 = (Player) atk2.getSelectedItem();
-        checkPlayerSelecetd(a2,lineUp);
-        Player m4 = (Player) midf4.getSelectedItem();
-        checkPlayerSelecetd(m4,lineUp);
-        Player m1 = (Player) midf1.getSelectedItem();
-        checkPlayerSelecetd(m1,lineUp);
-        Player m2 = (Player) midf2.getSelectedItem();
-        checkPlayerSelecetd(m2,lineUp);
-        Player m3 = (Player) midf3.getSelectedItem();
-        checkPlayerSelecetd(m3,lineUp);
-        Player d4 = (Player) defn4.getSelectedItem();
-        checkPlayerSelecetd(d4,lineUp);
-        Player d1 = (Player) defn1.getSelectedItem();
-        checkPlayerSelecetd(d1,lineUp);
-        Player d2 = (Player) defn2.getSelectedItem(); 
-        checkPlayerSelecetd(d2,lineUp);
-        Player d3 = (Player) defn3.getSelectedItem();
-        checkPlayerSelecetd(d3,lineUp);
-        if(lineUp.size() == 10){
-             JOptionPane.showMessageDialog(this, "Squad Saved Succesfull");
-        }
-    }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
         // TODO add your handling code here:
@@ -1607,10 +1519,99 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             dataset,
             PlotOrientation.VERTICAL,
             true, true, false);
-        ChartFrame frame = new ChartFrame("Pie chart",barChart);
+        ChartFrame frame = new ChartFrame("Player performance",barChart);
         frame.setVisible(true);
         frame.setSize(450,500);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        HashMap<Integer,Player> lineUp = new HashMap<>();
+        Player a1 = (Player) att1.getSelectedItem();
+        checkPlayerSelecetd(a1,lineUp);
+        Player a2 = (Player) att2.getSelectedItem();
+        checkPlayerSelecetd(a2,lineUp);
+        Player a3 = (Player) att3.getSelectedItem();
+        checkPlayerSelecetd(a3,lineUp);
+        Player m1 = (Player) midd1.getSelectedItem();
+        checkPlayerSelecetd(m1,lineUp);
+        Player m2 = (Player) midd2.getSelectedItem();
+        checkPlayerSelecetd(m2,lineUp);
+        Player m3 = (Player) midd3.getSelectedItem();
+        checkPlayerSelecetd(m3,lineUp);
+        Player d4 = (Player) deff4.getSelectedItem();
+        checkPlayerSelecetd(d4,lineUp);
+        Player d1 = (Player) deff1.getSelectedItem();
+        checkPlayerSelecetd(d1,lineUp);
+        Player d2 = (Player) deff2.getSelectedItem();
+        checkPlayerSelecetd(d2,lineUp);
+        Player d3 = (Player) deff3.getSelectedItem();
+        checkPlayerSelecetd(d3,lineUp);
+        if(lineUp.size() == 10){
+            Collection<Player> players = lineUp.values();
+            ArrayList<Player> lineUp1 = new ArrayList<Player>(players);
+            if(this.selectedWorkRequest.getMatch().getAwayTeam().getId().equals(this.club.getId())){
+                this.selectedWorkRequest.getMatch().getAwayTeam().setLineup((lineUp1) );
+            }
+            if(this.selectedWorkRequest.getMatch().getHomeTeam().getId().equals(this.club.getId())){
+                this.selectedWorkRequest.getMatch().getHomeTeam().setLineup((lineUp1));
+            }
+            this.club.getClubPlayers().getWorkQueue().getWorkRequestList().add(this.selectedWorkRequest);
+            this.selectedWorkRequest.setStatus("LineUpCreated");
+            JOptionPane.showMessageDialog(this, "Squad Saved Succesfully");
+            this.layout.show(this, "card2");
+            populateUpcomingMatches();
+        }
+
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        HashMap<Integer,Player> lineUp = new HashMap<>();
+        Player a1 = (Player) atk1.getSelectedItem();
+        checkPlayerSelecetd(a1,lineUp);
+        Player a2 = (Player) atk2.getSelectedItem();
+        checkPlayerSelecetd(a2,lineUp);
+        Player m4 = (Player) midf4.getSelectedItem();
+        checkPlayerSelecetd(m4,lineUp);
+        Player m1 = (Player) midf1.getSelectedItem();
+        checkPlayerSelecetd(m1,lineUp);
+        Player m2 = (Player) midf2.getSelectedItem();
+        checkPlayerSelecetd(m2,lineUp);
+        Player m3 = (Player) midf3.getSelectedItem();
+        checkPlayerSelecetd(m3,lineUp);
+        Player d4 = (Player) defn4.getSelectedItem();
+        checkPlayerSelecetd(d4,lineUp);
+        Player d1 = (Player) defn1.getSelectedItem();
+        checkPlayerSelecetd(d1,lineUp);
+        Player d2 = (Player) defn2.getSelectedItem();
+        checkPlayerSelecetd(d2,lineUp);
+        Player d3 = (Player) defn3.getSelectedItem();
+        checkPlayerSelecetd(d3,lineUp);
+        if(lineUp.size() == 10){
+            Collection<Player> players = lineUp.values();
+            ArrayList<Player> lineUp1 = new ArrayList<Player>(players);
+            if(this.selectedWorkRequest.getMatch().getAwayTeam().getId().equals(this.club.getId())){
+                this.selectedWorkRequest.getMatch().getAwayTeam().setLineup((lineUp1) );
+            }
+            if(this.selectedWorkRequest.getMatch().getHomeTeam().getId().equals(this.club.getId())){
+                this.selectedWorkRequest.getMatch().getHomeTeam().setLineup((lineUp1));
+            }
+            this.club.getClubPlayers().getWorkQueue().getWorkRequestList().add(this.selectedWorkRequest);
+            this.selectedWorkRequest.setStatus("LineUpCreated");
+            JOptionPane.showMessageDialog(this, "Squad Saved Succesfully");
+            this.layout.show(this, "card2");
+            populateUpcomingMatches();
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void midf4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midf4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_midf4ActionPerformed
+
+    private void defn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defn4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_defn4ActionPerformed
      
     public void checkPlayerSelecetd(Player p,HashMap<Integer,Player> checklist){
        if(p != null){
@@ -1675,7 +1676,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox11;
     private javax.swing.JComboBox jComboBox12;
     private javax.swing.JComboBox jComboBox13;
@@ -1689,20 +1689,16 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -1710,26 +1706,50 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel67;
+    private javax.swing.JLabel jLabel68;
+    private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
+    private javax.swing.JLabel jLabel72;
+    private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
