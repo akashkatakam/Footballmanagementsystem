@@ -428,7 +428,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                                 .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -439,7 +439,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(btnViewSquad, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                                 .addComponent(btnSearchPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(209, 209, 209)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(286, Short.MAX_VALUE))
         );

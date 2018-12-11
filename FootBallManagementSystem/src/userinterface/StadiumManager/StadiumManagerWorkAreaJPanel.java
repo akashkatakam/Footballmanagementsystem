@@ -48,6 +48,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         Owner o = (Owner) account.getPerson();
         this.layout = (CardLayout) this.getLayout();
         stadium = o.getStadium();
+        jLabel5.setText(stadium.getName());
         populatTypeComboBox();
         populateUpcomingMatchesTable();
         
@@ -107,16 +108,18 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
-        StadiumManagerJpanel.setBackground(new java.awt.Color(102, 51, 0));
+        StadiumManagerJpanel.setBackground(new java.awt.Color(51, 51, 51));
         StadiumManagerJpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Stadium Name: ");
-        StadiumManagerJpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 428, -1, -1));
+        StadiumManagerJpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 950, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Requests issued:");
-        StadiumManagerJpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 489, 180, 33));
+        StadiumManagerJpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 180, 33));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -138,19 +141,18 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable2);
         jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        StadiumManagerJpanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 464, 124));
+        StadiumManagerJpanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 464, 124));
 
         jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(204, 0, 0));
         jButton3.setText("Accept Match");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        StadiumManagerJpanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, 237, 49));
+        StadiumManagerJpanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 510, 237, 30));
 
-        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jLabel8.setText("Stadium Manager Work area");
         StadiumManagerJpanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 10, -1, -1));
 
@@ -164,7 +166,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        StadiumManagerJpanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 700, 120, -1));
+        StadiumManagerJpanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, 120, -1));
 
         createRequest.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         createRequest.setText("Create request");
@@ -173,11 +175,12 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                 createRequestActionPerformed(evt);
             }
         });
-        StadiumManagerJpanel.add(createRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 700, -1, -1));
+        StadiumManagerJpanel.add(createRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 630, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Select Department:");
-        StadiumManagerJpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 700, -1, -1));
+        StadiumManagerJpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 630, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton1.setText("Manage Organizations");
@@ -186,23 +189,26 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        StadiumManagerJpanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 230, -1));
+        StadiumManagerJpanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, 230, -1));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Funds Allocated");
-        StadiumManagerJpanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 740, -1, -1));
-        StadiumManagerJpanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 740, 120, -1));
+        StadiumManagerJpanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 670, -1, -1));
+        StadiumManagerJpanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 670, 120, -1));
 
         add(StadiumManagerJpanel, "card2");
 
         GroundStaffJPanel.setBackground(new java.awt.Color(51, 51, 51));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Password");
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("User Name");
 
         backjButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
@@ -221,8 +227,9 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ground Staff Name");
 
         javax.swing.GroupLayout GroundStaffJPanelLayout = new javax.swing.GroupLayout(GroundStaffJPanel);
@@ -240,10 +247,10 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                         .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addGap(79, 79, 79)
+                        .addGap(18, 18, 18)
                         .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(nameJTextField)
+                            .addComponent(passwordJTextField)))
                     .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -276,19 +283,22 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         TicketSellerJPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel9.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Ticket Seller Name");
 
-        jLabel11.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("User Name");
 
-        jLabel12.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Password");
 
-        backjButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        backjButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         backjButton2.setText("<< Back");
         backjButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +306,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        createUserJButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        createUserJButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         createUserJButton1.setText("Create");
         createUserJButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,20 +326,21 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TSNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel11))
-                        .addGap(40, 40, 40)
-                        .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TicketSellerJPanelLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(backjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createUserJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(607, Short.MAX_VALUE))
+                        .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
+                                .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))
+                                .addGap(18, 18, 18)
+                                .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(passwordJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(TicketSellerJPanelLayout.createSequentialGroup()
+                                .addComponent(backjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(createUserJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(608, Short.MAX_VALUE))
         );
         TicketSellerJPanelLayout.setVerticalGroup(
             TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +349,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(TSNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(nameJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -350,11 +361,14 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(TicketSellerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createUserJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(400, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
         add(TicketSellerJPanel, "card4");
 
+        Organization.setBackground(new java.awt.Color(51, 51, 51));
+
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton2.setText("Create Ground StaffManager");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,6 +376,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton4.setText("Create TicketSeller");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,20 +389,20 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         OrganizationLayout.setHorizontalGroup(
             OrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrganizationLayout.createSequentialGroup()
-                .addGap(251, 251, 251)
+                .addGap(222, 222, 222)
                 .addGroup(OrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(280, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
         OrganizationLayout.setVerticalGroup(
             OrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(OrganizationLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
+                .addGap(115, 115, 115)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         add(Organization, "card5");
@@ -403,9 +418,16 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         String clubName = GsNameTextField.getText();
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
-        GroundStaff gs = new GroundStaff(clubName,stadium);
-        system.getUserAccountDirectory().createUserAccount(userName, password, new GroundStaffManagerRole(),gs);
-        JOptionPane.showMessageDialog(null,"Ground Staff manager created!");
+        if(!clubName.equalsIgnoreCase("") && !userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("")){
+            GroundStaff gs = new GroundStaff(clubName,stadium);
+                if(system.checkIfUserIsUnique(userName)){
+                    system.getUserAccountDirectory().createUserAccount(userName, password, new GroundStaffManagerRole(),gs);
+                JOptionPane.showMessageDialog(null,"Ground Staff manager created!");
+                GsNameTextField.setText("");
+                nameJTextField.setText("");
+                passwordJTextField.setText("");
+            }else JOptionPane.showMessageDialog(null, "Username already exists");
+        }else JOptionPane.showMessageDialog(null, "Please enter a valid input");
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed
@@ -419,9 +441,16 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         String stadiumName = TSNameTextField.getText();
         String userName = nameJTextField1.getText();
         String password = passwordJTextField1.getText();
-        TicketSeller  ts = new TicketSeller(stadiumName,stadium);
-        system.getUserAccountDirectory().createUserAccount(userName, password, new TicketSellerRole(),ts);
-        JOptionPane.showMessageDialog(null,"Ticket Seller created!");
+        if(!stadiumName.equalsIgnoreCase("") && !userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("")){
+             TicketSeller  ts = new TicketSeller(stadiumName,stadium);
+            if(system.checkIfUserIsUnique(userName)){
+                system.getUserAccountDirectory().createUserAccount(userName, password, new TicketSellerRole(),ts);
+                JOptionPane.showMessageDialog(null,"Ticket Seller created!");
+                TSNameTextField.setText("");
+                nameJTextField1.setText("");
+                passwordJTextField1.setText("");
+                }else JOptionPane.showMessageDialog(null, "Username already exists");
+        }else JOptionPane.showMessageDialog(null, "Please enter a valid input");
     }//GEN-LAST:event_createUserJButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -464,7 +493,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         if(selectedRow>= 0){
             MatchWorkRequest matchWork =  (MatchWorkRequest)  jTable2.getValueAt(selectedRow, 2);
             this.matchWorkRequest = matchWork;
-            this.matchWorkRequest.setStatus("Match finished");
+            JOptionPane.showMessageDialog(null, "Stadium booked for this match!");
             this.stadium.getWorkQueue().getWorkRequestList().remove(matchWorkRequest);
         }else JOptionPane.showMessageDialog(null, "Please select a match!");
     }//GEN-LAST:event_jButton3ActionPerformed

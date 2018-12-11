@@ -33,6 +33,7 @@ public class GroundStaffWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         GroundStaff gs = (GroundStaff) account.getPerson();
         this.stadium = gs.getStadium();
+        jLabel3.setText(stadium.getName());
         populateRequestsTable();
     }
      public void populateRequestsTable(){
@@ -78,11 +79,12 @@ public class GroundStaffWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jLabel2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Requests list:");
 
-        jButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 51));
         jButton1.setText("Accept Job");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +93,7 @@ public class GroundStaffWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Stadium Name: ");

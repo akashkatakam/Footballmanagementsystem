@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Handler.DataHandler;
 import Business.Model.Club;
 import Business.Model.Director;
+import Business.Model.TicketSeller;
 import Business.Network.League;
 import Business.Organization.Organization;
 import Business.Role.LeagueDirectorRole;
@@ -69,6 +70,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
         createLeague = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        jLabel5 = new javax.swing.JLabel();
         ManageLeague = new javax.swing.JPanel();
         createPanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -104,13 +106,18 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
         jTree1.setRootVisible(false);
         jScrollPane1.setViewportView(jTree1);
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/uefa-champions-league-ball.jpg"))); // NOI18N
+        jLabel5.setText("jLabel5");
+
         javax.swing.GroupLayout ChampionsLeaguePanelLayout = new javax.swing.GroupLayout(ChampionsLeaguePanel);
         ChampionsLeaguePanel.setLayout(ChampionsLeaguePanelLayout);
         ChampionsLeaguePanelLayout.setHorizontalGroup(
             ChampionsLeaguePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ChampionsLeaguePanelLayout.createSequentialGroup()
-                .addContainerGap(470, Short.MAX_VALUE)
-                .addComponent(createLeague, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(ChampionsLeaguePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createLeague, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
@@ -119,9 +126,12 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
             ChampionsLeaguePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ChampionsLeaguePanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(ChampionsLeaguePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createLeague, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ChampionsLeaguePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ChampionsLeaguePanelLayout.createSequentialGroup()
+                        .addComponent(createLeague, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -136,18 +146,24 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel6.setText("Create League Admin");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("League Name :");
 
+        leagueNameText.setEnabled(false);
+
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("League admin name :");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("League admin username :");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("League admin password :");
 
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 51));
         jButton2.setText("Submit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -169,21 +185,20 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(createPanelLayout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(jButton2))
-                            .addGroup(createPanelLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(leagueAdminPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                    .addComponent(leagueAdminUsernameText, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                    .addComponent(leagueNameAdminText)
-                                    .addComponent(leagueNameText))))
+                        .addGap(18, 18, 18)
+                        .addGroup(createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(leagueAdminPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(leagueAdminUsernameText, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(leagueNameAdminText)
+                            .addComponent(leagueNameText))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(createPanelLayout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 68, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(95, 95, 95))
         );
         createPanelLayout.setVerticalGroup(
             createPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,9 +223,9 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(leagueAdminUsernameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(leagueAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -224,7 +239,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        createLeagueAdmin.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        createLeagueAdmin.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         createLeagueAdmin.setText("Create League admin");
         createLeagueAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,7 +247,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton1.setText("<< Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +269,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(createLeagueAdmin))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(createPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(448, Short.MAX_VALUE))
         );
         ManageLeagueLayout.setVerticalGroup(
             ManageLeagueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,7 +282,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jButton1))
                 .addGap(28, 28, 28)
                 .addComponent(createPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
 
         add(ManageLeague, "card3");
@@ -291,19 +306,22 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String leagueName = leagueNameText.getText();
     String leagueAdminName = leagueNameAdminText.getText();
     String userName = leagueAdminUsernameText.getText();
     String password = leagueAdminPassword.getText();
-    Director l = new Director(leagueAdminName,this.selectedLeague);
-    this.selectedLeague.setLeagueAdmin(l);
-    system.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole(),l);
-    JOptionPane.showMessageDialog(this,"League Admin Created Succesfully!");
-    leagueNameAdminText.setText("");
-    leagueAdminUsernameText.setText("");
-    leagueAdminPassword.setText("");
-    this.createPanel.setVisible(false);
-    populateTable();
+    if(!leagueAdminName.equalsIgnoreCase("") && !userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("")){
+        if(system.checkIfUserIsUnique(userName)){
+            Director l = new Director(leagueAdminName,this.selectedLeague);
+            this.selectedLeague.setLeagueAdmin(l);
+            system.getUserAccountDirectory().createUserAccount(userName, password, new LeagueDirectorRole(),l);
+            JOptionPane.showMessageDialog(this,"League Admin Created Succesfully!");
+            this.createPanel.setVisible(false);
+            leagueNameAdminText.setText("");
+             leagueAdminUsernameText.setText("");
+            leagueAdminPassword.setText("");
+            populateTable();
+        }else JOptionPane.showMessageDialog(null, "Username already exists");
+            }else JOptionPane.showMessageDialog(null, "Please enter a valid input");
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public void populateTable(){
@@ -356,6 +374,7 @@ public class SuperAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
