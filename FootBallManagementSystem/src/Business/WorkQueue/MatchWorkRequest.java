@@ -15,6 +15,7 @@ public class MatchWorkRequest extends WorkRequest{
     private Match match; 
     private Club homeClub;
     private Club awayClub;
+    private int numberOfTicketsSold;
     public MatchWorkRequest(Match m){
         this.match = m;
     }
@@ -42,5 +43,14 @@ public class MatchWorkRequest extends WorkRequest{
     public void setAwayClub(Club awayClub) {
         this.awayClub = awayClub;
     }
+
+    public int getNumberOfTicketsSold() {
+        return numberOfTicketsSold;
+    }
+
+    public void setNumberOfTicketsSold(int numberOfTicketsSold) {
+        this.numberOfTicketsSold = numberOfTicketsSold;
+    }
+    
     
 }

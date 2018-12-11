@@ -8,8 +8,6 @@ package Business.Model;
 
 import Business.Enterprise.StadiumEnterprise;
 import Business.Organization.GroundStaffOrganization;
-import Business.Organization.ManagerOrganization;
-import Business.Organization.PlayerOrganization;
 import Business.Organization.TicketSellingOrganization;
 
 /**
@@ -21,7 +19,6 @@ public class Stadium extends StadiumEnterprise {
     private Owner owner;
     private GroundStaffOrganization groundStaff;
     private TicketSellingOrganization ticketSellers;
-    
     
     public Stadium(String name,Owner owner) {
         super(name);

@@ -14,6 +14,7 @@ import Business.Model.Abstract.Person;
 public class Owner extends Person{
     
    private Club club;
+   private Stadium stadium;
    
     public Owner(String n) {
         super(n);
@@ -22,6 +23,10 @@ public class Owner extends Person{
         super(n);
         this.club = c;
     }
+    public Owner(String n,Stadium s){
+        super(n);
+        this.stadium = s;
+    }
 
     public Club getClub() {
         return club;
@@ -29,6 +34,14 @@ public class Owner extends Person{
 
     public void setClub(Club club) {
         this.club = club;
+    }
+
+    public Stadium getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(Stadium stadium) {
+        this.stadium = stadium;
     }
     
 }

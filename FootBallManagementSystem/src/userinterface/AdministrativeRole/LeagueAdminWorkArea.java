@@ -831,7 +831,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a stadium!");
         }else {
             //ClubNameTextField.setText(this.selectedClub.getName());
-            Owner o = new Owner(stadiumOwnerName,null);
+            Owner o = new Owner(stadiumOwnerName,this.selectedStadium);
             this.selectedStadium.setOwner(o);
             system.getUserAccountDirectory().createUserAccount(userName, password, new StadiumManagerRole(),o);
             JOptionPane.showMessageDialog(null, "Stadium Manager created succesfully!");
@@ -881,6 +881,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             wr.setAwayClub(awaTeam);
             hTeam.getManagerOrganization().getWorkQueue().addWorkQueue(wr);
             awaTeam.getManagerOrganization().getWorkQueue().addWorkQueue(wr);
+            hTeam.getStadium().getWorkQueue().addWorkQueue(wr);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 

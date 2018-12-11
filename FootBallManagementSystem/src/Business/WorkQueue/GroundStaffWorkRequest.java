@@ -12,6 +12,7 @@ public class GroundStaffWorkRequest extends WorkRequest{
     
     private String status;
     private RequestType requestType;
+    private int fundsAllocated;
     
     public enum RequestType{
         GrassMaintenance("Grass Maintenance"),
@@ -50,8 +51,19 @@ public class GroundStaffWorkRequest extends WorkRequest{
     public void setRequestType(RequestType requestType) {
         this.requestType = requestType;
     }
-    
-    
+
+    public int getFundsAllocated() {
+        return fundsAllocated;
+    }
+
+    public void setFundsAllocated(int fundsAllocated) {
+        this.fundsAllocated = fundsAllocated;
+    }
+
+    @Override
+    public String toString() {
+        return requestType.getValue();
+    }
     
     
 }

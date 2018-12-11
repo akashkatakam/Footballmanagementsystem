@@ -7,16 +7,20 @@ package userinterface.StadiumManager;
 
 import Business.EcoSystem;
 import Business.Model.GroundStaff;
+import Business.Model.Owner;
 import Business.Model.Stadium;
 import Business.Model.TicketSeller;
 import Business.Organization.Organization;
-import Business.Role.ClubOwnerRole;
 import Business.Role.GroundStaffManagerRole;
 import Business.Role.TicketSellerRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.GroundStaffWorkRequest;
+import Business.WorkQueue.MatchWorkRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,13 +34,29 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
      */
     private EcoSystem system;
     private Stadium stadium;
+    private MatchWorkRequest matchWorkRequest;
+    private CardLayout layout;
+    
     
     public StadiumManagerWorkAreaJPanel() {
         initComponents();
     }
 
     public StadiumManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-     
+        initComponents();
+        Owner o = (Owner) account.getPerson();
+        this.layout = (CardLayout) this.getLayout();
+        stadium = o.getStadium();
+        populatTypeComboBox();
+        populateUpcomingMatchesTable();
+        
+    }
+    public void populatTypeComboBox(){
+        jComboBox2.removeAllItems();
+        jComboBox2.addItem(GroundStaffWorkRequest.RequestType.CateringServices);
+        jComboBox2.addItem(GroundStaffWorkRequest.RequestType.GrassMaintenance);
+        jComboBox2.addItem(GroundStaffWorkRequest.RequestType.Lighting);
+        jComboBox2.addItem(GroundStaffWorkRequest.RequestType.Painting);
     }
 
     /**
@@ -60,6 +80,9 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         jComboBox2 = new javax.swing.JComboBox();
         createRequest = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         GroundStaffJPanel = new javax.swing.JPanel();
         passwordJTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -78,6 +101,9 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         passwordJTextField1 = new javax.swing.JTextField();
         backjButton2 = new javax.swing.JButton();
         createUserJButton1 = new javax.swing.JButton();
+        Organization = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
 
@@ -94,23 +120,34 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Upcoming matches", "Practice matches", "Date", "Time"
+                "Home Team", "Away Team", "Date", "Venue"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.setColumnSelectionAllowed(true);
         jScrollPane2.setViewportView(jTable2);
         jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        StadiumManagerJpanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 529, 464, 124));
+        StadiumManagerJpanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 464, 124));
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(204, 0, 0));
         jButton3.setText("Save Match");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         StadiumManagerJpanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, 237, 49));
         StadiumManagerJpanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 428, 140, 30));
 
@@ -140,6 +177,18 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Select Department:");
         StadiumManagerJpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 700, -1, -1));
+
+        jButton1.setText("Manage Organizations");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        StadiumManagerJpanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 230, -1));
+
+        jLabel10.setText("Funds Allocated");
+        StadiumManagerJpanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 740, -1, -1));
+        StadiumManagerJpanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 740, 120, -1));
 
         add(StadiumManagerJpanel, "card2");
 
@@ -305,6 +354,43 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         );
 
         add(TicketSellerJPanel, "card4");
+
+        jButton2.setText("Create Ground StaffManager");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Create TicketSeller");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout OrganizationLayout = new javax.swing.GroupLayout(Organization);
+        Organization.setLayout(OrganizationLayout);
+        OrganizationLayout.setHorizontalGroup(
+            OrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OrganizationLayout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addGroup(OrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
+        );
+        OrganizationLayout.setVerticalGroup(
+            OrganizationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(OrganizationLayout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(233, Short.MAX_VALUE))
+        );
+
+        add(Organization, "card5");
     }// </editor-fold>//GEN-END:initComponents
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
@@ -319,7 +405,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
         GroundStaff gs = new GroundStaff(clubName,stadium);
-        system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),gs);
+        system.getUserAccountDirectory().createUserAccount(userName, password, new GroundStaffManagerRole(),gs);
 
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
@@ -344,30 +430,79 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void createRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRequestActionPerformed
         GroundStaffWorkRequest gr = null;
-        if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.CateringServices)){
-            gr = new GroundStaffWorkRequest();
-            gr.setRequestType(GroundStaffWorkRequest.RequestType.CateringServices);
+        String text = jTextField1.getText();
+        if(text.length() != 0){
+            if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.CateringServices)){
+                gr = new GroundStaffWorkRequest();
+                gr.setRequestType(GroundStaffWorkRequest.RequestType.CateringServices);
+            }
+            else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.GrassMaintenance)){
+                gr = new GroundStaffWorkRequest();
+                gr.setRequestType(GroundStaffWorkRequest.RequestType.GrassMaintenance);
+            }
+            else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.Lighting)){
+                gr = new GroundStaffWorkRequest();
+                gr.setRequestType(GroundStaffWorkRequest.RequestType.Lighting);
+            }
+            else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.Painting)){
+                gr = new GroundStaffWorkRequest();
+                gr.setRequestType(GroundStaffWorkRequest.RequestType.Painting);
+            }
         }
-        else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.GrassMaintenance)){
-            gr = new GroundStaffWorkRequest();
-            gr.setRequestType(GroundStaffWorkRequest.RequestType.GrassMaintenance);
-        }
-        else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.Lighting)){
-            gr = new GroundStaffWorkRequest();
-            gr.setRequestType(GroundStaffWorkRequest.RequestType.Lighting);
-        }
-        else if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.Painting)){
-            gr = new GroundStaffWorkRequest();
-            gr.setRequestType(GroundStaffWorkRequest.RequestType.Painting);
-        }
+        try{
+        gr.setFundsAllocated(Integer.parseInt(text));        
         gr.setStatus("REQUESTED");
         this.stadium.getGroundStaff().getWorkQueue().getWorkRequestList().add(gr);
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Please enter valid input");
+        }
     }//GEN-LAST:event_createRequestActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int selectedRow = jTable2.getSelectedRow();
+        if(selectedRow>= 0){
+            MatchWorkRequest matchWork =  (MatchWorkRequest)  jTable2.getValueAt(selectedRow, 2);
+            this.matchWorkRequest = matchWork;
+            this.matchWorkRequest.setStatus("Match finished");
+            this.stadium.getWorkQueue().getWorkRequestList().remove(matchWorkRequest);
+        }else JOptionPane.showMessageDialog(null, "Please select a match!");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       this.layout.show(this, "card5");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.layout.show(this, "card3");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.layout.show(this, "card4");
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
+    public void populateUpcomingMatchesTable(){
+         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();    
+        model.setRowCount(0);
+        for(WorkRequest wr : this.stadium.getWorkQueue().getWorkRequestList()){
+            if(wr instanceof MatchWorkRequest){
+                Object[] row = new Object[4];
+                MatchWorkRequest matchWr = (MatchWorkRequest) wr;
+                row[0] = matchWr.getAwayClub();
+                row[1] = matchWr.getHomeClub();
+                row[2] =  matchWr.getMatch().getUtcDate();
+                row[3] =  matchWr;
+                model.addRow(row);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel GroundStaffJPanel;
     private javax.swing.JTextField GsNameTextField;
+    private javax.swing.JPanel Organization;
     private javax.swing.JPanel StadiumManagerJpanel;
     private javax.swing.JTextField TSNameTextField;
     private javax.swing.JPanel TicketSellerJPanel;
@@ -376,9 +511,13 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton createRequest;
     private javax.swing.JButton createUserJButton;
     private javax.swing.JButton createUserJButton1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -391,6 +530,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JTextField nameJTextField1;
