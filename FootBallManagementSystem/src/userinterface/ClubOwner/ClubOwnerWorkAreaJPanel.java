@@ -29,7 +29,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,12 +71,14 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private LeagueDataService dataService;
     private ArrayList<Match> clubMatches;
     private CardLayout cl;
+    private HashMap<Integer,Integer> playerGoalsMap;
     public ClubOwnerWorkAreaJPanel() {
         initComponents();
     }
 
     public ClubOwnerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         this.system = business;
+        playerGoalsMap = new HashMap<>();
         dh = new DataHandler();
         dataService = new LeagueDataService();
         Owner o = (Owner) account.getPerson();
@@ -99,8 +105,33 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         populateTree();
         populateSupportingStaffComboBox();
         populateStandingsTable(dh.getTableofStanding(dh.getStandings(this.currentClub.getLeague().getLeague().getId())));
+        jPanel7.setVisible(false);
     }
+    private  LinkedHashMap<Integer, Integer> sortHashMapByValues(HashMap<Integer,Integer> map){
+        List<Integer> mapKeys = new ArrayList<>(map.keySet());
+        List<Integer> mapValues = new ArrayList<>(map.values());
+        Collections.sort(mapValues);
+        Collections.sort(mapKeys);
+        Iterator<Integer> valueIt = mapValues.iterator();
+        LinkedHashMap<Integer, Integer> sortedMap =
+        new LinkedHashMap<>();
+        while (valueIt.hasNext()) {
+            int val = valueIt.next();
+            Iterator<Integer> keyIt = mapKeys.iterator();
 
+            while (keyIt.hasNext()) {
+                Integer key = keyIt.next();
+                Integer comp1 = map.get(key);
+                int comp2 = val;
+                if(comp1.equals(comp2)) {
+                    keyIt.remove();
+                    sortedMap.put(key, val);
+                    break;
+                }
+            }
+        }
+        return sortedMap;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,9 +149,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         standingTable = new javax.swing.JTable();
         pieChatButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         clubNameJLabel = new javax.swing.JLabel();
@@ -139,7 +167,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         supportingStaffPwd = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         submitSupportingStaffManager = new javax.swing.JButton();
-        supportingStaff = new javax.swing.JComboBox<>();
+        supportingStaff = new javax.swing.JComboBox<String>();
         jButton4 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -147,24 +175,18 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        yearsOfContract = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        label2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         fName = new javax.swing.JTextField();
         submitPlayer = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        label3 = new javax.swing.JLabel();
-        salary = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         fName1 = new javax.swing.JTextField();
-        label4 = new javax.swing.JLabel();
-        yearsOfContract1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -177,7 +199,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        jButton3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton3.setText("Manage Organization");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,27 +221,25 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(standingTable);
 
-        pieChatButton.setText("Win analysis");
+        pieChatButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        pieChatButton.setText("Club Analysis");
         pieChatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pieChatButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Player of the league :");
-
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setText("Top Manager :");
-
-        jButton2.setText("barChatButton");
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        jButton2.setText("Players Assesment");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        clubNameJLabel.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+
+        clubNameJLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         clubNameJLabel.setForeground(new java.awt.Color(204, 204, 204));
         clubNameJLabel.setText("Club name");
 
@@ -230,7 +250,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(clubIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(clubNameJLabel)
+                .addComponent(clubNameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -252,21 +272,15 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel2))
-                                            .addComponent(jLabel3))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(pieChatButton)))
                                 .addGap(26, 26, 26))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(189, 189, 189)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,27 +298,20 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(pieChatButton)
-                                .addComponent(jButton2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)))
-                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pieChatButton)
+                            .addComponent(jButton2))
+                        .addGap(26, 26, 26)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         add(jPanel1, "ownerMain");
 
         jPanel9.setBackground(new java.awt.Color(51, 51, 51));
 
-        jButton8.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton8.setText("Create Player");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,15 +319,15 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton9.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton9.setText("Create supporting staff");
+        jButton9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jButton9.setText("Create Supporting Staff");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton10.setText("Create Manager");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,6 +335,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton7.setText("Back");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,7 +348,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(766, Short.MAX_VALUE)
+                .addContainerGap(770, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -366,7 +374,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
         supportingStaffPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel18.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
         jLabel18.setText("First name :");
 
@@ -377,19 +385,19 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(204, 204, 204));
         jLabel19.setText("User name :");
 
-        jLabel20.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(204, 204, 204));
         jLabel20.setText("Password :");
 
-        jLabel21.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(204, 204, 204));
         jLabel21.setText("Create Supporting staff");
 
-        submitSupportingStaffManager.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        submitSupportingStaffManager.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         submitSupportingStaffManager.setText("Submit");
         submitSupportingStaffManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,6 +405,13 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        supportingStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supportingStaffActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,31 +428,29 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(supportingStaffPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel21))
-                    .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(supportingStaffPanelLayout.createSequentialGroup()
-                            .addGap(48, 48, 48)
-                            .addComponent(jLabel18)
-                            .addGap(18, 18, 18)
-                            .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(supportingStaff, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(supportingStaffName, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
-                        .addGroup(supportingStaffPanelLayout.createSequentialGroup()
-                            .addGap(49, 49, 49)
-                            .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(supportingStaffPanelLayout.createSequentialGroup()
-                                    .addComponent(jLabel20)
-                                    .addGap(25, 25, 25)
-                                    .addComponent(supportingStaffPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(supportingStaffPanelLayout.createSequentialGroup()
-                                        .addComponent(jButton4)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(submitSupportingStaffManager, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(supportingStaffPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel19)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(supportingStaffuserName)))))))
-                .addContainerGap(606, Short.MAX_VALUE))
+                    .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel18)
+                        .addGap(18, 18, 18)
+                        .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(supportingStaff, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(supportingStaffName, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
+                    .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(25, 25, 25)
+                                .addComponent(supportingStaffPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(submitSupportingStaffManager, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(supportingStaffPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(18, 18, 18)
+                                .addComponent(supportingStaffuserName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(585, Short.MAX_VALUE))
         );
         supportingStaffPanelLayout.setVerticalGroup(
             supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,14 +475,14 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(supportingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitSupportingStaffManager, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4))
-                .addContainerGap(404, Short.MAX_VALUE))
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         add(supportingStaffPanel, "card5");
 
         jPanel11.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel4.setFont(new java.awt.Font("Serif", 1, 48)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Create Player");
 
@@ -478,11 +491,12 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Player Name", "Player username", "Position"
+                "Player Name", "Position"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton1.setText("Create Player login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -490,11 +504,13 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jPanel7.setBackground(new java.awt.Color(102, 102, 102));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel8.setText("User name :");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel5.setText("Full name :");
-
-        label2.setText("Years Of Contract :");
 
         fName.setText("                                  ");
         fName.addActionListener(new java.awt.event.ActionListener() {
@@ -503,6 +519,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        submitPlayer.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         submitPlayer.setText("Submit");
         submitPlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -510,9 +527,8 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setText("Passoword :");
-
-        label3.setText("Position : ");
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel9.setText("Password :");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -520,29 +536,24 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(label3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(salary))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(label2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(yearsOfContract))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fName))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
+                        .addGap(13, 13, 13)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(submitPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField1)
+                            .addComponent(fName))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submitPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -553,14 +564,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(fName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label2)
-                    .addComponent(yearsOfContract, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label3)
-                    .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -573,6 +576,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton5.setText("Back");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,7 +591,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(240, 240, 240)
                 .addComponent(jLabel4)
-                .addGap(271, 467, Short.MAX_VALUE))
+                .addGap(271, 535, Short.MAX_VALUE))
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -616,7 +620,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jButton5))
                 .addGap(32, 32, 32)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         add(jPanel11, "card6");
@@ -624,20 +628,25 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jPanel13.setBackground(new java.awt.Color(51, 51, 51));
         jPanel13.setPreferredSize(new java.awt.Dimension(590, 526));
 
-        jLabel14.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI Semibold", 1, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("Create Manager login");
 
-        jLabel7.setText("First name :");
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel7.setText("Full Name");
 
         fName1.setText("                                  ");
 
-        label4.setText("Years Of Contract :");
-
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(204, 204, 204));
         jLabel11.setText("User name :");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("Passoword :");
 
+        submitManager.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         submitManager.setText("Submit");
         submitManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -645,6 +654,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -667,10 +677,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField3))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(label4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(yearsOfContract1))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -696,10 +702,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(fName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label4)
-                    .addComponent(yearsOfContract1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -710,50 +712,18 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(submitManager)
                     .addComponent(jButton6))
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         add(jPanel13, "card7");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        cl.show(this, "card4");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void pieChatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pieChatButtonActionPerformed
-       DefaultPieDataset dataset = new DefaultPieDataset( );
-       double wins = 0;
-       double loses = 0;
-       double draws = 0;
-       for(Match m :this.clubMatches){
-           if(m.getScore().getWinner().equals("AWAY_TEAM")){
-               if(m.getAwayTeam().getId().equals(this.currentClub.getId())){
-                   wins++;
-               }else loses++;
-           }else if(m.getScore().getWinner().equals("HOME_TEAM")){
-               if(m.getHomeTeam().getId().equals(this.currentClub.getId())){
-                   wins++;
-               }else loses++;
-           }else if(m.getScore().getWinner().equals("DRAW")){
-               draws++;
-           }
-       }
-       
-      dataset.setValue("Wins", (wins/(wins+loses+draws))*100);
-      dataset.setValue("Loses",(loses/(wins+loses+draws))*100);
-      dataset.setValue("Draws",(draws/(wins+loses+draws))*100);
-      JFreeChart chart = ChartFactory.createPieChart("Win ratio", dataset,true,true,false);
-        PiePlot p = (PiePlot) chart.getPlot();
-        ChartFrame frame = new ChartFrame("Pie chart",chart);
-        frame.setVisible(true);
-        frame.setSize(450,500);
-    }//GEN-LAST:event_pieChatButtonActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         cl.show(this, "card6");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        fName1.setText(this.currentClub.getManagerOrganization().getTm().getManager().toString());
         cl.show(this, "card7");
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -767,15 +737,22 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         String passWord = supportingStaffPwd.getText();
         Player supportingStaffManager = (Player) supportingStaff.getSelectedItem();
         if(supportingStaffManager != null){
-            supportingStaffName.setText(supportingStaffManager.getName());
+            supportingStaffManager.setName(userName);
             supportingStaffManager.setClub(currentClub);
             system.getUserAccountDirectory().createUserAccount(userName, passWord, new SupportingStaffManagerRole(),supportingStaffManager);
         }else {
             Player p = new Player();
             p.setName(firstName);
             p.setClub(currentClub);
-            system.getUserAccountDirectory().createUserAccount(userName, passWord, new SupportingStaffManagerRole(),supportingStaffManager);
+            this.currentClub.getSupporttingStaff().addSupportingStaff(p);
+            system.getUserAccountDirectory().createUserAccount(userName, passWord, new SupportingStaffManagerRole(),p);
         }
+        supportingStaffName.setText("");
+        supportingStaffuserName.setText("");
+        supportingStaffPwd.setText("");
+        populateTree();
+        populateSupportingStaffComboBox();
+        JOptionPane.showMessageDialog(null,"Supporting staff manager created!");
     }//GEN-LAST:event_submitSupportingStaffManagerActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -784,6 +761,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             this.jPanel7.setVisible(true);
             this.player = (Player)jTable1.getValueAt(selectedRow, 0);
             fName.setText(this.player.getName());
+            jPanel7.setVisible(true);
         }else JOptionPane.showMessageDialog(null, "Please select a Player!");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -808,57 +786,21 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Player login created succesfully!");
             this.player = null;
         }
+        fName.setText("");
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jPanel7.setVisible(false);
     }//GEN-LAST:event_submitPlayerActionPerformed
 
     private void submitManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitManagerActionPerformed
         String userName = jTextField3.getText();
         String passWord = jTextField4.getText();
         String managerName = fName1.getText();
-        TeamManager tm = new  TeamManager(managerName, this.currentClub);
-        system.getUserAccountDirectory().createUserAccount(userName, passWord, new ManagerRole(), tm);
-        this.currentClub.getManagerOrganization().setTm(tm);
+        //TeamManager tm = new  TeamManager(managerName, this.currentClub);
+        this.currentClub.getManagerOrganization().getTm().setClub(this.currentClub);
+        system.getUserAccountDirectory().createUserAccount(userName, passWord, new ManagerRole(), this.currentClub.getManagerOrganization().getTm());
+        JOptionPane.showMessageDialog(null, "Manager login created succesfully!");
     }//GEN-LAST:event_submitManagerActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        HashMap<Integer,Integer> playerGoalsMap = new HashMap<>();
-        HashMap<Integer,Integer> playerAssistsMap = new HashMap<>();
-        for(Match m : this.clubMatches){
-            for(Goal g : m.getGoals()){
-                int scorer = g.getScorer().getId();
-                if(g.getAssist() != null){
-                int assist = g.getAssist().getId();
-                if(playerAssistsMap.containsKey(assist)){
-                    playerAssistsMap.put(assist, playerAssistsMap.get(assist)+1);
-                }else playerAssistsMap.put(assist, 1);
-                }
-                if(playerGoalsMap.containsKey(scorer)){
-                    playerGoalsMap.put(scorer, playerGoalsMap.get(scorer)+1);
-                }else playerGoalsMap.put(scorer, 1);
-            }
-        }
-        for(Player p: this.currentClub.getClubPlayers().getPlayers()){
-            for(int i : playerAssistsMap.keySet()){
-                if(p.getId()== i){
-                    dataset.addValue(playerAssistsMap.get(i), p.getName(), "Assists");
-                }
-            }
-            for(int j : playerGoalsMap.keySet()){
-                if(p.getId()== j){
-                    dataset.addValue(playerGoalsMap.get(j), p.getName(), "Goals");
-                }
-            }
-        }
-         JFreeChart barChart = ChartFactory.createBarChart("Player performance",           
-         "Category",            
-         "Score",            
-         dataset,          
-         PlotOrientation.VERTICAL,           
-         true, true, false);
-        ChartFrame frame = new ChartFrame("Pie chart",barChart);
-        frame.setVisible(true);
-        frame.setSize(450,500);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         cl.show(this,"card5");
@@ -879,6 +821,87 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         cl.show(this,"ownerMain");
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void supportingStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supportingStaffActionPerformed
+        Player supportingStaffManager = (Player) supportingStaff.getSelectedItem();
+        if(supportingStaffManager != null)
+        {
+            supportingStaffName.setText(supportingStaffManager.getName());
+        }
+    }//GEN-LAST:event_supportingStaffActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        HashMap<Integer,Integer> playerAssistsMap = new HashMap<>();
+        for(Match m : this.clubMatches){
+            for(Goal g : m.getGoals()){
+                int scorer = g.getScorer().getId();
+                if(g.getAssist() != null){
+                    int assist = g.getAssist().getId();
+                    if(playerAssistsMap.containsKey(assist)){
+                        playerAssistsMap.put(assist, playerAssistsMap.get(assist)+1);
+                    }else playerAssistsMap.put(assist, 1);
+                }
+                if(playerGoalsMap.containsKey(scorer)){
+                    playerGoalsMap.put(scorer, playerGoalsMap.get(scorer)+1);
+                }else playerGoalsMap.put(scorer, 1);
+            }
+        }
+        for(Player p: this.currentClub.getClubPlayers().getPlayers()){
+            for(int i : playerAssistsMap.keySet()){
+                if(p.getId()== i){
+                    dataset.addValue(playerAssistsMap.get(i), p.getName(), "Assists");
+                }
+            }
+            for(int j : playerGoalsMap.keySet()){
+                if(p.getId()== j){
+                    dataset.addValue(playerGoalsMap.get(j), p.getName(), "Goals");
+                }
+            }
+        }
+        JFreeChart barChart = ChartFactory.createBarChart("Player performance",
+            "Category",
+            "Score",
+            dataset,
+            PlotOrientation.VERTICAL,
+            true, true, false);
+        ChartFrame frame = new ChartFrame("Pie chart",barChart);
+        frame.setVisible(true);
+        frame.setSize(450,500);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void pieChatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pieChatButtonActionPerformed
+        DefaultPieDataset dataset = new DefaultPieDataset( );
+        double wins = 0;
+        double loses = 0;
+        double draws = 0;
+        for(Match m :this.clubMatches){
+            if(m.getScore().getWinner().equals("AWAY_TEAM")){
+                if(m.getAwayTeam().getId().equals(this.currentClub.getId())){
+                    wins++;
+                }else loses++;
+            }else if(m.getScore().getWinner().equals("HOME_TEAM")){
+                if(m.getHomeTeam().getId().equals(this.currentClub.getId())){
+                    wins++;
+                }else loses++;
+            }else if(m.getScore().getWinner().equals("DRAW")){
+                draws++;
+            }
+        }
+
+        dataset.setValue("Wins", (wins/(wins+loses+draws))*100);
+        dataset.setValue("Loses",(loses/(wins+loses+draws))*100);
+        dataset.setValue("Draws",(draws/(wins+loses+draws))*100);
+        JFreeChart chart = ChartFactory.createPieChart("Win ratio", dataset,true,true,false);
+        PiePlot p = (PiePlot) chart.getPlot();
+        ChartFrame frame = new ChartFrame("Pie chart",chart);
+        frame.setVisible(true);
+        frame.setSize(450,500);
+    }//GEN-LAST:event_pieChatButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        cl.show(this, "card4");
+    }//GEN-LAST:event_jButton3ActionPerformed
     
     public void populateTree(){
         DefaultMutableTreeNode allPlayers;
@@ -932,17 +955,16 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         for (Player p : this.currentClub.getClubPlayers().getPlayers()){
-            Object[] row = new Object[3];
+            Object[] row = new Object[2];
             row[0] = p;
-            row[1] = p;
-            row[2] = p.getPosition();
+            row[1] = p.getPosition();
             model.addRow(row);
         }
     }
    
     private void populateSupportingStaffComboBox(){
         DefaultComboBoxModel cbm = (DefaultComboBoxModel) supportingStaff.getModel();
-        
+        cbm.removeAllElements();
             for(Player s: this.currentClub.getSupporttingStaff().getStaff()){
                 cbm.addElement(s);
             }
@@ -965,16 +987,13 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
@@ -995,11 +1014,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTree jTree1;
-    private javax.swing.JLabel label2;
-    private javax.swing.JLabel label3;
-    private javax.swing.JLabel label4;
     private javax.swing.JButton pieChatButton;
-    private javax.swing.JTextField salary;
     private javax.swing.JTable standingTable;
     private javax.swing.JButton submitManager;
     private javax.swing.JButton submitPlayer;
@@ -1009,7 +1024,5 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel supportingStaffPanel;
     private javax.swing.JTextField supportingStaffPwd;
     private javax.swing.JTextField supportingStaffuserName;
-    private javax.swing.JTextField yearsOfContract;
-    private javax.swing.JTextField yearsOfContract1;
     // End of variables declaration//GEN-END:variables
 }

@@ -210,15 +210,12 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         ManagerTopJPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnViewSquad = new javax.swing.JButton();
         btnSearchPlayer = new javax.swing.JButton();
         btnTraining = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         SearchPlayerJPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -352,7 +349,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel30 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         btnBack3 = new javax.swing.JButton();
-        MatchSummary = new javax.swing.JPanel();
 
         setLayout(new java.awt.CardLayout());
 
@@ -360,14 +356,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setText("Welcome, Manager");
-
-        btnBack.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        btnBack.setText("<<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -397,7 +385,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel2.setText("Upcoming matches");
 
-        btnViewSquad.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnViewSquad.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         btnViewSquad.setText("Create LineUp");
         btnViewSquad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +393,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnSearchPlayer.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnSearchPlayer.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         btnSearchPlayer.setText(" Search player to bid");
         btnSearchPlayer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +401,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnTraining.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnTraining.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         btnTraining.setText("Schedule training");
         btnTraining.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,16 +409,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton3.setText("Check League Table");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/manager_banner.jpg"))); // NOI18N
-
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton2.setText("PlayersStatistics");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,49 +434,35 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel2)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnViewSquad)
-                                    .addComponent(jButton3)))
+                                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnTraining, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnViewSquad, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
-                                .addComponent(btnSearchPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addComponent(btnTraining, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(btnSearchPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(209, 209, 209)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(271, Short.MAX_VALUE))
-            .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 918, Short.MAX_VALUE)
-                    .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         ManagerTopJPanelLayout.setVerticalGroup(
             ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ManagerTopJPanelLayout.createSequentialGroup()
                         .addComponent(btnViewSquad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTraining)
+                        .addGap(15, 15, 15))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(ManagerTopJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSearchPlayer)
-                    .addComponent(btnTraining)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                .addContainerGap(431, Short.MAX_VALUE))
         );
 
         add(ManagerTopJPanel, "card2");
@@ -517,7 +482,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(clubTable);
 
-        jButton4.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton4.setText("Search");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -525,11 +490,11 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Serif", 1, 48)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("Player Transfers");
 
-        jLabel13.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(204, 204, 204));
         jLabel13.setText("Select League:");
 
@@ -540,23 +505,23 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel14.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("Select Position:");
 
-        jLabel16.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
         jLabel16.setText("Price Offered:");
 
-        jLabel17.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(204, 204, 204));
         jLabel17.setText("Years of contract:");
 
-        jLabel18.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
         jLabel18.setText("Select Club:");
 
-        jButton5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton5.setText("Send Contract");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -564,7 +529,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBack1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnBack1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         btnBack1.setText("<<Back");
         btnBack1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -577,9 +542,9 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         SearchPlayerJPanelLayout.setHorizontalGroup(
             SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
                 .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
                         .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
                             .addComponent(jLabel13))
@@ -588,13 +553,12 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jComboBox13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox11, 0, 130, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SearchPlayerJPanelLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox12, 0, 130, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -638,7 +602,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(SearchPlayerJPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                         .addGroup(SearchPlayerJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -650,7 +614,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBack1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(139, Short.MAX_VALUE))))
+                        .addContainerGap(159, Short.MAX_VALUE))))
         );
 
         add(SearchPlayerJPanel, "card3");
@@ -822,7 +786,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel25.setText("GoalKeeper");
         squad1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 694, 110, 35));
 
-        jButton14.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton14.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton14.setText("Save Squad");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -926,7 +890,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel11.setText("Mid Fielders");
         squad1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
 
-        btnBack2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnBack2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         btnBack2.setText("<<Back");
         btnBack2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1174,6 +1138,10 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         add(squad3, "card8");
 
+        TrainingScheduleJpanel.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("Shooting");
 
         jButton1.setText("Send TrainRequest");
@@ -1183,8 +1151,12 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel27.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(204, 204, 204));
         jLabel27.setText("Dribbling");
 
+        jLabel28.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(204, 204, 204));
         jLabel28.setText("Passing");
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -1193,8 +1165,12 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel29.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(204, 204, 204));
         jLabel29.setText("Defensive");
 
+        jLabel30.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(204, 204, 204));
         jLabel30.setText("Fitness");
 
         btnBack3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -1232,9 +1208,9 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel27))
                             .addGap(64, 64, 64)
                             .addGroup(TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField4)
+                                .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                                 .addComponent(jTextField1)))))
-                .addContainerGap(551, Short.MAX_VALUE))
+                .addContainerGap(534, Short.MAX_VALUE))
         );
         TrainingScheduleJpanelLayout.setVerticalGroup(
             TrainingScheduleJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1263,28 +1239,11 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(btnBack3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addContainerGap(371, Short.MAX_VALUE))
         );
 
         add(TrainingScheduleJpanel, "card9");
-
-        javax.swing.GroupLayout MatchSummaryLayout = new javax.swing.GroupLayout(MatchSummary);
-        MatchSummary.setLayout(MatchSummaryLayout);
-        MatchSummaryLayout.setHorizontalGroup(
-            MatchSummaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 930, Short.MAX_VALUE)
-        );
-        MatchSummaryLayout.setVerticalGroup(
-            MatchSummaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
-        );
-
-        add(MatchSummary, "card10");
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnViewSquadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSquadActionPerformed
         // TODO add your handling code here:
@@ -1333,14 +1292,14 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             MatchWorkRequest matchWrkRqst =  (MatchWorkRequest) jTable1.getValueAt(selectedRow, 2);
             this.selectedWorkRequest = matchWrkRqst;
             if(this.selectedWorkRequest.getMatch().getAwayTeam().getId().equals(this.club.getId())){
-                if(this.selectedWorkRequest.getMatch().getAwayTeam().getLineup().size() > 10 ){
+                if(this.selectedWorkRequest.getMatch().getAwayTeam().getLineup().size() > 0 ){
                      this.layout.show(this, "card9");
-                }
+                }else JOptionPane.showMessageDialog(null, "Please create LineUp for Match!");
             }
             if(this.selectedWorkRequest.getMatch().getHomeTeam().getId().equals(this.club.getId())){
                if(this.selectedWorkRequest.getMatch().getHomeTeam().getLineup().size() > 0 ){
                      this.layout.show(this, "card9");
-                }
+                }else JOptionPane.showMessageDialog(null, "Please create LineUp for Match!");
             }
         }else JOptionPane.showMessageDialog(null, "Please select a Match for Training!");
     }//GEN-LAST:event_btnTrainingActionPerformed
@@ -1351,10 +1310,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         String pos = (String) jComboBox12.getSelectedItem();
         populatePlayersTable(club,pos);
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void backjButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton3ActionPerformed
         // TODO add your handling code here:
@@ -1630,7 +1585,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CheckLeagueJPanel;
     private javax.swing.JPanel ManagerTopJPanel;
-    private javax.swing.JPanel MatchSummary;
     private javax.swing.JPanel SearchPlayerJPanel;
     private javax.swing.JPanel TrainingScheduleJpanel;
     private javax.swing.JPanel UpdateSquadJpanel;
@@ -1643,7 +1597,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox att2;
     private javax.swing.JComboBox att3;
     private javax.swing.JButton backjButton3;
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnBack3;
@@ -1672,7 +1625,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton9;
@@ -1694,7 +1646,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;

@@ -10,6 +10,8 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.GroundStaff.GroundStaffWorkAreaJPanel;
+import userinterface.TicketSeller.TicketSellerWorkAreaJPanel;
 
 /**
  *
@@ -23,7 +25,7 @@ public class GroundStaffManagerRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return null;
+        return new GroundStaffWorkAreaJPanel(userProcessContainer, account, organization, business);
     }
     
     @Override

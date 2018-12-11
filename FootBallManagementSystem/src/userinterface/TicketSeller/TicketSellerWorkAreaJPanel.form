@@ -46,9 +46,9 @@
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField1" min="-2" pref="92" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="126" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jTextField2" pref="126" max="32767" attributes="0"/>
+                                  <Component id="jTextField1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jScrollPane2" min="-2" pref="464" max="-2" attributes="0"/>

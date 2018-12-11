@@ -59,7 +59,6 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -92,16 +91,13 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Welcome, Player_name");
 
-        jButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton1.setText("Check Contract");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton2.setText("View Training schedule");
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 0));
 
@@ -319,7 +315,6 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(47, 47, 47)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
@@ -336,9 +331,7 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(79, 79, 79)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -380,18 +373,16 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
             MatchWorkRequest mr = (MatchWorkRequest) wr;
             for(Player p : mr.getMatch().getHomeTeam().getLineup()){
                 if(p.getId().equals(this.currentPlayer.getId())){
-                    row[0] = wr;
-                    row[1] = mr.getAwayClub();
-                    row[2] = mr.getMatch().getVenue().getName();
-                    row[3] = mr.getStatus();
+                    row[0] = mr.getAwayClub();
+                    row[1] = mr.getMatch().getVenue().getName();
+                    row[2] = mr;                
                 }
             }
             for(Player p : mr.getMatch().getAwayTeam().getLineup()){
                 if(p.getId().equals(this.currentPlayer.getId())){
-                    row[0] = wr;
-                    row[1] = mr.getHomeClub();
-                    row[2] = mr.getMatch().getVenue().getName();
-                    row[3] = mr.getStatus();
+                    row[0] = mr.getHomeClub();
+                    row[1] = mr.getMatch().getVenue().getName();
+                    row[2] = mr;
                 }
             }
             model.addRow(row);
@@ -420,7 +411,6 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable Contracts;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

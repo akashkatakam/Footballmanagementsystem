@@ -41,26 +41,16 @@ public abstract class Organization {
     public Organization(String name) {
         this.organizationName = name;
         workQueue = new WorkQueue();
-       // employeeDirectory = new EmployeeDirectory();
-     //   userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
         ++counter;
     }
 
     public abstract ArrayList<Role> getSupportedRole();
     
-//    public UserAccountDirectory getUserAccountDirectory() {
-//        return userAccountDirectory;
-//    }
-
     public int getOrganizationID() {
         return organizationID;
     }
 
-//    public EmployeeDirectory getEmployeeDirectory() {
-//        return employeeDirectory;
-//    }
-    
     public String getName() {
         return organizationName;
     }
@@ -75,6 +65,11 @@ public abstract class Organization {
 
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
+    }
+
+    @Override
+    public String toString() {
+        return organizationName;
     }
     
 }

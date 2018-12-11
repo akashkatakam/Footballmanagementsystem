@@ -221,6 +221,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         jButton7 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         dateChooser = new com.toedter.calendar.JDateChooser();
+        jButton8 = new javax.swing.JButton();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -238,8 +239,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         LeagueAdminJPanel.setBackground(new java.awt.Color(51, 51, 51));
         LeagueAdminJPanel.setForeground(new java.awt.Color(51, 51, 0));
         LeagueAdminJPanel.setPreferredSize(new java.awt.Dimension(818, 938));
+        LeagueAdminJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        userJButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        userJButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         userJButton1.setForeground(new java.awt.Color(0, 0, 102));
         userJButton1.setText("Manage Stadiums");
         userJButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -247,8 +249,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 userJButton1ActionPerformed(evt);
             }
         });
+        LeagueAdminJPanel.add(userJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 147, 200, 36));
 
-        manageEmployeeJButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        manageEmployeeJButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         manageEmployeeJButton1.setForeground(new java.awt.Color(0, 0, 102));
         manageEmployeeJButton1.setText("Manage Clubs");
         manageEmployeeJButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -256,8 +259,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 manageEmployeeJButton1ActionPerformed(evt);
             }
         });
+        LeagueAdminJPanel.add(manageEmployeeJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 148, 147, 34));
 
-        jButton4.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 102));
         jButton4.setText("Check League Standings");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -265,8 +269,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
+        LeagueAdminJPanel.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 294, 210, 37));
 
-        jButton5.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 102));
         jButton5.setText("Schedule Matches");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -274,16 +279,24 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
+        LeagueAdminJPanel.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 294, 220, 37));
 
-        jLabel12.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("League Tasks:");
+        LeagueAdminJPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 244, -1, -1));
+        LeagueAdminJPanel.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree1.setRootVisible(false);
         jScrollPane4.setViewportView(jTree1);
 
-        leagueNameJLabel.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        LeagueAdminJPanel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(496, 147, 261, 535));
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        leagueNameJLabel.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         leagueNameJLabel.setForeground(new java.awt.Color(204, 204, 204));
         leagueNameJLabel.setText("League Name:");
 
@@ -307,55 +320,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout LeagueAdminJPanelLayout = new javax.swing.GroupLayout(LeagueAdminJPanel);
-        LeagueAdminJPanel.setLayout(LeagueAdminJPanelLayout);
-        LeagueAdminJPanelLayout.setHorizontalGroup(
-            LeagueAdminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(LeagueAdminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                        .addGroup(LeagueAdminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                                .addComponent(manageEmployeeJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(userJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel12)
-                            .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        LeagueAdminJPanelLayout.setVerticalGroup(
-            LeagueAdminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(LeagueAdminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                        .addGroup(LeagueAdminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(LeagueAdminJPanelLayout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(manageEmployeeJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(userJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addGroup(LeagueAdminJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
+        LeagueAdminJPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 801, -1));
 
         LeagueAdminTopJPanel.add(LeagueAdminJPanel, "card2");
 
@@ -363,7 +328,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         ManageClubsJPanel.setPreferredSize(new java.awt.Dimension(818, 938));
         ManageClubsJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        backjButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        backjButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         backjButton1.setForeground(new java.awt.Color(0, 0, 102));
         backjButton1.setText("<< Back");
         backjButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -371,7 +336,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 backjButton1ActionPerformed(evt);
             }
         });
-        ManageClubsJPanel.add(backjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 697, -1, 41));
+        ManageClubsJPanel.add(backjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 670, -1, 41));
 
         clubTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -388,7 +353,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 
         ManageClubsJPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 62, 468, 268));
 
-        createUserJButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        createUserJButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         createUserJButton2.setForeground(new java.awt.Color(0, 0, 102));
         createUserJButton2.setText("Create Login");
         createUserJButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -398,13 +363,13 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         });
         ManageClubsJPanel.add(createUserJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 343, 202, 42));
 
-        clubCreate.setBackground(new java.awt.Color(0, 0, 0));
+        clubCreate.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel9.setFont(new java.awt.Font("Luminari", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setText("Club Name");
 
-        createUserJButton3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        createUserJButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         createUserJButton3.setForeground(new java.awt.Color(0, 0, 102));
         createUserJButton3.setText("Submit");
         createUserJButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -413,11 +378,11 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Luminari", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Club Owner");
 
-        jLabel20.setFont(new java.awt.Font("Luminari", 1, 18)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(204, 204, 204));
         jLabel20.setText("Password");
 
@@ -427,7 +392,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Luminari", 1, 18)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(204, 204, 204));
         jLabel19.setText("User Name");
 
@@ -486,7 +451,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 
         ManageClubsJPanel.add(clubCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 425, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 102));
         jButton2.setText("Create Club");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -501,8 +466,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         ManageStadiumsJPanel.setBackground(new java.awt.Color(51, 51, 51));
         ManageStadiumsJPanel.setPreferredSize(new java.awt.Dimension(818, 938));
 
-        backjButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        backjButton2.setForeground(new java.awt.Color(0, 0, 51));
+        backjButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        backjButton2.setForeground(new java.awt.Color(0, 0, 102));
         backjButton2.setText("<< Back");
         backjButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -523,14 +488,22 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(stadiumTable);
 
+        stadiumCreate.setBackground(new java.awt.Color(102, 102, 102));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel5.setText("Stadium Name");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel6.setText("Stadium Owner");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel7.setText("User Name");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel8.setText("Password");
 
+        submitStadiumManager.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        submitStadiumManager.setForeground(new java.awt.Color(0, 0, 102));
         submitStadiumManager.setText("Submit");
         submitStadiumManager.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -588,6 +561,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        createStadiumLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        createStadiumLogin.setForeground(new java.awt.Color(0, 0, 102));
         createStadiumLogin.setText("Create Login");
         createStadiumLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -607,7 +582,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                     .addGroup(ManageStadiumsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(createStadiumLogin)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(447, Short.MAX_VALUE))
+                .addContainerGap(302, Short.MAX_VALUE))
         );
         ManageStadiumsJPanelLayout.setVerticalGroup(
             ManageStadiumsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -620,7 +595,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                 .addComponent(stadiumCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(backjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
 
         LeagueAdminTopJPanel.add(ManageStadiumsJPanel, "card4");
@@ -640,9 +615,9 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(standingTable);
 
-        backjButton3.setBackground(new java.awt.Color(204, 0, 0));
-        backjButton3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        backjButton3.setForeground(new java.awt.Color(0, 0, 51));
+        backjButton3.setBackground(new java.awt.Color(204, 204, 204));
+        backjButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        backjButton3.setForeground(new java.awt.Color(0, 0, 102));
         backjButton3.setText("<< Back");
         backjButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -662,38 +637,38 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                     .addGroup(LeagueTableLayout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(359, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         LeagueTableLayout.setVerticalGroup(
             LeagueTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeagueTableLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(backjButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158))
         );
 
         LeagueAdminTopJPanel.add(LeagueTable, "card5");
 
-        homeTeam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EPL", "La Liga", "Bundesliga", "Italy Serie A" }));
+        MatchCreation.setBackground(new java.awt.Color(51, 51, 51));
+
         homeTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeTeamActionPerformed(evt);
             }
         });
 
-        jLabel21.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(204, 204, 204));
         jLabel21.setText("Select Home Team:");
 
-        awayTeam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "EPL", "La Liga", "Bundesliga", "Italy Serie A" }));
-
-        jLabel23.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(204, 204, 204));
         jLabel23.setText("Select Date:");
 
-        jButton7.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(0, 0, 102));
         jButton7.setText("Create Match");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -701,18 +676,23 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(204, 204, 204));
         jLabel24.setText("Select Away Team:");
+
+        jButton8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(0, 0, 102));
+        jButton8.setText("<< Back");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MatchCreationLayout = new javax.swing.GroupLayout(MatchCreation);
         MatchCreation.setLayout(MatchCreationLayout);
         MatchCreationLayout.setHorizontalGroup(
             MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MatchCreationLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(MatchCreationLayout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -720,16 +700,25 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(homeTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MatchCreationLayout.createSequentialGroup()
-                            .addComponent(jLabel23)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(MatchCreationLayout.createSequentialGroup()
-                            .addComponent(jLabel24)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(awayTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 540, Short.MAX_VALUE))
+                            .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MatchCreationLayout.createSequentialGroup()
+                                    .addComponent(jLabel24)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                .addGroup(MatchCreationLayout.createSequentialGroup()
+                                    .addComponent(jLabel23)
+                                    .addGap(86, 86, 86)))
+                            .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                .addGroup(MatchCreationLayout.createSequentialGroup()
+                                    .addComponent(awayTeam, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(2, 2, 2))))
+                        .addGroup(MatchCreationLayout.createSequentialGroup()
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 388, Short.MAX_VALUE))
         );
         MatchCreationLayout.setVerticalGroup(
             MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -743,12 +732,14 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
                     .addComponent(jLabel24)
                     .addComponent(awayTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel23)
                     .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(751, Short.MAX_VALUE))
+                .addGap(88, 88, 88)
+                .addGroup(MatchCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
 
         LeagueAdminTopJPanel.add(MatchCreation, "card6");
@@ -835,13 +826,15 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             this.selectedStadium.setOwner(o);
             system.getUserAccountDirectory().createUserAccount(userName, password, new StadiumManagerRole(),o);
             JOptionPane.showMessageDialog(null, "Stadium Manager created succesfully!");
-            this.selectedStadium = null;
+            //this.selectedStadium = null;
         }
         // system.getUserAccountDirectory().createUserAccount(userName, password, new StadiumManagerRole(),stadiumOwner);
         StadiumNameTextField.setText("");
         StadiumManagerTextField.setText("");
         nameJTextField1.setText("");
         passwordJTextField1.setText("");
+        stadiumCreate.setVisible(false);
+        populateStadiumsTable(currentLeague);
     }//GEN-LAST:event_submitStadiumManagerActionPerformed
 
     private void createStadiumLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createStadiumLoginActionPerformed
@@ -861,9 +854,10 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Club hTeam = (Club) homeTeam.getSelectedItem();
-        if(hTeam.getStadium() == null){
-            hTeam.setStadium(new Stadium(hTeam.getVenue(), null));
-        }
+        
+//        if(hTeam.getStadium() == null){
+//            hTeam.setStadium(new Stadium(hTeam.getVenue(), null));
+//        }
         Club awaTeam = (Club) awayTeam.getSelectedItem();
         if(hTeam !=null && awaTeam !=null){
             Match m = new Match();
@@ -873,7 +867,6 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
             String date = fmt.format(this.dateChooser.getDate()); //jdatechooser
             m.setUtcDate(date);
-            System.out.println(date);
             MatchWorkRequest wr = new MatchWorkRequest(m);
             wr.setMatch(m);
             wr.setStatus("Initiated");
@@ -883,6 +876,8 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             awaTeam.getManagerOrganization().getWorkQueue().addWorkQueue(wr);
             hTeam.getStadium().getWorkQueue().addWorkQueue(wr);
         }
+        JOptionPane.showMessageDialog(null, "Match succesfully created");
+        dateChooser.setDate(null);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -904,6 +899,10 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
         // TODO add your handling code here:
         layout.show(LeagueAdminTopJPanel,"card4");
     }//GEN-LAST:event_userJButton1ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        layout.show(LeagueAdminTopJPanel, "card2");
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -934,6 +933,7 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel19;

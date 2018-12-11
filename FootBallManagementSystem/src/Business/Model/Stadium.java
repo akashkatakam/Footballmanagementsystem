@@ -23,6 +23,8 @@ public class Stadium extends StadiumEnterprise {
     public Stadium(String name,Owner owner) {
         super(name);
         this.owner = owner;
+        this.groundStaff = new GroundStaffOrganization();
+        this.ticketSellers = new TicketSellingOrganization();
     }
 
     public Owner getOwner() {
@@ -48,10 +50,5 @@ public class Stadium extends StadiumEnterprise {
     public void setTicketSellers(TicketSellingOrganization ticketSellers) {
         this.ticketSellers = ticketSellers;
     }
-
-    
-
-
-    
     
 }

@@ -44,6 +44,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     public StadiumManagerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
+        this.system = business;
         Owner o = (Owner) account.getPerson();
         this.layout = (CardLayout) this.getLayout();
         stadium = o.getStadium();
@@ -74,7 +75,6 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -110,11 +110,11 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         StadiumManagerJpanel.setBackground(new java.awt.Color(102, 51, 0));
         StadiumManagerJpanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel5.setText("Stadium Name: ");
         StadiumManagerJpanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 428, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel6.setText("Requests issued:");
         StadiumManagerJpanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 489, 180, 33));
 
@@ -140,16 +140,15 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
         StadiumManagerJpanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 464, 124));
 
-        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton3.setForeground(new java.awt.Color(204, 0, 0));
-        jButton3.setText("Save Match");
+        jButton3.setText("Accept Match");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         StadiumManagerJpanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 560, 237, 49));
-        StadiumManagerJpanel.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 428, 140, 30));
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         jLabel8.setText("Stadium Manager Work area");
@@ -165,19 +164,22 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        StadiumManagerJpanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 700, -1, -1));
+        StadiumManagerJpanel.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 700, 120, -1));
 
+        createRequest.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         createRequest.setText("Create request");
         createRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createRequestActionPerformed(evt);
             }
         });
-        StadiumManagerJpanel.add(createRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 700, -1, -1));
+        StadiumManagerJpanel.add(createRequest, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 700, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel7.setText("Select Department:");
         StadiumManagerJpanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 700, -1, -1));
 
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jButton1.setText("Manage Organizations");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,23 +188,24 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         });
         StadiumManagerJpanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 510, 230, -1));
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel10.setText("Funds Allocated");
         StadiumManagerJpanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 740, -1, -1));
-        StadiumManagerJpanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 740, 120, -1));
+        StadiumManagerJpanel.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 740, 120, -1));
 
         add(StadiumManagerJpanel, "card2");
 
         GroundStaffJPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        jLabel2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Password");
 
-        jLabel1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("User Name");
 
-        backjButton1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        backjButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         backjButton1.setText("<< Back");
         backjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +213,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        createUserJButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        createUserJButton.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         createUserJButton.setText("Create");
         createUserJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +221,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Ground Staff Name");
 
@@ -228,27 +231,24 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
             GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
                 .addGap(142, 142, 142)
-                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GroundStaffJPanelLayout.createSequentialGroup()
+                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
+                        .addComponent(backjButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createUserJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
                         .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(79, 79, 79)
                         .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordJTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11))
+                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(34, 34, 34)
-                        .addComponent(GsNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 44, Short.MAX_VALUE))
-                    .addGroup(GroundStaffJPanelLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(backjButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createUserJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(530, 530, 530))
+                        .addGap(18, 18, 18)
+                        .addComponent(GsNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(530, 571, Short.MAX_VALUE))
         );
         GroundStaffJPanelLayout.setVerticalGroup(
             GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,10 +266,10 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(passwordJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(backjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(createUserJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addGroup(GroundStaffJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createUserJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backjButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(521, Short.MAX_VALUE))
         );
 
         add(GroundStaffJPanel, "card3");
@@ -400,13 +400,12 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backjButton1ActionPerformed
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-
         String clubName = GsNameTextField.getText();
         String userName = nameJTextField.getText();
         String password = passwordJTextField.getText();
         GroundStaff gs = new GroundStaff(clubName,stadium);
         system.getUserAccountDirectory().createUserAccount(userName, password, new GroundStaffManagerRole(),gs);
-
+        JOptionPane.showMessageDialog(null,"Ground Staff manager created!");
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton2ActionPerformed
@@ -422,6 +421,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         String password = passwordJTextField1.getText();
         TicketSeller  ts = new TicketSeller(stadiumName,stadium);
         system.getUserAccountDirectory().createUserAccount(userName, password, new TicketSellerRole(),ts);
+        JOptionPane.showMessageDialog(null,"Ticket Seller created!");
     }//GEN-LAST:event_createUserJButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -453,6 +453,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
         gr.setFundsAllocated(Integer.parseInt(text));        
         gr.setStatus("REQUESTED");
         this.stadium.getGroundStaff().getWorkQueue().getWorkRequestList().add(gr);
+        JOptionPane.showMessageDialog(null,"Request created");
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null,"Please enter valid input");
         }
@@ -531,7 +532,6 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JTextField nameJTextField1;
     private javax.swing.JTextField passwordJTextField;

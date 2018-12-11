@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TicketSellerWorkAreaJPanel extends javax.swing.JPanel {
     private Stadium stadium;
+    private EcoSystem system;
     /**
      * Creates new form TicketSellerWorkAreaJPanel
      */
@@ -31,6 +32,7 @@ public class TicketSellerWorkAreaJPanel extends javax.swing.JPanel {
 
     public TicketSellerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
        initComponents();
+       this.system = business;
         TicketSeller ts = (TicketSeller) account.getPerson();
         this.stadium = ts.getStadium();
     }
@@ -118,9 +120,9 @@ public class TicketSellerWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                                    .addComponent(jTextField1)))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 519, Short.MAX_VALUE))
         );

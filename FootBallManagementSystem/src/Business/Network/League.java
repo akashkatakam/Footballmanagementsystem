@@ -88,6 +88,7 @@ public class League extends Organization {
         for(Club club : clubs){
             String name = club.getVenue();
             Stadium s = new Stadium(name, null);
+            club.setStadium(s);
             this.stadiums.add(s);
         }
     }

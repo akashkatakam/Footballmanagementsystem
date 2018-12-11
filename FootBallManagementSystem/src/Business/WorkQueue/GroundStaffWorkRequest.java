@@ -62,7 +62,7 @@ public class GroundStaffWorkRequest extends WorkRequest{
 
     @Override
     public String toString() {
-        return requestType.getValue();
+        return String.valueOf(fundsAllocated);
     }
     
     
