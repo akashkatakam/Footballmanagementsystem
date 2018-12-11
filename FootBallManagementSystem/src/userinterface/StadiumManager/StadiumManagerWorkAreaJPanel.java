@@ -415,9 +415,9 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backjButton1ActionPerformed
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-        String clubName = GsNameTextField.getText();
-        String userName = nameJTextField.getText();
-        String password = passwordJTextField.getText();
+        String clubName = GsNameTextField.getText().trim();
+        String userName = nameJTextField.getText().trim();
+        String password = passwordJTextField.getText().trim();
         if(!clubName.equalsIgnoreCase("") && !userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("")){
             GroundStaff gs = new GroundStaff(clubName,stadium);
                 if(system.checkIfUserIsUnique(userName)){
@@ -438,9 +438,9 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void createUserJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButton1ActionPerformed
         // TODO add your handling code here:
-        String stadiumName = TSNameTextField.getText();
-        String userName = nameJTextField1.getText();
-        String password = passwordJTextField1.getText();
+        String stadiumName = TSNameTextField.getText().trim();
+        String userName = nameJTextField1.getText().trim();
+        String password = passwordJTextField1.getText().trim();
         if(!stadiumName.equalsIgnoreCase("") && !userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("")){
              TicketSeller  ts = new TicketSeller(stadiumName,stadium);
             if(system.checkIfUserIsUnique(userName)){
@@ -459,7 +459,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void createRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRequestActionPerformed
         GroundStaffWorkRequest gr = null;
-        String text = jTextField1.getText();
+        String text = jTextField1.getText().trim();
         if(text.length() != 0){
             if(jComboBox2.getSelectedItem().equals(GroundStaffWorkRequest.RequestType.CateringServices)){
                 gr = new GroundStaffWorkRequest();
@@ -479,10 +479,10 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
         try{
-        gr.setFundsAllocated(Integer.parseInt(text));        
-        gr.setStatus("REQUESTED");
-        this.stadium.getGroundStaff().getWorkQueue().getWorkRequestList().add(gr);
-        JOptionPane.showMessageDialog(null,"Request created");
+            gr.setFundsAllocated(Integer.parseInt(text));        
+            gr.setStatus("REQUESTED");
+            this.stadium.getGroundStaff().getWorkQueue().getWorkRequestList().add(gr);
+            JOptionPane.showMessageDialog(null,"Request created");
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null,"Please enter valid input");
         }
@@ -491,7 +491,7 @@ public class StadiumManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int selectedRow = jTable2.getSelectedRow();
         if(selectedRow>= 0){
-            MatchWorkRequest matchWork =  (MatchWorkRequest)  jTable2.getValueAt(selectedRow, 2);
+            MatchWorkRequest matchWork =  (MatchWorkRequest)  jTable2.getValueAt(selectedRow, 3);
             this.matchWorkRequest = matchWork;
             JOptionPane.showMessageDialog(null, "Stadium booked for this match!");
             this.stadium.getWorkQueue().getWorkRequestList().remove(matchWorkRequest);

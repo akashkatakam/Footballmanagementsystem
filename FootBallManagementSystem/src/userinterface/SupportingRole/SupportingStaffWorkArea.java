@@ -7,11 +7,9 @@ package userinterface.SupportingRole;
 
 import Business.EcoSystem;
 import Business.Model.Club;
-import Business.Model.Owner;
 import Business.Model.Player;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.MatchWorkRequest;
 import Business.WorkQueue.TrainingWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;

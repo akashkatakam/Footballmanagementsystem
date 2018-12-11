@@ -23,7 +23,6 @@ import Business.Role.StadiumManagerRole;
 import Business.Service.LeagueDataService;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.MatchWorkRequest;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -773,18 +772,25 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
             this.clubCreate.setVisible(true);
             this.selectedClub = (Club)clubTable.getValueAt(selectedRow, 0);
             ClubNameTextField.setText(this.selectedClub.getName());
+            ClubNameTextField.setEnabled(false);
         }else JOptionPane.showMessageDialog(null, "Please select a Club!");
     }//GEN-LAST:event_createUserJButton2ActionPerformed
 
     private void createUserJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButton3ActionPerformed
-        String userName = nameJTextField.getText();
-        String password = passwordJTextField.getText();
-        String clubName = ClubNameTextField.getText();
+        String userName = nameJTextField.getText().trim();
+        String password = passwordJTextField.getText().trim();
+        String clubName = ClubNameTextField.getText().trim();
         String clubOwnerName = ClubOwnerTextField.getText();
         if(!userName.equalsIgnoreCase("") && !password.equalsIgnoreCase("") && !clubOwnerName.equalsIgnoreCase("")){
             if(system.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
                 if(this.selectedClub == null){
-                Club club = new Club(clubName,clubOwnerName);
+                 for( Club c : this.currentLeague.getClubs()){
+                     if(c.getName().equals(clubName)){
+                          JOptionPane.showMessageDialog(null, "Club Name Exists!");
+                          return;
+                     }
+                 }
+                 Club club = new Club(clubName,clubOwnerName);
                  currentLeague.addClub(club); 
                  system.getUserAccountDirectory().createUserAccount(userName, password, new ClubOwnerRole(),club.getOwner());
                  JOptionPane.showMessageDialog(null, "Club created succesfully!");
@@ -822,13 +828,15 @@ public class LeagueAdminWorkArea extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          this.clubCreate.setVisible(true);
+         ClubNameTextField.setEnabled(true);
+          ClubNameTextField.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void submitStadiumManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitStadiumManagerActionPerformed
-        String stadiumName = StadiumNameTextField.getText();
-        String stadiumOwnerName = StadiumManagerTextField.getText();
-        String userName = nameJTextField1.getText();
-        String password = passwordJTextField1.getText();
+        String stadiumName = StadiumNameTextField.getText().trim();
+        String stadiumOwnerName = StadiumManagerTextField.getText().trim();
+        String userName = nameJTextField1.getText().trim();
+        String password = passwordJTextField1.getText().trim();
         if(this.selectedStadium == null){
             JOptionPane.showMessageDialog(null, "Please Select a Stadium!");
         }else {

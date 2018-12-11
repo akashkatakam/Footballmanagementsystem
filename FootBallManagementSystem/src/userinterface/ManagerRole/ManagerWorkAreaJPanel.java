@@ -56,6 +56,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
          TeamManager manager = (TeamManager) (Person) account.getPerson();
          this.system = business;
          this.club = manager.getClub();
+         this.jLabel1.setText(this.club.getName());
          this.layout = (CardLayout) this.getLayout();
          populateLeagueComboBox();
          dh = new DataHandler();
@@ -1144,7 +1145,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel15.setForeground(new java.awt.Color(204, 204, 204));
         jLabel15.setText("Shooting");
 
-        jButton1.setText("Send TrainRequest");
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
+        jButton1.setText("Send Training Request");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1173,7 +1175,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel30.setForeground(new java.awt.Color(204, 204, 204));
         jLabel30.setText("Fitness");
 
-        btnBack3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        btnBack3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
         btnBack3.setText("<<Back");
         btnBack3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1239,7 +1241,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(btnBack3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(371, Short.MAX_VALUE))
+                .addContainerGap(365, Short.MAX_VALUE))
         );
 
         add(TrainingScheduleJpanel, "card9");
@@ -1253,7 +1255,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             this.selectedWorkRequest = matchWork;
             this.layout.show(this, "card4");
             populateSquad1ComboBox();
-        }else JOptionPane.showMessageDialog(null, "Please select a Club!");
+        }else JOptionPane.showMessageDialog(null, "Please select a Match!");
         
         
     }//GEN-LAST:event_btnViewSquadActionPerformed
@@ -1383,8 +1385,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = clubTable.getSelectedRow();
         if(selectedRow>= 0){
             try{
-                Integer yoc = Integer.parseInt(jTextField2.getText());
-                Integer price = Integer.parseInt(jTextField3.getText());
+                Integer yoc = Integer.parseInt(jTextField2.getText().trim());
+                Integer price = Integer.parseInt(jTextField3.getText().trim());
                 Player p = (Player)clubTable.getValueAt(selectedRow, 0);
                 Club fromClub = (Club) jComboBox13.getSelectedItem();
                 if(p.getClub() == null){                                                 
@@ -1413,33 +1415,38 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         layout.show(this, "card2");
     }//GEN-LAST:event_btnBack1ActionPerformed
 
-    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBack2ActionPerformed
-
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String shootHrs = jTextField1.getText();
-        String DribbleHrs = jTextField4.getText();
-        String passingHrs = jTextField5.getText();
-        String defHrs = jTextField6.getText();
-        String fitHrs = jTextField7.getText();
-        TrainingWorkRequest Twr = new TrainingWorkRequest();
-        Twr.setShootingours(Integer.parseInt(shootHrs));
-        Twr.setDribblingHours(Integer.parseInt(DribbleHrs));
-        Twr.setPassingHours(Integer.parseInt(passingHrs));
-        Twr.setDefensiveHours(Integer.parseInt(defHrs));
-        Twr.setFitnessHours(Integer.parseInt(fitHrs));
-        Twr.setMatch(this.selectedWorkRequest);
-        this.club.getSupporttingStaff().getWorkQueue().addWorkQueue(Twr);
-        this.club.getClubPlayers().getWorkQueue().addWorkQueue(Twr);
-        Twr.setStatus("Initiated");
+        try{
+            String shootHrs = jTextField1.getText().trim();
+            String DribbleHrs = jTextField4.getText().trim();
+            String passingHrs = jTextField5.getText().trim();
+            String defHrs = jTextField6.getText().trim();
+            String fitHrs = jTextField7.getText().trim();
+            TrainingWorkRequest Twr = new TrainingWorkRequest();
+            Twr.setShootingours(Integer.parseInt(shootHrs));
+            Twr.setDribblingHours(Integer.parseInt(DribbleHrs));
+            Twr.setPassingHours(Integer.parseInt(passingHrs));
+            Twr.setDefensiveHours(Integer.parseInt(defHrs));
+            Twr.setFitnessHours(Integer.parseInt(fitHrs));
+            Twr.setMatch(this.selectedWorkRequest);
+            this.club.getSupporttingStaff().getWorkQueue().addWorkQueue(Twr);
+            this.club.getClubPlayers().getWorkQueue().addWorkQueue(Twr);
+            Twr.setStatus("Initiated");
+            JOptionPane.showMessageDialog(this, "Training Work Request sent Succesfully");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Enter Valid Input");
+        }
+            jTextField1.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
         
-        JOptionPane.showMessageDialog(this, "Training Work Request sent Succesfully");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBack3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack3ActionPerformed
@@ -1576,6 +1583,10 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void defn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defn4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_defn4ActionPerformed
+
+    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBack2ActionPerformed
      
     public void checkPlayerSelecetd(Player p,HashMap<Integer,Player> checklist){
        if(p != null){

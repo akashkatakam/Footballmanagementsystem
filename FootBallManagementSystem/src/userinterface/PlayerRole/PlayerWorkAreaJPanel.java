@@ -7,7 +7,6 @@ package userinterface.PlayerRole;
 
 import Business.EcoSystem;
 import Business.Handler.DataHandler;
-import Business.Model.Owner;
 import Business.Model.Player;
 import Business.Model.PlayerStatistics;
 import Business.Organization.Organization;
@@ -401,7 +400,7 @@ public class PlayerWorkAreaJPanel extends javax.swing.JPanel {
             this.currentPlayer.setClub(cr.getContract().getToClub());
             cr.getContract().getToClub().getClubPlayers().addPlayer(this.currentPlayer);
             cr.getContract().getFromClub().getClubPlayers().getPlayers().remove(this.currentPlayer);
-            this.currentPlayer.getClub().getClubPlayers().getWorkQueue().getWorkRequestList().remove(cr);
+            cr.getContract().getFromClub().getClubPlayers().getWorkQueue().getWorkRequestList().remove(cr);
             populateContractTable();
             JOptionPane.showMessageDialog(this, "Contract Accepted Succesfull");
         }else JOptionPane.showMessageDialog(null, "Please select a Contract!");

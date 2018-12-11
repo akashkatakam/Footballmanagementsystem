@@ -12,35 +12,21 @@ import Business.Model.Goal;
 import Business.Model.Match;
 import Business.Model.Owner;
 import Business.Model.Player;
-import Business.Model.Staff;
 import Business.Model.Table;
-import Business.Model.TeamManager;
 import Business.Organization.Organization;
 import Business.Role.ManagerRole;
 import Business.Role.PlayerRole;
 import Business.Role.SupportingStaffManagerRole;
 import Business.Service.LeagueDataService;
 import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -50,12 +36,9 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 /**
  *
  * @author nikitagawde
@@ -379,8 +362,6 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
         jLabel18.setText("First name :");
 
-        supportingStaffName.setText("                                  ");
-        supportingStaffName.setEnabled(false);
         supportingStaffName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supportingStaffNameActionPerformed(evt);
@@ -542,8 +523,7 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(13, 13, 13)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -551,11 +531,10 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1)
-                            .addComponent(fName))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fName)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(submitPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -785,9 +764,9 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_fNameActionPerformed
 
     private void submitPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitPlayerActionPerformed
-        String firstName = fName.getText();
-        String userName = jTextField1.getText();
-        String passWord = jTextField2.getText();
+        String firstName = fName.getText().trim();
+        String userName = jTextField1.getText().trim();
+        String passWord = jTextField2.getText().trim();
         if(!userName.equalsIgnoreCase("") && !passWord.equalsIgnoreCase("") && !firstName.equalsIgnoreCase("")){
             if(system.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
                 if(this.player == null){
@@ -803,6 +782,9 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Player login created succesfully!");
                     this.player = null;
                 }
+                    fName.setText("");
+                    jTextField1.setText("");
+                    jTextField2.setText("");
                 jPanel7.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(null ,"Username Alreay Exists");
@@ -810,15 +792,12 @@ public class ClubOwnerWorkAreaJPanel extends javax.swing.JPanel {
         }else{
            JOptionPane.showMessageDialog(null ,"Please Enter a Valid Name!");
         }
-        fName.setText("");
-        jTextField1.setText("");
-        jTextField2.setText("");
         
     }//GEN-LAST:event_submitPlayerActionPerformed
 
     private void submitManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitManagerActionPerformed
         String userName = jTextField3.getText().trim();
-        String passWord = jTextField4.getText();
+        String passWord = jTextField4.getText().trim();
         if(!userName.equalsIgnoreCase("") && !passWord.equalsIgnoreCase("")){
             if(system.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
                 this.currentClub.getManagerOrganization().getTm().setClub(this.currentClub);

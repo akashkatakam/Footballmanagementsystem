@@ -36,6 +36,7 @@ public class TicketSellerWorkAreaJPanel extends javax.swing.JPanel {
         TicketSeller ts = (TicketSeller) account.getPerson();
         this.stadium = ts.getStadium();
         jLabel4.setText(this.stadium.getName());
+        populateUpcomingMatchesTable();
     }
 
     /**
@@ -155,14 +156,19 @@ public class TicketSellerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRow = jTable2.getSelectedRow();
-        int ticketsSold =  Integer.parseInt(jTextField1.getText());
-        if(selectedRow>= 0){
-            MatchWorkRequest matchWork =  (MatchWorkRequest)  jTable2.getValueAt(selectedRow, 3);
-            if(matchWork.getNumberOfTicketsSold() < 1000){
-            matchWork.setNumberOfTicketsSold(matchWork.getNumberOfTicketsSold()+ticketsSold);
-            JOptionPane.showMessageDialog(null,"Ticket reserved");
-            } else JOptionPane.showMessageDialog(null,"Sold out!");
-        }else JOptionPane.showMessageDialog(null, "Please select a match!");
+        try{
+            int ticketsSold =  Integer.parseInt(jTextField1.getText());
+            if(selectedRow>= 0){
+                MatchWorkRequest matchWork =  (MatchWorkRequest)  jTable2.getValueAt(selectedRow, 3);
+                if(matchWork.getNumberOfTicketsSold() < 1000){
+                matchWork.setNumberOfTicketsSold(matchWork.getNumberOfTicketsSold()+ticketsSold);
+                JOptionPane.showMessageDialog(null,"Ticket reserved");
+                populateUpcomingMatchesTable();
+                } else JOptionPane.showMessageDialog(null,"Sold out!");
+            }else JOptionPane.showMessageDialog(null, "Please select a match!");
+        }catch( NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Please Enter Valid Input!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void populateUpcomingMatchesTable(){

@@ -2215,7 +2215,7 @@
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnBack3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <EmptySpace pref="371" max="32767" attributes="0"/>
+                  <EmptySpace pref="365" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2234,7 +2234,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Send TrainRequest"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI Semibold" size="16" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Send Training Request"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -2300,7 +2303,7 @@
         <Component class="javax.swing.JButton" name="btnBack3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Serif" size="18" style="1"/>
+              <Font name="Segoe UI Semibold" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&lt;&lt;Back"/>
           </Properties>
