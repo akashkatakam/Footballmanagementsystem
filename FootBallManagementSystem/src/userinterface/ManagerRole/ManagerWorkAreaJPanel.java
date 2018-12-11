@@ -147,7 +147,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         att3.removeAllItems();
         deff4.removeAllItems();
         gkComboBox1.removeAllItems();
-        for (Player player : this.club.getPlayers()){
+        for (Player player : this.club.getClubPlayers().getPlayers()){
             if(player.getPosition().equals("Midfielder")){
                 midd1.addItem(player);
                 midd2.addItem(player);
@@ -180,7 +180,7 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         atk1.removeAllItems();
         atk2.removeAllItems();
         gkComboBox2.removeAllItems();
-        for (Player player : this.club.getPlayers()){
+        for (Player player : this.club.getClubPlayers().getPlayers()){
             if(player.getPosition().equals("Midfielder")){
                 midf1.addItem(player);
                 midf2.addItem(player);
@@ -281,7 +281,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        btnBack2 = new javax.swing.JButton();
         squad2 = new javax.swing.JPanel();
         att3 = new javax.swing.JComboBox();
         att2 = new javax.swing.JComboBox();
@@ -891,15 +890,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel11.setText("Mid Fielders");
         squad1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
 
-        btnBack2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 16)); // NOI18N
-        btnBack2.setText("<<Back");
-        btnBack2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBack2ActionPerformed(evt);
-            }
-        });
-        squad1.add(btnBack2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, 40));
-
         add(squad1, "card6");
 
         squad2.setBackground(new java.awt.Color(51, 51, 51));
@@ -1255,6 +1245,8 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
             this.selectedWorkRequest = matchWork;
             this.layout.show(this, "card4");
             populateSquad1ComboBox();
+            populateSquad2ComboBox();
+            populateSquad3ComboBox();
         }else JOptionPane.showMessageDialog(null, "Please select a Match!");
         
         
@@ -1325,12 +1317,12 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        this.layout.show(this, "card6");
+        this.layout.show(this, "card7");
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-        this.layout.show(this, "card6");
+        this.layout.show(this, "card8");
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -1583,10 +1575,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void defn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_defn4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_defn4ActionPerformed
-
-    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBack2ActionPerformed
      
     public void checkPlayerSelecetd(Player p,HashMap<Integer,Player> checklist){
        if(p != null){
@@ -1618,7 +1606,6 @@ public class ManagerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox att3;
     private javax.swing.JButton backjButton3;
     private javax.swing.JButton btnBack1;
-    private javax.swing.JButton btnBack2;
     private javax.swing.JButton btnBack3;
     private javax.swing.JButton btnSearchPlayer;
     private javax.swing.JButton btnTraining;
